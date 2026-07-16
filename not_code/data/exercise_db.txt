@@ -1,0 +1,588 @@
+[
+  {
+    "name": "Arnold Press",
+    "masterData": {
+      "Force Type": "Push",
+      "Primary Muscle": "Shoulders",
+      "Secondary Muscle": "Triceps",
+      "Mechanics": "Compound",
+      "Muscles Involved": [
+        "Shoulders",
+        "Triceps"
+      ],
+      "Grip": "Overhand",
+      "Body Region": "Upper Body",
+      "Movement Pattern": [
+        "Pressing"
+      ]
+    },
+    "id": "rfcAwkF82KsP8YLPozBt"
+  },
+  {
+    "notes": "Elbows 45°; hard scap squeeze for rear-delt thickness.",
+    "lastVolume": 1035,
+    "lastSetsData": [
+      {
+        "volume": 405,
+        "setDuration": 0,
+        "weight": 45,
+        "restDuration": 0,
+        "reps": 9,
+        "failed": false
+      },
+      {
+        "restDuration": 0,
+        "failed": true,
+        "setDuration": 0,
+        "volume": 360,
+        "reps": 8,
+        "weight": 45
+      },
+      {
+        "restDuration": 0,
+        "weight": 45,
+        "setDuration": 0,
+        "volume": 270,
+        "failed": true,
+        "reps": 6
+      }
+    ],
+    "lastPerformed": {
+      "seconds": 1753211500,
+      "nanoseconds": 101000000
+    },
+    "lastReps": [
+      9,
+      8,
+      6
+    ],
+    "lastSets": 3,
+    "id": "PrInggO85kbzVDWXXI0J",
+    "name": "Chest-supported T-Bar Row",
+    "masterData": {
+      "Grip": "Pronated",
+      "Secondary Muscle": "Biceps",
+      "Muscles Involved": [
+        "Back",
+        "Biceps",
+        "Forearms",
+        "Shoulders"
+      ],
+      "Primary Muscle": "Back",
+      "Mechanics": "Compound",
+      "Force Type": "Pull",
+      "Movement Pattern": [
+        "Pulling"
+      ],
+      "Body Region": "Upper Body"
+    }
+  },
+  {
+    "id": "DWb35YILc687jhOSwvyp",
+    "notes": "",
+    "masterData": {
+      "Movement Pattern": [
+        "Abduction"
+      ],
+      "Primary Muscle": "Side Deltoids",
+      "Muscles Involved": [
+        "Shoulders (Medial Deltoids)",
+        "Trapezius",
+        "Supraspinatus"
+      ],
+      "Body Region": "Upper Body",
+      "Force Type": "Push",
+      "Grip": "Neutral",
+      "Secondary Muscle": "Trapezius",
+      "Mechanics": "Isolation"
+    },
+    "lastPerformed": {
+      "seconds": 1753210014,
+      "nanoseconds": 112000000
+    },
+    "lastVolume": 440,
+    "lastReps": [
+      10,
+      11,
+      10,
+      8
+    ],
+    "lastSets": 4,
+    "lastSetsData": [
+      {
+        "weight": 15,
+        "volume": 150,
+        "restDuration": 0,
+        "setDuration": 0,
+        "reps": 10,
+        "failed": true
+      },
+      {
+        "restDuration": 0,
+        "setDuration": 0,
+        "reps": 11,
+        "weight": 10,
+        "failed": true,
+        "volume": 110
+      },
+      {
+        "weight": 10,
+        "failed": true,
+        "volume": 100,
+        "setDuration": 0,
+        "reps": 10,
+        "restDuration": 0
+      },
+      {
+        "failed": true,
+        "restDuration": 0,
+        "setDuration": 0,
+        "weight": 10,
+        "volume": 80,
+        "reps": 8
+      }
+    ],
+    "name": "DB Lateral Raise"
+  },
+  {
+    "lastPerformed": null,
+    "lastSets": null,
+    "masterData": {
+      "id": "OUzejayyQxtyNizaoFUX",
+      "Secondary Muscle": "Glutes",
+      "Muscles Involved": [
+        "Quadriceps",
+        "Glutes",
+        "Hamstrings",
+        "Calves",
+        "Core"
+      ],
+      "Mechanics": "Compound",
+      "Body Region": "Lower Body",
+      "Movement Pattern": [
+        "Squat"
+      ],
+      "Primary Muscle": "Glutes",
+      "Force Type": "Push",
+      "Grip": "Overhand"
+    },
+    "lastSetsData": [],
+    "notes": "",
+    "lastReps": [],
+    "name": "Deep Back Squat (HSR)",
+    "lastVolume": null,
+    "id": "OUzejayyQxtyNizaoFUX"
+  },
+  {
+    "lastPerformed": {
+      "seconds": 1753211500,
+      "nanoseconds": 101000000
+    },
+    "lastSetsData": [
+      {
+        "restDuration": 0,
+        "failed": true,
+        "volume": 350,
+        "reps": 7,
+        "weight": 50,
+        "setDuration": 0
+      },
+      {
+        "reps": 8,
+        "setDuration": 0,
+        "weight": 40,
+        "failed": true,
+        "restDuration": 0,
+        "volume": 320
+      },
+      {
+        "volume": 200,
+        "setDuration": 0,
+        "reps": 5,
+        "restDuration": 0,
+        "failed": true,
+        "weight": 40
+      }
+    ],
+    "lastSets": 3,
+    "lastVolume": 870,
+    "lastReps": [
+      7,
+      8,
+      5
+    ],
+    "masterData": {
+      "Movement Pattern": [
+        "Flexion"
+      ],
+      "Secondary Muscle": "Brachialis",
+      "Muscles Involved": [
+        "Biceps",
+        "Brachialis",
+        "Brachioradialis",
+        "Forearms"
+      ],
+      "Mechanics": "Isolation",
+      "Primary Muscle": "Biceps",
+      "Grip": "Neutral",
+      "Body Region": "Upper Body",
+      "Force Type": "Pull"
+    },
+    "notes": "",
+    "name": "EZ-bar Curl",
+    "id": "U1CB3eImrFkg3VDu3TZL"
+  },
+  {
+    "masterData": {
+      "Force Type": "Push",
+      "Grip": "N/A",
+      "Body Region": "Lower Body",
+      "Muscles Involved": [
+        "Quadriceps",
+        "Glutes",
+        "Hamstrings",
+        "Calves"
+      ],
+      "Movement Pattern": [
+        "Compound"
+      ],
+      "Mechanics": "Compound",
+      "Primary Muscle": "Quadriceps",
+      "Secondary Muscle": "Glutes"
+    },
+    "name": "Hack Squat",
+    "id": "ZWQc7nUIvc1mHuwXQKVt"
+  },
+  {
+    "name": "Incline DB Press (30°)",
+    "masterData": {
+      "Primary Muscle": "Chest",
+      "Force Type": "Push",
+      "Body Region": "Upper Body",
+      "Grip": "Neutral",
+      "Secondary Muscle": "Shoulders",
+      "Mechanics": "Compound",
+      "Muscles Involved": [
+        "Chest",
+        "Shoulders",
+        "Triceps"
+      ],
+      "Movement Pattern": [
+        "Pressing"
+      ]
+    },
+    "lastSets": 3,
+    "lastPerformed": {
+      "seconds": 1753211500,
+      "nanoseconds": 101000000
+    },
+    "lastVolume": 940,
+    "notes": "",
+    "lastReps": [
+      10,
+      7,
+      6
+    ],
+    "lastSetsData": [
+      {
+        "weight": 45,
+        "reps": 10,
+        "failed": false,
+        "restDuration": 4,
+        "setDuration": 53,
+        "volume": 450
+      },
+      {
+        "setDuration": 38,
+        "failed": true,
+        "weight": 40,
+        "restDuration": 151,
+        "volume": 280,
+        "reps": 7
+      },
+      {
+        "volume": 210,
+        "reps": 6,
+        "setDuration": 44,
+        "failed": true,
+        "weight": 35,
+        "restDuration": 149
+      }
+    ],
+    "id": "aHlRN5p6sYzGhcpeT7RA"
+  },
+  {
+    "lastSetsData": [],
+    "id": "ZUoLDDwPZfqG1BdlcUHf",
+    "lastVolume": null,
+    "lastSets": null,
+    "lastPerformed": null,
+    "lastReps": [],
+    "notes": "",
+    "name": "Lean-away Cable Lateral Raise",
+    "masterData": {
+      "Mechanics": "Isolation",
+      "Movement Pattern": [
+        "Abduction"
+      ],
+      "Force Type": "Push",
+      "Muscles Involved": [
+        "Shoulders (Medial Deltoids)",
+        "Trapezius",
+        "Rear Deltoids"
+      ],
+      "Grip": "Neutral",
+      "Body Region": "Upper Body",
+      "Primary Muscle": "Side Delts",
+      "Secondary Muscle": "Trapezius",
+      "primaryMuscle": "Side Delts"
+    }
+  },
+  {
+    "masterData": {
+      "Primary Muscle": "Shoulders",
+      "Secondary Muscle": "Triceps",
+      "Grip": "Overhand",
+      "Force Type": "Push",
+      "Body Region": "Upper Body",
+      "Movement Pattern": [
+        "Overhead Press"
+      ],
+      "Mechanics": "Compound",
+      "Muscles Involved": [
+        "Shoulders",
+        "Triceps",
+        "Trapezius"
+      ]
+    },
+    "name": "Military Press",
+    "id": "7tMdzKbICcP2OKDBw1Iq"
+  },
+  {
+    "lastVolume": 2950,
+    "lastPerformed": {
+      "seconds": 1753209346,
+      "nanoseconds": 177000000
+    },
+    "masterData": {
+      "primaryMuscle": "Lats",
+      "Primary Muscle": "Lats",
+      "Movement Pattern": [
+        "Pull"
+      ],
+      "Muscles Involved": [
+        "Lats",
+        "Biceps",
+        "Rhomboids",
+        "Trapezius",
+        "Forearms"
+      ],
+      "Body Region": "Upper Body",
+      "Grip": "Neutral",
+      "Force Type": "Pull",
+      "Mechanics": "Compound",
+      "Secondary Muscle": "Biceps"
+    },
+    "lastSets": 4,
+    "name": "Neutral-grip Lat-pulldown",
+    "lastReps": [
+      4,
+      10,
+      10,
+      10
+    ],
+    "notes": "",
+    "lastSetsData": [
+      {
+        "restDuration": 0,
+        "weight": 100,
+        "volume": 400,
+        "setDuration": 0,
+        "reps": 4,
+        "failed": true
+      },
+      {
+        "setDuration": 0,
+        "failed": true,
+        "restDuration": 0,
+        "volume": 850,
+        "reps": 10,
+        "weight": 85
+      },
+      {
+        "restDuration": 0,
+        "volume": 850,
+        "reps": 10,
+        "weight": 85,
+        "failed": false,
+        "setDuration": 0
+      },
+      {
+        "failed": true,
+        "restDuration": 0,
+        "weight": 85,
+        "volume": 850,
+        "reps": 10,
+        "setDuration": 0
+      }
+    ],
+    "id": "5G5ecJWIFGo3EZF2pYdE"
+  },
+  {
+    "notes": "",
+    "lastSetsData": [
+      {
+        "weight": 55,
+        "volume": 660,
+        "reps": 12,
+        "setDuration": 0,
+        "failed": false,
+        "restDuration": 0
+      },
+      {
+        "weight": 55,
+        "volume": 330,
+        "reps": 6,
+        "failed": true,
+        "restDuration": 0,
+        "setDuration": 0
+      },
+      {
+        "volume": 320,
+        "failed": true,
+        "reps": 8,
+        "restDuration": 0,
+        "setDuration": 0,
+        "weight": 40
+      }
+    ],
+    "lastPerformed": {
+      "seconds": 1753211500,
+      "nanoseconds": 101000000
+    },
+    "lastVolume": 1310,
+    "lastReps": [
+      12,
+      6,
+      8
+    ],
+    "masterData": {
+      "Mechanics": "Isolation",
+      "Secondary Muscle": "Trapezius",
+      "Body Region": "Upper Body",
+      "Force Type": "Push",
+      "Primary Muscle": "Rear Deltoids",
+      "Grip": "Neutral",
+      "Muscles Involved": [
+        "Rear Deltoids",
+        "Trapezius",
+        "Rhomboids",
+        "Rotator Cuff"
+      ],
+      "Movement Pattern": [
+        "Horizontal Adduction"
+      ]
+    },
+    "lastSets": 3,
+    "name": "Reverse Pec-Deck",
+    "id": "mRs6GxxztNghedN1W2It"
+  },
+  {
+    "name": "Romanian Deadlift",
+    "masterData": {
+      "Primary Muscle": "Hamstrings",
+      "Secondary Muscle": "Glutes",
+      "Grip": "Overhand",
+      "Muscles Involved": [
+        "Hamstrings",
+        "Glutes",
+        "Lower Back"
+      ],
+      "Mechanics": "Compound",
+      "Body Region": "Lower Body",
+      "Movement Pattern": [
+        "Hip Hinge"
+      ],
+      "Force Type": "Pull"
+    },
+    "id": "yECr81m1kf8xrafOdv9q"
+  },
+  {
+    "lastVolume": 471,
+    "name": "Rope Overhead Triceps Extension",
+    "lastSets": 3,
+    "lastReps": [
+      8,
+      5,
+      6
+    ],
+    "lastSetsData": [
+      {
+        "reps": 8,
+        "setDuration": 0,
+        "volume": 216,
+        "restDuration": 0,
+        "weight": 27,
+        "failed": true
+      },
+      {
+        "setDuration": 0,
+        "reps": 5,
+        "weight": 27,
+        "volume": 135,
+        "restDuration": 0,
+        "failed": true
+      },
+      {
+        "restDuration": 0,
+        "setDuration": 0,
+        "failed": true,
+        "weight": 20,
+        "reps": 6,
+        "volume": 120
+      }
+    ],
+    "masterData": {
+      "Movement Pattern": [
+        "Extension"
+      ],
+      "Mechanics": "Isolation",
+      "Secondary Muscle": "Shoulders",
+      "Grip": "Overhand",
+      "Primary Muscle": "Triceps",
+      "Force Type": "Push",
+      "Muscles Involved": [
+        "Triceps",
+        "Shoulders",
+        "Forearms"
+      ],
+      "Body Region": "Upper Body"
+    },
+    "notes": "",
+    "lastPerformed": {
+      "seconds": 1753211495,
+      "nanoseconds": 608000000
+    },
+    "id": "lGW74RxQEOnCviK6zmWZ"
+  },
+  {
+    "masterData": {
+      "Primary Muscle": "Calves",
+      "Force Type": "Push",
+      "Body Region": "Lower Body",
+      "Movement Pattern": [
+        "Plantarflexion"
+      ],
+      "Muscles Involved": [
+        "Calves",
+        "Soleus",
+        "Gastrocnemius"
+      ],
+      "Mechanics": "Isolation",
+      "Secondary Muscle": "Soleus",
+      "Grip": "N/A"
+    },
+    "name": "Seated Calf Extension Machine",
+    "id": "HU1xlqADb01hc8gsZSnD"
+  }
+]

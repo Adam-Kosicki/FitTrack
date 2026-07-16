@@ -1,0 +1,184 @@
+[
+  {
+    "id": "TEOriej9By5GMfb0RW94",
+    "notes": "First session back after 3 days off. Breathless early on, but pushed through. Moderate knee discomfort on plyos—tolerable and improving. Logged full Lower A session.",
+    "workoutName": "Lower A (Vertical Jump + Quads Focus)",
+    "date": {
+      "seconds": 1721062800,
+      "nanoseconds": 0
+    },
+    "durationSeconds": 3600,
+    "exercises": [
+      {
+        "rest": 120,
+        "muscleGroup": "Quads",
+        "sets": [
+          {
+            "weight": 135,
+            "failed": false,
+            "reps": 5
+          },
+          {
+            "weight": 135,
+            "reps": 6,
+            "failed": false
+          },
+          {
+            "weight": 135,
+            "failed": false,
+            "reps": 5
+          }
+        ],
+        "reps": 5,
+        "name": "Deep Back Squat",
+        "notes": "HSR-style for jump power + quad growth. Felt harder than usual. Form breakdown—leaning forward at depth. High heart rate. Needs mobility work + core bracing focus."
+      },
+      {
+        "sets": [
+          {
+            "failed": false,
+            "reps": 6,
+            "weight": 135
+          },
+          {
+            "weight": 135,
+            "reps": 8,
+            "failed": false
+          },
+          {
+            "failed": false,
+            "weight": 135,
+            "reps": 6
+          }
+        ],
+        "notes": "Good form overall, but grip/lats were the limiting factor (not posterior chain). Use straps next time. Slight shakiness—likely neuromuscular reactivation.",
+        "name": "Romanian Deadlift",
+        "reps": 6,
+        "muscleGroup": "Hamstrings",
+        "rest": 120
+      },
+      {
+        "notes": "Moderate pump. Not feeling it as well as leg press calf raises. Plan to replace with leg press variation moving forward.",
+        "muscleGroup": "Calves",
+        "reps": 12,
+        "rest": 75,
+        "name": "Seated Calf Raise Machine",
+        "sets": [
+          {
+            "failed": false,
+            "weight": 90,
+            "reps": 12
+          },
+          {
+            "failed": true,
+            "weight": 90,
+            "reps": 13
+          },
+          {
+            "weight": 90,
+            "failed": true,
+            "reps": 10
+          }
+        ]
+      },
+      {
+        "rest": 75,
+        "sets": [
+          {
+            "reps": 7,
+            "weight": 60,
+            "failed": false
+          },
+          {
+            "failed": false,
+            "weight": 60,
+            "reps": 7
+          },
+          {
+            "weight": 60,
+            "reps": 7,
+            "failed": false
+          }
+        ],
+        "notes": "HSR Protocol for Jumper’s Knee. 2-leg up, 1-leg down, 3s eccentric. No pain during or after. Great pump and tolerance. Staying on track with tendon remodeling progression.",
+        "reps": 7,
+        "name": "Leg Extension",
+        "muscleGroup": "Quads"
+      },
+      {
+        "name": "Decline Sit-Ups",
+        "notes": "Strict form. Full range. Good core activation.",
+        "reps": 10,
+        "muscleGroup": "Abs",
+        "rest": 60,
+        "sets": [
+          {
+            "weight": 0,
+            "reps": 10,
+            "failed": false
+          },
+          {
+            "weight": 0,
+            "reps": 10,
+            "failed": false
+          },
+          {
+            "reps": 10,
+            "weight": 0,
+            "failed": false
+          }
+        ]
+      },
+      {
+        "muscleGroup": "Glutes",
+        "sets": [
+          {
+            "weight": 0,
+            "reps": 8,
+            "failed": false
+          },
+          {
+            "reps": 8,
+            "failed": false,
+            "weight": 0
+          },
+          {
+            "failed": false,
+            "reps": 8,
+            "weight": 0
+          }
+        ],
+        "rest": 120,
+        "notes": "~12” box. Stable landings. Focused on soft absorption and explosive takeoff. Slight knee discomfort, but significantly reduced compared to prior weeks. Green light to continue progressing.",
+        "reps": 8,
+        "name": "Depth Jumps"
+      },
+      {
+        "rest": 75,
+        "reps": 10,
+        "sets": [
+          {
+            "failed": false,
+            "reps": 10,
+            "weight": 50
+          },
+          {
+            "reps": 12,
+            "weight": 50,
+            "failed": false
+          },
+          {
+            "reps": 8,
+            "failed": false,
+            "weight": 50
+          }
+        ],
+        "muscleGroup": "Biceps",
+        "name": "EZ Bar Curls",
+        "notes": "Arm Hypertrophy Slot. Good biceps activation. Hit close to failure on final set. Full ROM. Controlled tempo. Slight rep drop on 3rd set likely from accumulated fatigue."
+      }
+    ],
+    "workoutId": "S6VeBcOV6XCYhcjSNTEs",
+    "bodyweight": 141
+  }
+]

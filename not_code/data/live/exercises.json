@@ -1,0 +1,268 @@
+[
+  {
+    "id": "8N26LpR6HGNqjUokaJIu",
+    "lastSetsData": [
+      {
+        "weight": 90,
+        "reps": 12,
+        "volume": 1080,
+        "failed": false
+      },
+      {
+        "weight": 90,
+        "failed": false,
+        "volume": 1080,
+        "reps": 12
+      },
+      {
+        "weight": 90,
+        "failed": false,
+        "reps": 12,
+        "volume": 1080
+      }
+    ],
+    "name": "Seated Calf Raise Machine",
+    "muscleGroup": "Calves",
+    "lastPerformed": {
+      "seconds": 1752611738,
+      "nanoseconds": 110000000
+    },
+    "lastRestInterval": 75,
+    "lastSets": 3,
+    "lastVolume": 3240,
+    "lastReps": [
+      12,
+      12,
+      12
+    ],
+    "notes": "Moderate pump. Not feeling it as well as leg press calf raises. Plan to replace with leg press variation moving forward."
+  },
+  {
+    "id": "DlVTkkdmW6duIwY9ZgnQ",
+    "lastPerformed": {
+      "seconds": 1752611743,
+      "nanoseconds": 810000000
+    },
+    "muscleGroup": "Biceps",
+    "lastVolume": 1500,
+    "lastRestInterval": 75,
+    "lastSetsData": [
+      {
+        "volume": 500,
+        "weight": 50,
+        "failed": false,
+        "reps": 10
+      },
+      {
+        "failed": false,
+        "volume": 500,
+        "weight": 50,
+        "reps": 10
+      },
+      {
+        "weight": 50,
+        "reps": 10,
+        "volume": 500,
+        "failed": false
+      }
+    ],
+    "name": "EZ Bar Curls",
+    "notes": "Arm Hypertrophy Slot. Good biceps activation. Hit close to failure on final set. Full ROM. Controlled tempo. Slight rep drop on 3rd set likely from accumulated fatigue.",
+    "lastReps": [
+      10,
+      10,
+      10
+    ],
+    "lastSets": 3
+  },
+  {
+    "id": "TdLwzBnrO2LChElHIfst",
+    "muscleGroup": "Abs",
+    "lastSets": 3,
+    "lastSetsData": [
+      {
+        "weight": 0,
+        "reps": 10,
+        "volume": 0,
+        "failed": false
+      },
+      {
+        "weight": 0,
+        "volume": 0,
+        "failed": false,
+        "reps": 10
+      },
+      {
+        "reps": 10,
+        "volume": 0,
+        "failed": false,
+        "weight": 0
+      }
+    ],
+    "lastPerformed": {
+      "seconds": 1752611740,
+      "nanoseconds": 809000000
+    },
+    "lastRestInterval": 60,
+    "lastVolume": 0,
+    "name": "Decline Sit-Ups",
+    "lastReps": [
+      10,
+      10,
+      10
+    ],
+    "notes": "Strict form. Full range. Good core activation."
+  },
+  {
+    "id": "bU2lVyeaUOQ4Ai4MKUQc",
+    "notes": "Good form overall, but grip/lats were the limiting factor (not posterior chain). Use straps next time. Slight shakiness—likely neuromuscular reactivation.",
+    "name": "Romanian Deadlift",
+    "lastSets": 3,
+    "lastRestInterval": 120,
+    "muscleGroup": "Hamstrings",
+    "lastPerformed": {
+      "seconds": 1752611736,
+      "nanoseconds": 193000000
+    },
+    "lastVolume": 2682,
+    "lastReps": [
+      6,
+      8,
+      6
+    ],
+    "lastSetsData": [
+      {
+        "failed": false,
+        "reps": 6,
+        "volume": 810,
+        "weight": 135
+      },
+      {
+        "weight": 135,
+        "reps": 8,
+        "volume": 1080,
+        "failed": false
+      },
+      {
+        "reps": 6,
+        "weight": 132,
+        "volume": 792,
+        "failed": false
+      }
+    ]
+  },
+  {
+    "id": "f8jbvL0vXHChywhC39W3",
+    "lastVolume": 1155,
+    "lastReps": [
+      7,
+      7,
+      7
+    ],
+    "lastPerformed": {
+      "seconds": 1752611739,
+      "nanoseconds": 743000000
+    },
+    "muscleGroup": "Quads",
+    "name": "Leg Extension",
+    "lastSets": 3,
+    "lastSetsData": [
+      {
+        "reps": 7,
+        "failed": false,
+        "volume": 385,
+        "weight": 55
+      },
+      {
+        "volume": 385,
+        "failed": false,
+        "reps": 7,
+        "weight": 55
+      },
+      {
+        "reps": 7,
+        "volume": 385,
+        "weight": 55,
+        "failed": false
+      }
+    ],
+    "lastRestInterval": 75,
+    "notes": "HSR Protocol for Jumper’s Knee. 2-leg up, 1-leg down, 3s eccentric. No pain during or after. Great pump and tolerance. Staying on track with tendon remodeling progression."
+  },
+  {
+    "id": "m4uiG49cMEcYHMASg13o",
+    "name": "Depth Jumps",
+    "lastPerformed": {
+      "seconds": 1752611742,
+      "nanoseconds": 844000000
+    },
+    "lastSetsData": [
+      {
+        "volume": 0,
+        "weight": 0,
+        "reps": 8,
+        "failed": false
+      },
+      {
+        "weight": 0,
+        "failed": false,
+        "volume": 0,
+        "reps": 8
+      },
+      {
+        "volume": 0,
+        "weight": 0,
+        "failed": false,
+        "reps": 8
+      }
+    ],
+    "lastRestInterval": 120,
+    "lastVolume": 0,
+    "notes": "~12” box. Stable landings. Focused on soft absorption and explosive takeoff. Slight knee discomfort, but significantly reduced compared to prior weeks. Green light to continue progressing.",
+    "lastReps": [
+      8,
+      8,
+      8
+    ],
+    "muscleGroup": "Glutes",
+    "lastSets": 3
+  },
+  {
+    "id": "vp8V8njcPf7zsMiuMSka",
+    "lastReps": [
+      5,
+      6,
+      5
+    ],
+    "lastSetsData": [
+      {
+        "weight": 135,
+        "failed": true,
+        "volume": 675,
+        "reps": 5
+      },
+      {
+        "failed": false,
+        "volume": 810,
+        "reps": 6,
+        "weight": 135
+      },
+      {
+        "weight": 135,
+        "volume": 675,
+        "reps": 5,
+        "failed": false
+      }
+    ],
+    "name": "Deep Back Squat",
+    "notes": "HSR-style for jump power + quad growth. Felt harder than usual. Form breakdown—leaning forward at depth. High heart rate. Needs mobility work + core bracing focus.",
+    "lastSets": 3,
+    "lastPerformed": {
+      "seconds": 1752611782,
+      "nanoseconds": 993000000
+    },
+    "lastVolume": 2160,
+    "muscleGroup": "Quads",
+    "lastRestInterval": 120
+  }
+]

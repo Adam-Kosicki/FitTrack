@@ -1,0 +1,11 @@
+node_modules/
+/data/live
+/workout-preview/build
+.DS_Store
+/not_code/jake_tuura/
+*.env
+*.env.*
+.firebase/
+.firebaserc
+.cursor/
+.cursor* 
