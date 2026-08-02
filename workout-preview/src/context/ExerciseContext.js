@@ -109,18 +109,23 @@ export const ExerciseProvider = ({ children, userId }) => {
                 const log = doc.data();
                 const logDate = log.date;
                 (log.exercises || []).forEach(ex => {
-                    if (!ex.name || !ex.sets || ex.sets.length === 0) return;
-                    const key = ex.name.trim().toLowerCase();
+                    const nameTrim = String(ex.name || '').trim();
+                    if (!nameTrim || nameTrim.toLowerCase() === 'exercise') return;
+
+                    const validSets = (ex.sets || []).filter(s => s.status === 'completed' || Number(s.reps) > 0 || Number(s.weight) > 0);
+                    if (validSets.length === 0) return;
+
+                    const key = nameTrim.toLowerCase();
                     const existing = historyMap.get(key);
-                    const totalVolume = ex.sets.reduce((sum, s) => sum + (Number(s.weight) || 0) * (Number(s.reps) || 0), 0);
-                    const totalSets = ex.sets.length;
-                    const repsPerSet = ex.sets.map(s => Number(s.reps) || 0);
+                    const totalVolume = validSets.reduce((sum, s) => sum + (Number(s.weight) || 0) * (Number(s.reps) || 0), 0);
+                    const totalSets = validSets.length;
+                    const repsPerSet = validSets.map(s => Number(s.reps) || 0);
 
                     if (!existing || (logDate && logDate.seconds > (existing.lastPerformed?.seconds || 0))) {
-                        const baseName = extractBaseName(ex.name);
+                        const baseName = extractBaseName(nameTrim);
                         historyMap.set(key, {
                             id: `history_${key.replace(/[^a-z0-9]+/g, '_')}`,
-                            name: ex.name,
+                            name: nameTrim,
                             baseName,
                             groupKey: baseName.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
                             lastPerformed: logDate,
@@ -145,48 +150,71 @@ export const ExerciseProvider = ({ children, userId }) => {
 
     const exercises = React.useMemo(() => {
         const combinedMap = new Map();
+        const groupBaseMap = new Map();
+
         // 1. Add sample DB local exercises (3,242 items)
         sampleExercises.forEach(sampleEx => {
-            const key = (sampleEx.name || '').trim().toLowerCase();
+            const nameKey = (sampleEx.name || '').trim().toLowerCase();
             const baseName = extractBaseName(sampleEx.name);
             const groupKey = baseName.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-            combinedMap.set(key, {
+            const item = {
                 ...sampleEx,
                 baseName,
                 groupKey,
                 isCustom: false,
                 source: 'sample_db'
-            });
+            };
+            combinedMap.set(nameKey, item);
+            if (!groupBaseMap.has(groupKey)) {
+                groupBaseMap.set(groupKey, nameKey);
+            }
         });
 
         // 2. Merge real-time logged exercises derived from workout logs
         loggedExercisesFromHistory.forEach(logEx => {
-            const key = (logEx.name || '').trim().toLowerCase();
-            const userKey = `user:${key}`;
-            const existingSample = combinedMap.get(key);
+            const nameKey = (logEx.name || '').trim().toLowerCase();
+            if (!nameKey || nameKey === 'exercise') return;
+
+            const existingSample = combinedMap.get(nameKey);
             if (existingSample) {
-                combinedMap.set(key, {
+                combinedMap.set(nameKey, {
                     ...existingSample,
                     ...logEx,
                     isCustom: false,
                     source: 'sample_db'
                 });
             } else {
-                combinedMap.set(userKey, logEx);
+                const groupKey = logEx.groupKey;
+                const primarySampleKey = groupBaseMap.get(groupKey);
+                if (primarySampleKey && combinedMap.has(primarySampleKey)) {
+                    const sampleTarget = combinedMap.get(primarySampleKey);
+                    combinedMap.set(primarySampleKey, {
+                        ...sampleTarget,
+                        lastPerformed: logEx.lastPerformed,
+                        lastVolume: logEx.lastVolume,
+                        lastSets: logEx.lastSets,
+                        lastReps: logEx.lastReps,
+                        lastSessionNote: logEx.lastSessionNote
+                    });
+                } else {
+                    const userKey = `user:${nameKey}`;
+                    combinedMap.set(userKey, logEx);
+                }
             }
         });
 
         // 3. Process user exercises from Firestore exercises collection
         userExercises.forEach(userEx => {
-            const key = (userEx.name || '').trim().toLowerCase();
+            const nameKey = (userEx.name || '').trim().toLowerCase();
+            if (!nameKey || nameKey === 'exercise') return;
+
             const baseName = extractBaseName(userEx.name);
             const groupKey = baseName.toLowerCase().replace(/[^a-z0-9]+/g, '-');
             const isSample = userEx.isCustom === false || userEx.source === 'sample_db' || userEx.source === 'system_preset' || String(userEx.id || '').startsWith('sample_preset_');
             
             if (isSample) {
-                // If it's a sample DB item in Firestore, merge with local sample DB entry (key by name)
-                const existing = combinedMap.get(key) || {};
-                combinedMap.set(key, {
+                const existing = combinedMap.get(nameKey) || {};
+                combinedMap.set(nameKey, {
                     ...existing,
                     ...userEx,
                     baseName,
@@ -195,8 +223,10 @@ export const ExerciseProvider = ({ children, userId }) => {
                     source: 'sample_db'
                 });
             } else {
-                // True user-created custom exercise
-                const userKey = `user:${userEx.id || key}`;
+                const isGenericPlaceholder = (nameKey === groupKey || nameKey === baseName.toLowerCase()) && !userEx.lastPerformed && !userEx.lastVolume && groupBaseMap.has(groupKey);
+                if (isGenericPlaceholder) return;
+
+                const userKey = `user:${userEx.id || nameKey}`;
                 combinedMap.set(userKey, {
                     ...userEx,
                     baseName,
