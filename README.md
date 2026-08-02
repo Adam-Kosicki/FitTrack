@@ -2,12 +2,6 @@
 
 **A personal fitness web app built by an athlete and researcher who got tired of every workout app missing the features that matter.**
 
-[![FitTrack CI](https://github.com/Adam-Kosicki/FitTrack/actions/workflows/ci.yml/badge.svg)](https://github.com/Adam-Kosicki/FitTrack/actions/workflows/ci.yml)
-[![Node.js 18.x](https://img.shields.io/badge/Node.js-18.x-brightgreen.svg)](https://nodejs.org/)
-[![React 18.3](https://img.shields.io/badge/React-18.3-blue.svg)](https://react.dev/)
-[![Firebase Infrastructure](https://img.shields.io/badge/Infrastructure-Firebase%20IaC-orange.svg)](https://firebase.google.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-
 ---
 
 ## The Story
@@ -204,28 +198,3 @@ This is an active personal project. I use it every day for my own training. Feat
 
 **Adam Kosicki** — Athlete, developer, and researcher at UT Austin.  
 Built because no existing app had everything I needed, and I'd rather build it myself than settle.
-
----
-
-## ⚡ Automated CI/CD & Infrastructure as Code (IaC)
-
-FitTrack uses modern production engineering practices with automated GitHub Actions CI/CD workflows and version-controlled Firebase infrastructure:
-
-```mermaid
-graph LR
-    Push["Git Push / PR"] --> CI["GitHub Actions CI Workflow"]
-    CI --> Test["Unit Testing (Jest / RTL)"]
-    CI --> Build["Production React Build"]
-    Build --> Preview["Firebase PR Preview Channel"]
-    Build --> Live["Firebase Production Live Channel (Main)"]
-```
-
-- **Continuous Integration (`.github/workflows/ci.yml`)**: Automatically runs automated unit testing (`npm test`) and verifies production compilation on every push to `main`.
-- **Continuous Deployment (`.github/workflows/deploy.yml`)**: Automatically tests, builds, and deploys code live to Firebase Hosting on `main` pushes.
-- **Infrastructure as Code (IaC)**:
-  - `firestore.rules` — Version-controlled Firestore security rules declared as code.
-  - `firestore.indexes.json` — Firestore database query index specifications.
-  - `firebase.json` — Hosting headers, caching strategies, and rewrite rules.
-
-📖 **Detailed Workflow Run Analysis**: See [docs/ci_cd_architecture_and_workflow_runs.md](docs/ci_cd_architecture_and_workflow_runs.md) for in-depth technical documentation of workflow runs, reproducibility engineering, and CI/CD architecture.
-

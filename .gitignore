@@ -2,15 +2,10 @@ node_modules/
 /data/live
 /workout-preview/build
 .DS_Store
-.dev-telemetry/
-workout-preview/.dev-telemetry/
-
-# Private guides, cursor configs & copyrighted materials
-not_code/
-workout-preview/public/jumpers-knee/
-*.pdf
+/not_code/jake_tuura/
+*.env
+*.env.*
+.firebase/
+.firebaserc
 .cursor/
-.cursorignore
-workout-preview/.cursor/
-*.mdc
-
+.cursor* 

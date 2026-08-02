@@ -949,8 +949,8 @@ export function WorkoutSession({ userId, workoutId, navigate, activeWorkout, set
                 };
 
                 const makeVariantQuickRefs = () => {
-                    const selectedMeta = ex.variantMeta || (typeof deriveVariantMeta === 'function' ? deriveVariantMeta(ex.name, ex.masterData || {}) : {});
-                    const selectedKey = typeof buildVariantKey === 'function' ? buildVariantKey(ex.baseName || ex.name, selectedMeta) : (ex.name || '');
+                    const selectedMeta = ex.variantMeta || deriveVariantMeta(ex.name, ex.masterData || {});
+                    const selectedKey = buildVariantKey(ex.baseName || ex.name, selectedMeta);
                     // Find last records in DB per same baseName/groupKey
                     const sameBase = exerciseDatabase.filter(dbEx => {
                         if (ex.baseName && dbEx.baseName) return dbEx.baseName === ex.baseName;
