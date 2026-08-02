@@ -364,7 +364,7 @@ export function ExerciseDatabaseView({ userId, navigate }) {
         } else if (sourceFilter === 'sample') {
             filtered = filtered.filter(ex => ex.isCustom === false || ex.source === 'sample_db' || ex.source === 'system_preset' || String(ex.id || '').startsWith('sample_preset_'));
         }
-        filtered.sort((a, b) => (a.baseName || a.name).localeCompare(b.baseName || b.name));
+        filtered.sort((a, b) => (a.baseName || a.name || '').localeCompare(b.baseName || b.name || ''));
         setFilteredExercises(filtered);
         setVisibleCount(36);
     }, [filters, exercises, selectedMuscleGroups, selectedMechanics, selectedForceTypes, selectedTags, sourceFilter, onlyIsometric, onlyUnilateral, selectedEquipment, deriveVariantMeta]);
@@ -646,8 +646,8 @@ export function ExerciseDatabaseView({ userId, navigate }) {
                                     return acc;
                                 }, {})
                             ).slice(0, visibleCount).map(([groupKey, list]) => {
-                                const title = list[0].baseName || list[0].displayName || list[0].name;
-                                const sorted = list.slice().sort((a, b) => a.name.localeCompare(b.name));
+                                const title = list[0]?.baseName || list[0]?.displayName || list[0]?.name || 'Exercise Group';
+                                const sorted = list.slice().sort((a, b) => (a.name || a.baseName || '').localeCompare(b.name || b.baseName || ''));
                                 const latest = sorted.reduce((best, ex) => {
                                     const ts = ex.lastPerformed?.toDate?.()?.getTime?.() || 0;
                                     if (!best || ts > best.ts) return { ts, ex };

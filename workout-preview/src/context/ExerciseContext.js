@@ -208,7 +208,7 @@ export const ExerciseProvider = ({ children, userId }) => {
         });
 
         const all = Array.from(combinedMap.values());
-        all.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
+        all.sort((a, b) => (a.baseName || a.name || '').localeCompare(b.baseName || b.name || ''));
         return all;
     }, [userExercises, sampleExercises, loggedExercisesFromHistory]);
     
