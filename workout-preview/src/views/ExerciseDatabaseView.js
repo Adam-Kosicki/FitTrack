@@ -50,6 +50,8 @@ export function ExerciseDatabaseView({ userId, navigate }) {
 
     const [filters, setFilters] = useState({ searchTerm: '' });
     const [viewModeGrouped, setViewModeGrouped] = useState(true);
+    const [dbSourceTab, setDbSourceTab] = useState('custom'); // 'custom' (default), 'preset', 'all'
+    const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
     const [selectedMuscleGroups, setSelectedMuscleGroups] = useState(new Set());
     const [selectedMechanics, setSelectedMechanics] = useState(new Set());
     const [selectedForceTypes, setSelectedForceTypes] = useState(new Set());
@@ -73,6 +75,7 @@ export function ExerciseDatabaseView({ userId, navigate }) {
         setOnlyIsometric(false);
         setOnlyUnilateral(false);
         setSelectedEquipment(new Set());
+        setDbSourceTab('all');
     };
     const availableTags = React.useMemo(() => {
         const s = new Set();
@@ -282,8 +285,9 @@ export function ExerciseDatabaseView({ userId, navigate }) {
     useEffect(() => {
         if (didPostLoadSync.current) return;
         if (!Array.isArray(exercises) || exercises.length === 0) return;
-        const needsVariant = exercises.some(ex => !ex.variantMeta);
-        const needsGroup = exercises.some(ex => !ex.baseName || !ex.groupKey);
+        const customExercises = exercises.filter(ex => ex.isCustom);
+        const needsVariant = customExercises.some(ex => !ex.variantMeta);
+        const needsGroup = customExercises.some(ex => !ex.baseName || !ex.groupKey);
         if (needsGroup) autoAssignGroups(false, true);
         if (needsVariant) migrateAndSyncExercises?.();
         didPostLoadSync.current = true;
@@ -292,6 +296,14 @@ export function ExerciseDatabaseView({ userId, navigate }) {
 
     useEffect(() => {
         let filtered = exercises;
+
+        // DB Source Tab filter: 'all', 'custom', 'preset'
+        if (dbSourceTab === 'custom') {
+            filtered = filtered.filter(ex => Boolean(ex.isCustom));
+        } else if (dbSourceTab === 'preset') {
+            filtered = filtered.filter(ex => !Boolean(ex.isCustom));
+        }
+
         const { searchTerm } = filters;
         if (searchTerm) {
             const q = searchTerm.toLowerCase();
@@ -349,7 +361,7 @@ export function ExerciseDatabaseView({ userId, navigate }) {
         }
         filtered.sort((a, b) => (a.baseName || a.name).localeCompare(b.baseName || b.name));
         setFilteredExercises(filtered);
-    }, [filters, exercises, selectedMuscleGroups, selectedMechanics, selectedForceTypes, selectedTags, onlyIsometric, onlyUnilateral, selectedEquipment, deriveVariantMeta]);
+    }, [filters, exercises, dbSourceTab, selectedMuscleGroups, selectedMechanics, selectedForceTypes, selectedTags, onlyIsometric, onlyUnilateral, selectedEquipment, deriveVariantMeta]);
 
     // removed unused handleSelectionChange
     
@@ -528,61 +540,140 @@ export function ExerciseDatabaseView({ userId, navigate }) {
                 </div>
             </div>
 
-            <div className="bg-gray-800 p-4 rounded-lg mb-6">
-                <div className="grid grid-cols-1 gap-3">
-                    <div>
-                        <label htmlFor="searchFilter" className="block text-sm font-medium text-gray-400 mb-1">Search</label>
+            <div className="bg-gray-800 p-4 rounded-xl mb-6 shadow-md border border-gray-700/60 space-y-4">
+                {/* Source Tabs */}
+                <div className="flex border-b border-gray-700 pb-3 gap-2 flex-wrap items-center justify-between">
+                    <div className="flex gap-2 flex-wrap">
+                        <button
+                            onClick={() => setDbSourceTab('custom')}
+                            className={`px-4 py-2 rounded-lg text-xs font-bold transition-all shadow flex items-center gap-1.5 ${dbSourceTab === 'custom' ? 'bg-purple-600 text-white ring-2 ring-purple-400' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}
+                        >
+                            ⭐ Personalized DB ({exercises.filter(ex => ex.isCustom).length})
+                        </button>
+                        <button
+                            onClick={() => setDbSourceTab('preset')}
+                            className={`px-4 py-2 rounded-lg text-xs font-bold transition-all shadow flex items-center gap-1.5 ${dbSourceTab === 'preset' ? 'bg-blue-600 text-white ring-2 ring-blue-400' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}
+                        >
+                            📚 System Presets ({exercises.filter(ex => !ex.isCustom).length})
+                        </button>
+                        <button
+                            onClick={() => setDbSourceTab('all')}
+                            className={`px-4 py-2 rounded-lg text-xs font-bold transition-all shadow flex items-center gap-1.5 ${dbSourceTab === 'all' ? 'bg-indigo-600 text-white ring-2 ring-indigo-400' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}
+                        >
+                            🌐 All Exercises ({exercises.length})
+                        </button>
+                    </div>
+
+                    <button
+                        onClick={clearAllChipFilters}
+                        className="text-xs bg-gray-700 hover:bg-gray-600 text-gray-300 hover:text-white px-3 py-1.5 rounded-lg border border-gray-600 transition-colors"
+                    >
+                        Clear All Filters
+                    </button>
+                </div>
+
+                {/* Search & Main Filter Controls Row */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 items-center">
+                    <div className="md:col-span-2">
                         <input
                             type="text"
                             id="searchFilter"
-                            placeholder="e.g., Barbell Bench Press..."
-                            className="w-full bg-gray-700 p-2 rounded border border-gray-600 focus:ring-indigo-500 focus:border-indigo-500"
+                            placeholder="Search exercise by name or variation..."
+                            className="w-full bg-gray-900 text-gray-100 p-2.5 rounded-lg border border-gray-700 focus:ring-2 focus:ring-indigo-500 text-sm placeholder-gray-500 shadow-inner"
                             value={filters.searchTerm}
                             onChange={e => handleFilterChange('searchTerm', e.target.value)}
                         />
                     </div>
+                    <button
+                        onClick={() => setShowAdvancedFilters(!showAdvancedFilters)}
+                        className="bg-gray-700 hover:bg-gray-600 text-gray-200 font-semibold py-2.5 px-4 rounded-lg text-xs flex items-center justify-center gap-2 transition-colors border border-gray-600 shadow"
+                    >
+                        <span>{showAdvancedFilters ? '▲ Hide Advanced Filters' : '▼ More Filter Options'}</span>
+                    </button>
+                </div>
+
+                {/* Clean Category Chips */}
+                <div className="space-y-3 pt-1">
+                    {/* Muscle Groups */}
                     <div className="flex flex-wrap items-center gap-2">
-                        <span className="text-xs text-gray-400 mr-1">Muscles:</span>
-                        {availableMuscleGroups.map(mg => (
-                            <button key={mg} onClick={()=>toggleInSet(setSelectedMuscleGroups)(mg)} className={`px-2 py-1 rounded-full text-xs ${selectedMuscleGroups.has(mg) ? 'bg-indigo-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}>{mg}</button>
+                        <span className="text-xs font-bold text-gray-400 w-24">Target Muscle:</span>
+                        {['Chest', 'Back', 'Shoulders', 'Arms', 'Legs', 'Core'].map(mg => (
+                            <button
+                                key={mg}
+                                onClick={() => toggleInSet(setSelectedMuscleGroups)(mg)}
+                                className={`px-3 py-1 rounded-full text-xs font-semibold transition-all ${selectedMuscleGroups.has(mg) ? 'bg-indigo-600 text-white shadow ring-2 ring-indigo-400' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}
+                            >
+                                {mg}
+                            </button>
                         ))}
                     </div>
+
+                    {/* Equipment */}
                     <div className="flex flex-wrap items-center gap-2">
-                        <span className="text-xs text-gray-400 mr-1">Mechanics:</span>
-                        {availableMechanics.map(m => (
-                            <button key={m} onClick={()=>toggleInSet(setSelectedMechanics)(m)} className={`px-2 py-1 rounded-full text-xs ${selectedMechanics.has(m) ? 'bg-indigo-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}>{m}</button>
-                        ))}
-                    </div>
-                    <div className="flex flex-wrap items-center gap-2">
-                        <span className="text-xs text-gray-400 mr-1">Force:</span>
-                        {availableForceTypes.map(f => (
-                            <button key={f} onClick={()=>toggleInSet(setSelectedForceTypes)(f)} className={`px-2 py-1 rounded-full text-xs ${selectedForceTypes.has(f) ? 'bg-indigo-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}>{f}</button>
-                        ))}
-                    </div>
-                    <div className="flex flex-wrap items-center gap-2">
-                        <span className="text-xs text-gray-400 mr-1">Tags:</span>
-                        {availableTags.map(t => (
-                            <button key={t} onClick={()=>toggleInSet(setSelectedTags)(t)} className={`px-2 py-1 rounded-full text-xs ${selectedTags.has(t) ? 'bg-indigo-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}>{t}</button>
-                        ))}
-                        <button onClick={clearAllChipFilters} className="ml-auto text-xs bg-gray-700 hover:bg-gray-600 text-white px-2 py-1 rounded">Clear</button>
-                    </div>
-                    {/* New variation/equipment filters */}
-                    <div className="flex flex-wrap items-center gap-2">
-                        <span className="text-xs text-gray-400 mr-1">Variations:</span>
-                        <label className="text-xs text-gray-300 bg-gray-700 hover:bg-gray-600 px-2 py-1 rounded cursor-pointer">
-                            <input type="checkbox" className="mr-1 align-middle" checked={onlyIsometric} onChange={e=>setOnlyIsometric(e.target.checked)} /> Isometric
-                        </label>
-                        <label className="text-xs text-gray-300 bg-gray-700 hover:bg-gray-600 px-2 py-1 rounded cursor-pointer">
-                            <input type="checkbox" className="mr-1 align-middle" checked={onlyUnilateral} onChange={e=>setOnlyUnilateral(e.target.checked)} /> Unilateral
-                        </label>
-                    </div>
-                    <div className="flex flex-wrap items-center gap-2">
-                        <span className="text-xs text-gray-400 mr-1">Equipment:</span>
-                        {['dumbbell','barbell','machine','cable','bodyweight'].map(eq => (
-                            <button key={eq} onClick={()=>toggleInSet(setSelectedEquipment)(eq)} className={`px-2 py-1 rounded-full text-xs ${selectedEquipment.has(eq) ? 'bg-indigo-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}>{eq.charAt(0).toUpperCase()+eq.slice(1)}</button>
+                        <span className="text-xs font-bold text-gray-400 w-24">Equipment:</span>
+                        {['dumbbell', 'barbell', 'cable', 'machine', 'bodyweight'].map(eq => (
+                            <button
+                                key={eq}
+                                onClick={() => toggleInSet(setSelectedEquipment)(eq)}
+                                className={`px-3 py-1 rounded-full text-xs font-semibold transition-all ${selectedEquipment.has(eq) ? 'bg-purple-600 text-white shadow ring-2 ring-purple-400' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}
+                            >
+                                {eq.charAt(0).toUpperCase() + eq.slice(1)}
+                            </button>
                         ))}
                     </div>
                 </div>
+
+                {/* Collapsible Advanced Filters Drawer */}
+                {showAdvancedFilters && (
+                    <div className="bg-gray-900/90 p-4 rounded-xl border border-gray-700/80 space-y-4 pt-3 mt-2 text-xs">
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 border-b border-gray-800 pb-3">
+                            {/* Mechanics */}
+                            <div>
+                                <span className="font-bold text-gray-300 block mb-2">Mechanics:</span>
+                                <div className="flex flex-wrap gap-1.5">
+                                    {['Compound', 'Isolation'].map(m => (
+                                        <button
+                                            key={m}
+                                            onClick={() => toggleInSet(setSelectedMechanics)(m)}
+                                            className={`px-2.5 py-1 rounded-lg text-xs ${selectedMechanics.has(m) ? 'bg-blue-600 text-white' : 'bg-gray-800 text-gray-400 hover:bg-gray-700'}`}
+                                        >
+                                            {m}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Variations */}
+                            <div>
+                                <span className="font-bold text-gray-300 block mb-2">Variations:</span>
+                                <div className="flex flex-wrap gap-2 items-center">
+                                    <label className="text-xs text-gray-300 bg-gray-800 hover:bg-gray-700 px-3 py-1.5 rounded-lg cursor-pointer border border-gray-700">
+                                        <input type="checkbox" className="mr-1.5 align-middle" checked={onlyIsometric} onChange={e => setOnlyIsometric(e.target.checked)} /> Isometric
+                                    </label>
+                                    <label className="text-xs text-gray-300 bg-gray-800 hover:bg-gray-700 px-3 py-1.5 rounded-lg cursor-pointer border border-gray-700">
+                                        <input type="checkbox" className="mr-1.5 align-middle" checked={onlyUnilateral} onChange={e => setOnlyUnilateral(e.target.checked)} /> Unilateral
+                                    </label>
+                                </div>
+                            </div>
+
+                            {/* Movement Action */}
+                            <div>
+                                <span className="font-bold text-gray-300 block mb-2">Movement Action:</span>
+                                <div className="flex flex-wrap gap-1.5">
+                                    {['Push', 'Pull', 'Hinge', 'Squat', 'Plyometric', 'Static'].map(f => (
+                                        <button
+                                            key={f}
+                                            onClick={() => toggleInSet(setSelectedForceTypes)(f)}
+                                            className={`px-2.5 py-1 rounded-lg text-xs ${selectedForceTypes.has(f) ? 'bg-indigo-600 text-white' : 'bg-gray-800 text-gray-400 hover:bg-gray-700'}`}
+                                        >
+                                            {f}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
 
             {loading ? (

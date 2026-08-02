@@ -23,7 +23,7 @@ export function JumpersKneeView({ userId }) {
     const [confirmProgression, setConfirmProgression] = useState(null);
 
     const path = useMemo(() => JKP_COLLECTION_PATH(appId, userId), [userId]);
-    const PDF_INDEX_ABS = 'file:///Users/adas/Library%20Mobile%20Documents/com~apple~CloudDocs/Desktop/Workout_APP/jake_tuura/_pdf_output/Jumper_s_Knee_Protocol_-_Pattelar_Tendonitis_Rehab_Training_--_Jake_Tuura_--_2022_--_55cdb56c525f464448e411b40e96322f_--_Anna_s_Archive__1_/index.html';
+    const PDF_INDEX_ABS = '/jumpers-knee/index.html';
     const PDF_INDEX_WEB = '/jumpers-knee/index.html';
 
     useEffect(() => {

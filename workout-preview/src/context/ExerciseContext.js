@@ -1,10 +1,12 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import { z } from 'zod';
-import { collection, onSnapshot, query, addDoc, where, getDocs, doc, orderBy, limit, updateDoc } from 'firebase/firestore';
+import { collection, onSnapshot, query, addDoc, where, getDocs, doc, orderBy, limit, updateDoc, setDoc, deleteDoc } from 'firebase/firestore';
 import { db } from '../firebase/firebase';
 import { appId } from '../constants';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import GEMINI_API_KEY from '../firebase/gemini-api';
+import systemPresetExercises from '../data/systemPresetExercises.json';
+import defaultCustomExercises from '../data/defaultCustomExercises.json';
 
 const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
 
@@ -265,9 +267,89 @@ export const ExerciseProvider = ({ children, userId }) => {
         const q = query(exercisesRef);
 
         const unsubscribe = onSnapshot(q, (snapshot) => {
-            const exercisesData = snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
-            exercisesData.sort((a, b) => a.name.localeCompare(b.name));
-            setExercises(exercisesData);
+            const presetNameSet = new Set((systemPresetExercises || []).map(p => (p.name || '').trim().toLowerCase()));
+
+            const trueCustomUserExercises = [];
+            const duplicateDocIdsToDelete = [];
+
+            snapshot.docs.forEach(docSnap => {
+                const data = docSnap.data();
+                const docId = docSnap.id;
+                const normName = (data.name || '').trim().toLowerCase();
+
+                // True custom exercise if it has user notes, performance logs, explicit flags, or name not in presets
+                const hasUserData = Boolean(
+                    data.notes ||
+                    data.lastPerformed ||
+                    data.lastSetsData ||
+                    data.userCreated ||
+                    data.createdViaAi ||
+                    !presetNameSet.has(normName)
+                );
+
+                if (hasUserData) {
+                    trueCustomUserExercises.push({
+                        ...data,
+                        id: docId,
+                        isCustom: true
+                    });
+                } else {
+                    // Accidental preset copy in Firestore -> queue for background cleanup
+                    duplicateDocIdsToDelete.push(docId);
+                }
+            });
+
+            // Asynchronously delete accidental duplicate preset documents from Firestore in background
+            if (duplicateDocIdsToDelete.length > 0) {
+                setTimeout(async () => {
+                    try {
+                        const deletePromises = duplicateDocIdsToDelete.map(id => deleteDoc(doc(db, `artifacts/${appId}/users/${userId}/exercises`, id)));
+                        await Promise.all(deletePromises);
+                    } catch (e) {
+                        // ignore cleanup errors
+                    }
+                }, 1000);
+            }
+
+            // Enforce strict separation: User custom exercises are isCustom = true
+            // System Presets from Excel database are ALWAYS preserved with isCustom = false
+            const enforcedPresets = (systemPresetExercises || []).map(p => ({
+                ...p,
+                isCustom: false
+            }));
+
+            const combined = [...trueCustomUserExercises, ...enforcedPresets];
+            combined.sort((a, b) => (a.baseName || a.name).localeCompare(b.baseName || b.name));
+
+            // Map base masterData by groupKey / baseName
+            const familyMasterData = {};
+            combined.forEach(ex => {
+                const key = ex.groupKey || (ex.baseName ? ex.baseName.toLowerCase().replace(/[^a-z0-9]/g, '-') : null);
+                if (key && ex.masterData && Object.keys(ex.masterData).length > 0) {
+                    if (!familyMasterData[key]) {
+                        familyMasterData[key] = ex.masterData;
+                    }
+                }
+            });
+
+            // Inherit base masterData across all child variants
+            const enriched = combined.map(ex => {
+                const baseName = ex.baseName || ex.name;
+                const groupKey = ex.groupKey || baseName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+                const baseMaster = (groupKey && familyMasterData[groupKey]) ? familyMasterData[groupKey] : {};
+                const mergedMaster = { ...baseMaster, ...(ex.masterData || {}) };
+                const isCustom = ex.isCustom === true;
+                return {
+                    ...ex,
+                    baseName,
+                    groupKey,
+                    masterData: mergedMaster,
+                    variantMeta: ex.variantMeta || { equipment: (mergedMaster.equipment?.[0] || 'bodyweight').toLowerCase(), unilateral: Boolean(mergedMaster.unilateral) },
+                    isCustom
+                };
+            });
+
+            setExercises(enriched);
             setLoading(false);
         }, (error) => {
             console.error("Error fetching user exercises:", error);
@@ -487,7 +569,11 @@ export const ExerciseProvider = ({ children, userId }) => {
                     if (Object.prototype.hasOwnProperty.call(dataToSave, k)) updateFields[k] = dataToSave[k];
                 });
                 if (Object.keys(updateFields).length > 0) {
-                    await updateDoc(docRef, updateFields);
+                    if (String(docId).startsWith('preset_')) {
+                        await setDoc(docRef, { ...dataToSave, ...updateFields, isCustom: true }, { merge: true });
+                    } else {
+                        await updateDoc(docRef, updateFields);
+                    }
                 }
             } else { // It's a new exercise
                 const q = query(exercisesRef, where("name", "==", dataToSave.name), limit(1));
@@ -572,10 +658,81 @@ export const ExerciseProvider = ({ children, userId }) => {
         }
     };
 
+    const cleanResetCustomExercises = async () => {
+        if (!userId) return;
+        try {
+            const exercisesRef = collection(db, `artifacts/${appId}/users/${userId}/exercises`);
+            const snapshot = await getDocs(exercisesRef);
+            const deletePromises = snapshot.docs.map(docSnap => deleteDoc(doc(db, `artifacts/${appId}/users/${userId}/exercises`, docSnap.id)));
+            await Promise.all(deletePromises);
+
+            const restorePromises = (defaultCustomExercises || []).map(ex => {
+                const { id, ...data } = ex;
+                return addDoc(exercisesRef, { ...data, isCustom: true });
+            });
+            await Promise.all(restorePromises);
+        } catch (e) {
+            console.error('Failed to reset custom exercises:', e);
+            throw e;
+        }
+    };
+
+    const syncPersonalizedDbFromHistory = async () => {
+        if (!userId) return;
+        try {
+            // Fetch all user workout logs from Firestore
+            const logsRef = collection(db, `artifacts/${appId}/users/${userId}/logs`);
+            const logsSnapshot = await getDocs(logsRef);
+            
+            const loggedNamesSet = new Set();
+            logsSnapshot.docs.forEach(docSnap => {
+                const data = docSnap.data();
+                if (data.exerciseName) loggedNamesSet.add(data.exerciseName.trim());
+                if (Array.isArray(data.exercises)) {
+                    data.exercises.forEach(e => {
+                        if (e.name) loggedNamesSet.add(e.name.trim());
+                    });
+                }
+            });
+
+            // Fallback to all 29 logged exercises if logs snapshot is empty
+            if (loggedNamesSet.size === 0) {
+                (defaultCustomExercises || []).forEach(ex => loggedNamesSet.add(ex.name.trim()));
+            }
+
+            // Wipe existing custom exercises collection in Firestore
+            const exercisesRef = collection(db, `artifacts/${appId}/users/${userId}/exercises`);
+            const currentSnapshot = await getDocs(exercisesRef);
+            const deletePromises = currentSnapshot.docs.map(docSnap => deleteDoc(doc(db, `artifacts/${appId}/users/${userId}/exercises`, docSnap.id)));
+            await Promise.all(deletePromises);
+
+            // Re-populate ONLY exercises present in history logs
+            const presetMap = new Map((systemPresetExercises || []).map(p => [p.name.toLowerCase().trim(), p]));
+            const defaultMap = new Map((defaultCustomExercises || []).map(d => [d.name.toLowerCase().trim(), d]));
+
+            const restorePromises = Array.from(loggedNamesSet).map(name => {
+                const norm = name.toLowerCase().trim();
+                const template = defaultMap.get(norm) || presetMap.get(norm) || {
+                    name,
+                    masterData: { muscleGroup: 'Arms', equipment: ['bodyweight'] }
+                };
+                const { id, ...cleanData } = template;
+                return addDoc(exercisesRef, { ...cleanData, name, isCustom: true });
+            });
+
+            await Promise.all(restorePromises);
+        } catch (e) {
+            console.error('Failed to sync personalized DB from history:', e);
+            throw e;
+        }
+    };
+
     const value = {
         masterList: exercises,
         loading,
         handleSaveExercise,
+        cleanResetCustomExercises,
+        syncPersonalizedDbFromHistory,
         updateExerciseSummaryFromHistory,
         generateExerciseDetails,
         parseWorkoutLog,

@@ -4,6 +4,7 @@ import { SparklesIcon, TrashIcon } from './Icons';
 export function ExerciseEditModal({ exercise, onSave, onCancel, onRegenerate }) {
     const [name, setName] = useState('');
     const [masterData, setMasterData] = useState({});
+    const [variantMeta, setVariantMeta] = useState({});
     const [baseName, setBaseName] = useState('');
     const [groupKey, setGroupKey] = useState('');
 
@@ -11,6 +12,7 @@ export function ExerciseEditModal({ exercise, onSave, onCancel, onRegenerate }) 
         if (exercise) {
             setName(exercise.name || '');
             setMasterData(exercise.masterData || {});
+            setVariantMeta(exercise.variantMeta || {});
             setBaseName(exercise.baseName || '');
             setGroupKey(exercise.groupKey || '');
         }
@@ -18,6 +20,10 @@ export function ExerciseEditModal({ exercise, onSave, onCancel, onRegenerate }) 
 
     const handleMasterDataChange = (key, value) => {
         setMasterData(prev => ({ ...prev, [key]: value }));
+    };
+
+    const handleVariantMetaChange = (key, value) => {
+        setVariantMeta(prev => ({ ...prev, [key]: value }));
     };
 
     const handleAddField = () => {
@@ -40,6 +46,7 @@ export function ExerciseEditModal({ exercise, onSave, onCancel, onRegenerate }) 
             ...exercise,
             name,
             masterData,
+            variantMeta,
             baseName: baseName || undefined,
             groupKey: groupKey || undefined
         });
@@ -92,6 +99,61 @@ export function ExerciseEditModal({ exercise, onSave, onCancel, onRegenerate }) 
                                 />
                             </div>
                         </div>
+
+                        {/* Variant Overrides Section */}
+                        <div className="bg-gray-900/60 p-3 rounded-lg border border-gray-700 space-y-3">
+                            <span className="text-xs font-bold text-indigo-400 uppercase tracking-wider block">Variant Specific Attributes</span>
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                <div>
+                                    <label className="text-xs text-gray-400">Equipment</label>
+                                    <input
+                                        type="text"
+                                        value={variantMeta.equipment || ''}
+                                        onChange={e => handleVariantMetaChange('equipment', e.target.value)}
+                                        placeholder="e.g. dumbbell"
+                                        className="w-full bg-gray-700 text-xs p-1.5 rounded mt-1 text-white"
+                                    />
+                                </div>
+                                <div>
+                                    <label className="text-xs text-gray-400">Angle (°)</label>
+                                    <input
+                                        type="number"
+                                        value={typeof variantMeta.angleDeg === 'number' ? variantMeta.angleDeg : ''}
+                                        onChange={e => {
+                                            const v = e.target.value === '' ? null : Number(e.target.value);
+                                            handleVariantMetaChange('angleDeg', v);
+                                            handleVariantMetaChange('isAngled', typeof v === 'number');
+                                        }}
+                                        placeholder="0, 30, 45"
+                                        className="w-full bg-gray-700 text-xs p-1.5 rounded mt-1 text-white"
+                                    />
+                                </div>
+                                <div className="flex items-center pt-4">
+                                    <label className="text-xs text-gray-300 flex items-center cursor-pointer">
+                                        <input
+                                            type="checkbox"
+                                            checked={Boolean(variantMeta.unilateral)}
+                                            onChange={e => handleVariantMetaChange('unilateral', e.target.checked)}
+                                            className="mr-1.5"
+                                        />
+                                        Unilateral
+                                    </label>
+                                </div>
+                                <div className="flex items-center pt-4">
+                                    <label className="text-xs text-gray-300 flex items-center cursor-pointer">
+                                        <input
+                                            type="checkbox"
+                                            checked={Boolean(variantMeta.isometric)}
+                                            onChange={e => handleVariantMetaChange('isometric', e.target.checked)}
+                                            className="mr-1.5"
+                                        />
+                                        Isometric
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <span className="text-xs font-bold text-gray-400 uppercase tracking-wider block mt-4">Base Movement Master Data</span>
 
                         {Object.entries(masterData).map(([key, value]) => (
                             <div key={key} className="flex items-end space-x-2">
