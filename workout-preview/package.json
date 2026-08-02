@@ -2,6 +2,7 @@
   "name": "workout-preview",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://adam-kosicki.github.io/FitTrack",
   "dependencies": {
     "@babel/code-frame": "^7.27.1",
     "@google/generative-ai": "^0.11.3",
