@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+
+# Build output
+/workout-preview/build
+
+# Environment & secrets
+*.env
+*.env.*
+!.env.example
+
+# Firebase
+.firebase/
+.firebaserc
+
+# IDE & editor configs
+.cursor/
+.cursor*
+.vscode/
+.idea/
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+
+# Duplicate package-lock files (macOS copy artifacts)
+package-lock\ *.json
+
+# Private data & copyrighted materials
+not_code/
+workout-preview/public/jumpers-knee/
+*.pdf
+
+# Dev telemetry
+.dev-telemetry/
+workout-preview/.dev-telemetry/
