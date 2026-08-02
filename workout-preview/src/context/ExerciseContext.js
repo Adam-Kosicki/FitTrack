@@ -226,8 +226,10 @@ export const ExerciseProvider = ({ children, userId }) => {
                 const isGenericPlaceholder = (nameKey === groupKey || nameKey === baseName.toLowerCase()) && !userEx.lastPerformed && !userEx.lastVolume && groupBaseMap.has(groupKey);
                 if (isGenericPlaceholder) return;
 
-                const userKey = `user:${userEx.id || nameKey}`;
+                const userKey = `user:${nameKey}`;
+                const existingUser = combinedMap.get(userKey) || {};
                 combinedMap.set(userKey, {
+                    ...existingUser,
                     ...userEx,
                     baseName,
                     groupKey,
