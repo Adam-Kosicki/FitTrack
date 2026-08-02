@@ -1,0 +1,23 @@
+git add .
+git commit -m " "
+git push origin main
+
+### Deploy to prod (when ready)
+cd workout-preview
+npm run build
+firebase deploy --only hosting
+
+### Dev server (hot reload)
+- Run from the project’s web app folder:
+cd workout-preview
+npm install
+npm start
+- Open: `http://localhost:3000`
+- Edits in `src/` hot-reload automatically; no rebuild needed.
+
+### Optional: test a production build locally
+cd workout-preview
+npm run build
+npx serve -s build
+- Open: `http://localhost:3000` (or the port shown).
+
