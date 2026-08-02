@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/FitTrack/static/css/main.4f61cf9a.css",
-    "main.js": "/FitTrack/static/js/main.a123df53.js",
+    "main.js": "/FitTrack/static/js/main.92978fc4.js",
     "static/js/353.3d2ed87d.chunk.js": "/FitTrack/static/js/353.3d2ed87d.chunk.js",
     "static/js/453.179ed61e.chunk.js": "/FitTrack/static/js/453.179ed61e.chunk.js",
     "index.html": "/FitTrack/index.html",
     "main.4f61cf9a.css.map": "/FitTrack/static/css/main.4f61cf9a.css.map",
-    "main.a123df53.js.map": "/FitTrack/static/js/main.a123df53.js.map",
+    "main.92978fc4.js.map": "/FitTrack/static/js/main.92978fc4.js.map",
     "453.179ed61e.chunk.js.map": "/FitTrack/static/js/453.179ed61e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.4f61cf9a.css",
-    "static/js/main.a123df53.js"
+    "static/js/main.92978fc4.js"
   ]
 }
