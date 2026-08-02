@@ -8,8 +8,7 @@ import { GroupCard } from '../components/dashboard/GroupCard';
 import { GroupModal } from '../components/dashboard/GroupModal';
 import { appId } from '../constants';
 import { useNotification } from '../context/NotificationContext';
-import { GoogleGenerativeAI } from '@google/generative-ai';
-import GEMINI_API_KEY from '../firebase/gemini-api';
+import genAI from '../lib/gemini';
 import { useExercises } from '../context/ExerciseContext';
 
 export function WorkoutsDashboard({ userId, navigate, activeWorkoutId }) {
@@ -27,7 +26,6 @@ export function WorkoutsDashboard({ userId, navigate, activeWorkoutId }) {
     const [editAiText, setEditAiText] = useState('');
     const [generatingGroupIds, setGeneratingGroupIds] = useState(() => new Set());
     const [exportText, setExportText] = useState('');
-    const genAI = useMemo(() => new GoogleGenerativeAI(GEMINI_API_KEY), []);
     const { masterList: exerciseDatabase } = useExercises();
     const [editAiSummaryText, setEditAiSummaryText] = useState('');
     const [isGeneratingSummary, setIsGeneratingSummary] = useState(false);

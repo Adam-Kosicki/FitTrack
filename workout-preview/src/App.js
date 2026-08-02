@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { onAuthStateChanged, signInWithPopup, GoogleAuthProvider, signOut } from 'firebase/auth';
 import { auth } from './firebase/firebase';
-import { DumbbellIcon, BookOpenIcon, DatabaseIcon, CogIcon, ClipboardListIcon, BugIcon } from './components/Icons';
+import { DumbbellIcon, BookOpenIcon, DatabaseIcon, ClipboardListIcon, BugIcon } from './components/Icons';
 import { JumpersKneeView } from './views/JumpersKneeView';
 import { GuidesView } from './views/GuidesView';
 import { AnkleRecoveryView } from './views/AnkleRecoveryView';
-import { PostureView } from './views/PostureView';
 import { WorkoutsDashboard } from './views/WorkoutsDashboard';
 import { WorkoutSession } from './views/WorkoutSession';
 import { ExerciseDatabaseView } from './views/ExerciseDatabaseView';
@@ -15,9 +14,18 @@ import { WorkoutTemplateEditor } from './views/WorkoutTemplateEditor';
 import { useNotification } from './context/NotificationContext';
 import { ExerciseProvider } from './context/ExerciseContext';
 import { FeedbackView } from './views/FeedbackView';
-import { SettingsView } from './views/SettingsView';
 import { GoogleHealthView } from './views/GoogleHealthView';
 import { BodyMeasurementsView } from './views/BodyMeasurementsView';
+
+/**
+ * FitTrack Core Application Shell
+ * 
+ * Architectural Note on Navigation:
+ * This application intentionally uses a unified state-based SPA router pattern
+ * (via view/currentContext state + custom 'navigate' event bus) instead of URL-based
+ * routing (React Router) to maintain strict, un-persisted active workout session state,
+ * preventing accidental URL navigation page loss during live exercise sessions.
+ */
 
 const LoginScreen = ({ onLogin, signingIn }) => (
     <div className="flex flex-col items-center justify-center h-screen bg-gray-900 text-white">
@@ -198,8 +206,6 @@ function MainApp({
                 return <JumpersKneeView userId={user.uid} />;
             case 'ankleRecovery':
                 return <AnkleRecoveryView />;
-            case 'posture':
-                return <PostureView />;
             case 'edit-template':
                 return <WorkoutTemplateEditor
                     userId={user.uid}
@@ -216,8 +222,6 @@ function MainApp({
                 return <GoogleHealthView userId={user.uid} />;
             case 'bodyMeasurements':
                 return <BodyMeasurementsView userId={user.uid} />;
-            case 'settings':
-                return <SettingsView />;
             case 'workouts':
             default:
                 return <WorkoutsDashboard userId={user.uid} navigate={navigate} activeWorkoutId={activeWorkout?.identifier} />;
@@ -279,10 +283,6 @@ function MainApp({
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                         </svg>
                         <span className="hidden md:inline ml-3">Body Measurements</span>
-                    </button>
-                    <button onClick={() => navigate('settings')} className="flex items-center p-2 rounded-lg hover:bg-gray-800 transition-colors">
-                        <CogIcon className="h-6 w-6" />
-                        <span className="hidden md:inline ml-3">Settings</span>
                     </button>
                 </nav>
                 {activeWorkout && (

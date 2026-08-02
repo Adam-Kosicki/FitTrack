@@ -2,8 +2,8 @@ import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase/firebase';
 import { appId } from '../constants';
 
-// Default / fallback Fitbit Client ID for development (users can supply their own in Settings)
-export const DEFAULT_FITBIT_CLIENT_ID = '23RR99'; // Example or user-configured Fitbit App Client ID
+// Fitbit Client ID from environment (configure in .env)
+export const DEFAULT_FITBIT_CLIENT_ID = process.env.REACT_APP_FITBIT_CLIENT_ID || '';
 
 /**
  * Generates the Fitbit OAuth 2.0 authorization URL for Implicit Grant flow (Client-side Web Apps).

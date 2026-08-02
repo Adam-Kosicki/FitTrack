@@ -25,14 +25,6 @@ export function GuidesView({ navigate }) {
                         Open Guide
                     </button>
                 </div>
-
-                <div className="bg-gray-800 p-4 rounded-lg border border-gray-700">
-                    <h2 className="text-xl font-semibold">Posture</h2>
-                    <p className="text-gray-400 mt-1 text-sm">Foundational tips and routines to improve posture and reduce discomfort.</p>
-                    <button onClick={() => navigate('posture')} className="mt-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">
-                        Open Guide
-                    </button>
-                </div>
             </div>
 
             <div className="mt-8">

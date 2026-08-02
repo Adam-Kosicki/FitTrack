@@ -1,0 +1,2246 @@
+[
+  {
+    "lastSets": null,
+    "lastPerformed": null,
+    "lastReps": [],
+    "masterData": {
+      "grip": "None",
+      "unilateral": true,
+      "primaryMuscle": "Quadriceps",
+      "planeOfMotion": "Sagittal",
+      "movementPattern": [
+        "Lunge"
+      ],
+      "musclesInvolved": [
+        "Quadriceps",
+        "Glutes",
+        "Hamstrings",
+        "Soleus",
+        "Gastrocnemius"
+      ],
+      "mechanics": "Compound",
+      "jointAction": [
+        "Extension"
+      ],
+      "muscleGroup": "Legs",
+      "equipment": [],
+      "secondaryMuscle": "Glutes",
+      "tags": [
+        "plyometric"
+      ],
+      "forceType": "Push"
+    },
+    "lastSetsData": [],
+    "lastSessionNote": "i tried doing some pogo's and my left ankle was hurting/stiff so i stopped.",
+    "name": "Alternate-leg Pogos",
+    "lastVolume": null,
+    "notes": "Pick current progression. 4 sets as prescribed.",
+    "id": "fN2BTvcz8cFgwWd9Hc4d"
+  },
+  {
+    "lastSets": 3,
+    "lastVolume": 6300,
+    "lastSetsData": [
+      {
+        "setDuration": 0,
+        "reps": 14,
+        "volume": 2520,
+        "weight": 180,
+        "failed": true,
+        "restDuration": 26
+      },
+      {
+        "setDuration": 40,
+        "volume": 1980,
+        "restDuration": 18,
+        "failed": true,
+        "reps": 11,
+        "weight": 180
+      },
+      {
+        "failed": true,
+        "reps": 10,
+        "restDuration": 12,
+        "weight": 180,
+        "volume": 1800,
+        "setDuration": 0
+      }
+    ],
+    "notes": "",
+    "lastReps": [
+      14,
+      11,
+      10
+    ],
+    "masterData": {
+      "forceType": "Push",
+      "equipment": [
+        "Leg Press Machine"
+      ],
+      "jointAction": [
+        "Plantarflexion"
+      ],
+      "grip": "None",
+      "movementPattern": [],
+      "tags": [
+        "bodybuilding"
+      ],
+      "unilateral": false,
+      "mechanics": "Isolation",
+      "primaryMuscle": "Gastrocnemius",
+      "musclesInvolved": [
+        "Gastrocnemius",
+        "Soleus"
+      ],
+      "planeOfMotion": "Sagittal",
+      "secondaryMuscle": "Soleus",
+      "muscleGroup": "Legs"
+    },
+    "lastPerformed": {
+      "seconds": 1753739249,
+      "nanoseconds": 997000000
+    },
+    "name": "Angled Leg Press Calf Raise",
+    "id": "aOa5nJZ6JVgnS51G16Hl"
+  },
+  {
+    "lastSetsData": [],
+    "lastReps": [],
+    "masterData": {
+      "movementPattern": [
+        "Vertical Press",
+        "Rotation"
+      ],
+      "grip": "Neutral",
+      "equipment": [
+        "Dumbbell",
+        "Bench"
+      ],
+      "forceType": "Push",
+      "unilateral": false,
+      "musclesInvolved": [
+        "Front Delts",
+        "Side Delts",
+        "Triceps",
+        "Trapezius",
+        "Serratus Anterior"
+      ],
+      "primaryMuscle": "Front Delts",
+      "mechanics": "Compound",
+      "secondaryMuscle": "Side Delts",
+      "tags": [
+        "bodybuilding"
+      ],
+      "jointAction": [
+        "Flexion",
+        "Extension",
+        "Abduction"
+      ],
+      "muscleGroup": "Shoulders",
+      "planeOfMotion": "Multi-planar"
+    },
+    "name": "Arnold Press",
+    "lastSets": null,
+    "lastPerformed": null,
+    "lastVolume": null,
+    "id": "rfcAwkF82KsP8YLPozBt"
+  },
+  {
+    "lastSessionNote": "did smith machine",
+    "lastSets": 4,
+    "notes": "3 ECC / 3 CON; Rest 3 min.",
+    "masterData": {
+      "tags": [
+        "powerlifting",
+        "bodybuilding"
+      ],
+      "mechanics": "Compound",
+      "forceType": "Push",
+      "equipment": [
+        "Barbell"
+      ],
+      "grip": "None",
+      "secondaryMuscle": "Glutes",
+      "muscleGroup": "Legs",
+      "primaryMuscle": "Quadriceps",
+      "unilateral": false,
+      "planeOfMotion": "Sagittal",
+      "jointAction": [
+        "Extension"
+      ],
+      "movementPattern": [
+        "Squat"
+      ],
+      "musclesInvolved": [
+        "Quadriceps",
+        "Glutes",
+        "Hamstrings",
+        "Adductors",
+        "Lower Back"
+      ]
+    },
+    "lastPerformed": {
+      "seconds": 1755701163,
+      "nanoseconds": 374000000
+    },
+    "name": "Back Squat",
+    "lastSetsData": [
+      {
+        "setDuration": 0,
+        "volume": 575,
+        "reps": 5,
+        "weight": 115,
+        "failed": false,
+        "restDuration": 63
+      },
+      {
+        "reps": 5,
+        "restDuration": 0,
+        "failed": false,
+        "volume": 575,
+        "setDuration": 0,
+        "weight": 115
+      },
+      {
+        "setDuration": 0,
+        "restDuration": 0,
+        "volume": 575,
+        "weight": 115,
+        "failed": false,
+        "reps": 5
+      },
+      {
+        "weight": 115,
+        "restDuration": 0,
+        "setDuration": 0,
+        "reps": 5,
+        "failed": false,
+        "volume": 575
+      }
+    ],
+    "lastReps": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "lastVolume": 2300,
+    "id": "iKOdeeAPLPQOTa83piNE"
+  },
+  {
+    "name": "Calisthenics Flag Pole",
+    "masterData": {
+      "secondaryMuscle": "Abdominals",
+      "grip": "None",
+      "movementPattern": [
+        "Carry"
+      ],
+      "tags": [
+        "calisthenics"
+      ],
+      "muscleGroup": "Core",
+      "musclesInvolved": [
+        "Lats",
+        "Abdominals",
+        "Shoulders",
+        "Triceps"
+      ],
+      "unilateral": true,
+      "equipment": [],
+      "forceType": "Static",
+      "jointAction": [],
+      "planeOfMotion": "Multi-planar",
+      "primaryMuscle": "Lats",
+      "mechanics": "Compound"
+    },
+    "id": "xA7BEbfsDG9CtW32bCrG"
+  },
+  {
+    "name": "Chest-supported T-Bar Row",
+    "id": "PrInggO85kbzVDWXXI0J",
+    "lastReps": [
+      9,
+      8,
+      6
+    ],
+    "masterData": {
+      "jointAction": [
+        "Extension"
+      ],
+      "primaryMuscle": "Lats",
+      "mechanics": "Compound",
+      "tags": [
+        "bodybuilding"
+      ],
+      "muscleGroup": "Back",
+      "secondaryMuscle": "Rhomboids",
+      "grip": "Neutral",
+      "equipment": [
+        "T-Bar Row Machine"
+      ],
+      "movementPattern": [
+        "Horizontal Pull"
+      ],
+      "unilateral": false,
+      "forceType": "Pull",
+      "musclesInvolved": [
+        "Lats",
+        "Rhomboids",
+        "Trapezius",
+        "Biceps",
+        "Forearms"
+      ],
+      "planeOfMotion": "Sagittal"
+    },
+    "lastSetsData": [
+      {
+        "restDuration": 0,
+        "weight": 45,
+        "reps": 9,
+        "volume": 405,
+        "failed": false,
+        "setDuration": 0
+      },
+      {
+        "setDuration": 0,
+        "failed": true,
+        "restDuration": 0,
+        "volume": 360,
+        "weight": 45,
+        "reps": 8
+      },
+      {
+        "failed": true,
+        "weight": 45,
+        "restDuration": 0,
+        "reps": 6,
+        "volume": 270,
+        "setDuration": 0
+      }
+    ],
+    "lastSets": 3,
+    "notes": "Elbows 45°; hard scap squeeze for rear-delt thickness.",
+    "lastPerformed": {
+      "seconds": 1753211500,
+      "nanoseconds": 101000000
+    },
+    "lastVolume": 1035
+  },
+  {
+    "lastPerformed": {
+      "seconds": 1752105600,
+      "nanoseconds": 0
+    },
+    "lastSets": 2,
+    "name": "Close-Grip Bench Press (Barbell)",
+    "lastSetsData": [
+      {
+        "weight": 70,
+        "restDuration": 0,
+        "reps": 8,
+        "volume": 560,
+        "failed": false,
+        "setDuration": 0
+      },
+      {
+        "reps": 5,
+        "restDuration": 0,
+        "failed": true,
+        "volume": 350,
+        "setDuration": 0,
+        "weight": 70
+      }
+    ],
+    "lastReps": [
+      8,
+      5
+    ],
+    "masterData": {
+      "secondaryMuscle": "Chest",
+      "mechanics": "Compound",
+      "equipment": [
+        "Barbell",
+        "Bench"
+      ],
+      "tags": [
+        "bodybuilding",
+        "powerlifting"
+      ],
+      "jointAction": [
+        "Extension"
+      ],
+      "musclesInvolved": [
+        "Triceps",
+        "Chest",
+        "Forearms"
+      ],
+      "grip": "Neutral",
+      "planeOfMotion": "Sagittal",
+      "unilateral": false,
+      "forceType": "Push",
+      "muscleGroup": "Chest",
+      "primaryMuscle": "Triceps",
+      "movementPattern": [
+        "Horizontal Press"
+      ]
+    },
+    "lastVolume": 910,
+    "id": "FbClGU7HsyM9Zmm7EaMz"
+  },
+  {
+    "lastPerformed": {
+      "seconds": 1752105600,
+      "nanoseconds": 0
+    },
+    "lastSets": 3,
+    "lastSetsData": [
+      {
+        "failed": false,
+        "reps": 5,
+        "weight": 50,
+        "volume": 250,
+        "restDuration": 0,
+        "setDuration": 0
+      },
+      {
+        "volume": 250,
+        "restDuration": 0,
+        "failed": false,
+        "reps": 5,
+        "setDuration": 0,
+        "weight": 50
+      },
+      {
+        "volume": 180,
+        "failed": true,
+        "restDuration": 0,
+        "weight": 45,
+        "reps": 4,
+        "setDuration": 0
+      }
+    ],
+    "lastReps": [
+      5,
+      5,
+      4
+    ],
+    "lastVolume": 680,
+    "name": "DB Bench Press",
+    "masterData": {
+      "equipment": [
+        "Dumbbell",
+        "Bench"
+      ],
+      "primaryMuscle": "Chest",
+      "unilateral": false,
+      "jointAction": [
+        "Extension"
+      ],
+      "musclesInvolved": [
+        "Chest",
+        "Triceps",
+        "Front Delts"
+      ],
+      "tags": [
+        "bodybuilding"
+      ],
+      "muscleGroup": "Chest",
+      "grip": "Neutral",
+      "forceType": "Push",
+      "planeOfMotion": "Sagittal",
+      "movementPattern": [
+        "Horizontal Press"
+      ],
+      "secondaryMuscle": "Triceps",
+      "mechanics": "Compound"
+    },
+    "id": "cvgmAvysHnwy8RKQVf2I"
+  },
+  {
+    "masterData": {
+      "movementPattern": [
+        "Lunge"
+      ],
+      "grip": "Neutral",
+      "tags": [
+        "bodybuilding"
+      ],
+      "equipment": [
+        "Dumbbells"
+      ],
+      "planeOfMotion": "Sagittal",
+      "primaryMuscle": "Quadriceps",
+      "muscleGroup": "Legs",
+      "secondaryMuscle": "Glutes",
+      "unilateral": true,
+      "jointAction": [
+        "Flexion",
+        "Extension"
+      ],
+      "mechanics": "Compound",
+      "forceType": "Push",
+      "musclesInvolved": [
+        "Quadriceps",
+        "Glutes",
+        "Hamstrings"
+      ]
+    },
+    "name": "DB Bulgarian Split Squat",
+    "id": "8hjOSpw9hct9r9cETqzo"
+  },
+  {
+    "lastVolume": 255,
+    "lastReps": [
+      8,
+      5,
+      4
+    ],
+    "lastSetsData": [
+      {
+        "reps": 8,
+        "setDuration": 0,
+        "restDuration": 0,
+        "failed": false,
+        "weight": 15,
+        "volume": 120
+      },
+      {
+        "failed": true,
+        "weight": 15,
+        "reps": 5,
+        "restDuration": 0,
+        "setDuration": 0,
+        "volume": 75
+      },
+      {
+        "setDuration": 0,
+        "weight": 15,
+        "failed": true,
+        "reps": 4,
+        "restDuration": 0,
+        "volume": 60
+      }
+    ],
+    "lastSets": 3,
+    "name": "DB Hammer Curl",
+    "lastPerformed": {
+      "seconds": 1752105600,
+      "nanoseconds": 0
+    },
+    "masterData": {
+      "mechanics": "Isolation",
+      "jointAction": [
+        "Flexion"
+      ],
+      "grip": "Neutral",
+      "tags": [
+        "bodybuilding"
+      ],
+      "primaryMuscle": "Biceps",
+      "secondaryMuscle": "Brachialis",
+      "muscleGroup": "Arms",
+      "planeOfMotion": "Sagittal",
+      "equipment": [
+        "Dumbbell"
+      ],
+      "forceType": "Pull",
+      "unilateral": true,
+      "movementPattern": [],
+      "musclesInvolved": [
+        "Biceps",
+        "Brachialis",
+        "Forearms"
+      ]
+    },
+    "id": "MEXd2TEZelXv6w3463O1"
+  },
+  {
+    "lastPerformed": {
+      "seconds": 1753822953,
+      "nanoseconds": 640000000
+    },
+    "name": "DB Lateral Raise",
+    "notes": "Seated and leaning back. Bench propped up.",
+    "lastVolume": 445,
+    "masterData": {
+      "jointAction": [
+        "Abduction"
+      ],
+      "secondaryMuscle": "Trapezius",
+      "muscleGroup": "Shoulders",
+      "movementPattern": [],
+      "forceType": "Push",
+      "unilateral": false,
+      "primaryMuscle": "Side Delts",
+      "equipment": [
+        "Dumbbell"
+      ],
+      "mechanics": "Isolation",
+      "planeOfMotion": "Frontal",
+      "musclesInvolved": [
+        "Side Delts",
+        "Trapezius"
+      ],
+      "tags": [
+        "bodybuilding"
+      ],
+      "grip": "Neutral"
+    },
+    "lastSets": 4,
+    "id": "DWb35YILc687jhOSwvyp",
+    "lastSetsData": [
+      {
+        "reps": 11,
+        "setDuration": 0,
+        "volume": 137.5,
+        "failed": true,
+        "weight": 12.5,
+        "restDuration": 177
+      },
+      {
+        "volume": 87.5,
+        "failed": true,
+        "reps": 7,
+        "setDuration": 0,
+        "restDuration": 140,
+        "weight": 12.5
+      },
+      {
+        "restDuration": 238,
+        "volume": 100,
+        "weight": 10,
+        "failed": true,
+        "setDuration": 0,
+        "reps": 10
+      },
+      {
+        "failed": false,
+        "weight": 7.5,
+        "volume": 120,
+        "restDuration": 194,
+        "reps": 16,
+        "setDuration": 0
+      }
+    ],
+    "lastReps": [
+      11,
+      7,
+      10,
+      16
+    ]
+  },
+  {
+    "notes": "",
+    "lastReps": [
+      6,
+      7,
+      7
+    ],
+    "lastSetsData": [
+      {
+        "restDuration": 212,
+        "setDuration": 0,
+        "volume": 225,
+        "reps": 6,
+        "weight": 37.5,
+        "failed": true
+      },
+      {
+        "weight": 32.5,
+        "volume": 227.5,
+        "restDuration": 172,
+        "setDuration": 0,
+        "reps": 7,
+        "failed": true
+      },
+      {
+        "volume": 210,
+        "restDuration": 196,
+        "failed": true,
+        "weight": 30,
+        "setDuration": 0,
+        "reps": 7
+      }
+    ],
+    "lastPerformed": {
+      "seconds": 1753822953,
+      "nanoseconds": 640000000
+    },
+    "lastVolume": 662.5,
+    "masterData": {
+      "jointAction": [
+        "Extension",
+        "Abduction"
+      ],
+      "unilateral": true,
+      "tags": [
+        "bodybuilding"
+      ],
+      "muscleGroup": "Shoulders",
+      "secondaryMuscle": "Side Delts",
+      "musclesInvolved": [
+        "Front Delts",
+        "Side Delts",
+        "Triceps"
+      ],
+      "primaryMuscle": "Front Delts",
+      "equipment": [
+        "Dumbbell",
+        "Bench"
+      ],
+      "planeOfMotion": "Frontal",
+      "grip": "Neutral",
+      "forceType": "Push",
+      "mechanics": "Compound",
+      "movementPattern": [
+        "Vertical Press"
+      ]
+    },
+    "name": "db shoulder press",
+    "lastSets": 3,
+    "id": "K7SZj89ItL3YrLgHCfXd"
+  },
+  {
+    "name": "Decline Sit-Ups",
+    "notes": "",
+    "lastSets": 2,
+    "masterData": {
+      "unilateral": false,
+      "forceType": "Pull",
+      "muscleGroup": "Core",
+      "mechanics": "Compound",
+      "musclesInvolved": [
+        "Abdominals",
+        "Lower Back",
+        "Obliques",
+        "Hip Flexors"
+      ],
+      "equipment": [
+        "Decline Bench"
+      ],
+      "primaryMuscle": "Abdominals",
+      "grip": "None",
+      "jointAction": [
+        "Flexion"
+      ],
+      "secondaryMuscle": "Lower Back",
+      "movementPattern": [
+        "Hip Hinge"
+      ],
+      "planeOfMotion": "Sagittal",
+      "tags": [
+        "bodybuilding"
+      ]
+    },
+    "lastReps": [
+      8,
+      8
+    ],
+    "lastVolume": 0,
+    "lastPerformed": {
+      "seconds": 1753739249,
+      "nanoseconds": 997000000
+    },
+    "lastSetsData": [
+      {
+        "reps": 8,
+        "failed": false,
+        "setDuration": 0,
+        "restDuration": 92,
+        "volume": 0,
+        "weight": 0
+      },
+      {
+        "weight": 0,
+        "failed": false,
+        "reps": 8,
+        "setDuration": 0,
+        "restDuration": 0,
+        "volume": 0
+      }
+    ],
+    "id": "mpPEceK4bMW3QuRU3IqW"
+  },
+  {
+    "masterData": {
+      "mechanics": "Compound",
+      "movementPattern": [
+        "Squat"
+      ],
+      "tags": [
+        "powerlifting",
+        "bodybuilding"
+      ],
+      "jointAction": [
+        "Extension"
+      ],
+      "equipment": [
+        "Barbell",
+        "Squat Rack"
+      ],
+      "musclesInvolved": [
+        "Quadriceps",
+        "Glutes",
+        "Hamstrings",
+        "Adductors",
+        "Lower Back"
+      ],
+      "secondaryMuscle": "Glutes",
+      "unilateral": false,
+      "primaryMuscle": "Quadriceps",
+      "forceType": "Push",
+      "planeOfMotion": "Sagittal",
+      "grip": "None",
+      "muscleGroup": "Legs"
+    },
+    "lastSetsData": [
+      {
+        "restDuration": 226,
+        "reps": 7,
+        "failed": false,
+        "weight": 135,
+        "volume": 945,
+        "setDuration": 80
+      },
+      {
+        "setDuration": 71,
+        "reps": 6,
+        "restDuration": 178,
+        "volume": 810,
+        "weight": 135,
+        "failed": false
+      },
+      {
+        "failed": false,
+        "setDuration": 77,
+        "weight": 135,
+        "restDuration": 224,
+        "reps": 6,
+        "volume": 810
+      }
+    ],
+    "lastSets": 3,
+    "lastVolume": 2565,
+    "notes": "",
+    "name": "Deep Back Squat (HSR)",
+    "lastPerformed": {
+      "seconds": 1753739249,
+      "nanoseconds": 997000000
+    },
+    "lastReps": [
+      7,
+      6,
+      6
+    ],
+    "id": "OUzejayyQxtyNizaoFUX"
+  },
+  {
+    "lastSetsData": [
+      {
+        "reps": 8,
+        "weight": 0,
+        "failed": false,
+        "volume": 0,
+        "setDuration": 0,
+        "restDuration": 0
+      },
+      {
+        "reps": 8,
+        "restDuration": 0,
+        "volume": 0,
+        "failed": false,
+        "setDuration": 0,
+        "weight": 0
+      },
+      {
+        "restDuration": 0,
+        "reps": 8,
+        "weight": 0,
+        "failed": false,
+        "setDuration": 0,
+        "volume": 0
+      }
+    ],
+    "lastReps": [
+      8,
+      8,
+      8
+    ],
+    "lastPerformed": {
+      "seconds": 1721001600,
+      "nanoseconds": 0
+    },
+    "name": "Depth Jumps",
+    "masterData": {
+      "unilateral": false,
+      "tags": [
+        "plyometric",
+        "powerlifting"
+      ],
+      "mechanics": "Compound",
+      "muscleGroup": "Legs",
+      "musclesInvolved": [
+        "Quadriceps",
+        "Glutes",
+        "Hamstrings",
+        "Calves"
+      ],
+      "secondaryMuscle": "Glutes",
+      "planeOfMotion": "Sagittal",
+      "movementPattern": [
+        "Squat"
+      ],
+      "equipment": [],
+      "jointAction": [
+        "Extension"
+      ],
+      "primaryMuscle": "Quadriceps",
+      "forceType": "Push",
+      "grip": "None"
+    },
+    "lastSets": 3,
+    "lastVolume": 0,
+    "id": "mJG7FcYGngleBD7GAYQW"
+  },
+  {
+    "lastVolume": 0,
+    "notes": "Pick current progression. 4 sets as prescribed.",
+    "name": "Double-leg Pogos",
+    "lastSetsData": [
+      {
+        "restDuration": 0,
+        "failed": false,
+        "volume": 0,
+        "weight": 0,
+        "reps": 25,
+        "setDuration": 0
+      },
+      {
+        "setDuration": 0,
+        "reps": 25,
+        "failed": false,
+        "weight": 0,
+        "volume": 0,
+        "restDuration": 0
+      }
+    ],
+    "lastSets": 2,
+    "lastPerformed": {
+      "seconds": 1755701163,
+      "nanoseconds": 374000000
+    },
+    "lastSessionNote": "Ankle was hurting had to stop",
+    "lastReps": [
+      25,
+      25
+    ],
+    "id": "5FTASzlPCUVlpDRi843F"
+  },
+  {
+    "name": "EZ Bar Skull Crushers",
+    "lastVolume": 1000,
+    "lastPerformed": {
+      "seconds": 1753822953,
+      "nanoseconds": 640000000
+    },
+    "lastSetsData": [
+      {
+        "setDuration": 0,
+        "weight": 40,
+        "reps": 8,
+        "failed": false,
+        "volume": 320,
+        "restDuration": 178
+      },
+      {
+        "volume": 360,
+        "failed": false,
+        "restDuration": 177,
+        "reps": 9,
+        "weight": 40,
+        "setDuration": 0
+      },
+      {
+        "weight": 40,
+        "volume": 320,
+        "setDuration": 0,
+        "restDuration": 243,
+        "failed": false,
+        "reps": 8
+      }
+    ],
+    "lastSets": 3,
+    "masterData": {
+      "planeOfMotion": "Sagittal",
+      "jointAction": [
+        "Extension"
+      ],
+      "mechanics": "Isolation",
+      "forceType": "Push",
+      "equipment": [
+        "EZ-bar"
+      ],
+      "tags": [
+        "bodybuilding"
+      ],
+      "grip": "Neutral",
+      "secondaryMuscle": "Brachialis",
+      "movementPattern": [],
+      "primaryMuscle": "Triceps",
+      "unilateral": false,
+      "musclesInvolved": [
+        "Triceps",
+        "Brachialis",
+        "Forearms"
+      ],
+      "muscleGroup": "Arms"
+    },
+    "lastReps": [
+      8,
+      9,
+      8
+    ],
+    "notes": "",
+    "id": "MbqhwWJvhssky2YE0QC1"
+  },
+  {
+    "name": "EZ-bar Curl",
+    "lastSetsData": [
+      {
+        "setDuration": 0,
+        "failed": false,
+        "restDuration": 0,
+        "reps": 12,
+        "volume": 600,
+        "weight": 50
+      },
+      {
+        "failed": true,
+        "volume": 350,
+        "weight": 50,
+        "restDuration": 107,
+        "setDuration": 0,
+        "reps": 7
+      },
+      {
+        "volume": 400,
+        "restDuration": 147,
+        "setDuration": 0,
+        "weight": 50,
+        "reps": 8,
+        "failed": true
+      }
+    ],
+    "lastReps": [
+      12,
+      7,
+      8
+    ],
+    "lastSets": 3,
+    "masterData": {
+      "movementPattern": [],
+      "forceType": "Pull",
+      "unilateral": false,
+      "grip": "Underhand",
+      "primaryMuscle": "Biceps",
+      "tags": [
+        "bodybuilding"
+      ],
+      "secondaryMuscle": "Brachialis",
+      "equipment": [
+        "EZ-bar"
+      ],
+      "musclesInvolved": [
+        "Biceps",
+        "Brachialis",
+        "Forearms"
+      ],
+      "planeOfMotion": "Sagittal",
+      "mechanics": "Isolation",
+      "muscleGroup": "Arms",
+      "jointAction": [
+        "Flexion"
+      ]
+    },
+    "lastVolume": 1350,
+    "notes": "",
+    "lastPerformed": {
+      "seconds": 1753822953,
+      "nanoseconds": 640000000
+    },
+    "id": "U1CB3eImrFkg3VDu3TZL"
+  },
+  {
+    "lastSets": null,
+    "name": "Hack Squat",
+    "lastSetsData": [],
+    "masterData": {
+      "grip": "None",
+      "equipment": [
+        "Hack Squat Machine"
+      ],
+      "musclesInvolved": [
+        "Quadriceps",
+        "Glutes",
+        "Hamstrings",
+        "Adductors"
+      ],
+      "movementPattern": [
+        "Squat"
+      ],
+      "primaryMuscle": "Quadriceps",
+      "secondaryMuscle": "Glutes",
+      "tags": [
+        "bodybuilding",
+        "powerlifting"
+      ],
+      "forceType": "Push",
+      "planeOfMotion": "Sagittal",
+      "muscleGroup": "Legs",
+      "mechanics": "Compound",
+      "unilateral": false,
+      "jointAction": [
+        "Extension"
+      ]
+    },
+    "lastReps": [],
+    "lastPerformed": null,
+    "lastVolume": null,
+    "id": "ZWQc7nUIvc1mHuwXQKVt"
+  },
+  {
+    "notes": "",
+    "lastReps": [
+      10,
+      7,
+      6
+    ],
+    "name": "Incline DB Press (30°)",
+    "masterData": {
+      "forceType": "Push",
+      "jointAction": [
+        "Extension"
+      ],
+      "secondaryMuscle": "Front Delts",
+      "grip": "Neutral",
+      "movementPattern": [
+        "Horizontal Press"
+      ],
+      "planeOfMotion": "Sagittal",
+      "muscleGroup": "Chest",
+      "unilateral": true,
+      "musclesInvolved": [
+        "Chest",
+        "Front Delts",
+        "Triceps"
+      ],
+      "tags": [
+        "bodybuilding"
+      ],
+      "mechanics": "Compound",
+      "equipment": [
+        "Dumbbell",
+        "Bench"
+      ],
+      "primaryMuscle": "Chest"
+    },
+    "lastVolume": 940,
+    "lastSets": 3,
+    "lastPerformed": {
+      "seconds": 1753211500,
+      "nanoseconds": 101000000
+    },
+    "lastSetsData": [
+      {
+        "weight": 45,
+        "setDuration": 53,
+        "restDuration": 4,
+        "reps": 10,
+        "failed": false,
+        "volume": 450
+      },
+      {
+        "restDuration": 151,
+        "volume": 280,
+        "failed": true,
+        "setDuration": 38,
+        "weight": 40,
+        "reps": 7
+      },
+      {
+        "volume": 210,
+        "weight": 35,
+        "setDuration": 44,
+        "failed": true,
+        "reps": 6,
+        "restDuration": 149
+      }
+    ],
+    "id": "aHlRN5p6sYzGhcpeT7RA"
+  },
+  {
+    "lastReps": [
+      8,
+      8
+    ],
+    "lastPerformed": {
+      "seconds": 1753739249,
+      "nanoseconds": 997000000
+    },
+    "lastSets": 2,
+    "masterData": {
+      "tags": [
+        "bodybuilding"
+      ],
+      "movementPattern": [],
+      "musclesInvolved": [
+        "Quadriceps",
+        "Glutes",
+        "Hamstrings"
+      ],
+      "jointAction": [
+        "Extension"
+      ],
+      "mechanics": "Isolation",
+      "primaryMuscle": "Quadriceps",
+      "forceType": "Push",
+      "planeOfMotion": "Sagittal",
+      "equipment": [],
+      "unilateral": false,
+      "grip": "None",
+      "muscleGroup": "Legs",
+      "secondaryMuscle": "Glutes"
+    },
+    "lastVolume": 0,
+    "name": "Knee’s Over Toes Sissy Squats",
+    "lastSetsData": [
+      {
+        "volume": 0,
+        "weight": 0,
+        "failed": false,
+        "reps": 8,
+        "setDuration": 0,
+        "restDuration": 619
+      },
+      {
+        "failed": false,
+        "weight": 0,
+        "volume": 0,
+        "restDuration": 0,
+        "reps": 8,
+        "setDuration": 0
+      }
+    ],
+    "notes": "",
+    "id": "I0q3d3DIRJ6CZJ9TjQjh"
+  },
+  {
+    "notes": "Single DB in inside hand; focus on hip IR + foot pronation.",
+    "lastSessionNote": "this exercise was too painful so i cut it short, tendon was too inflamed ",
+    "name": "Lateral Lunge",
+    "lastSets": 1,
+    "lastPerformed": {
+      "seconds": 1755701163,
+      "nanoseconds": 374000000
+    },
+    "lastSetsData": [
+      {
+        "restDuration": 133,
+        "reps": 8,
+        "failed": false,
+        "weight": 15,
+        "setDuration": 0,
+        "volume": 120
+      }
+    ],
+    "lastVolume": 120,
+    "lastReps": [
+      8
+    ],
+    "id": "Q8BZjsDop0C5CT3rCraL"
+  },
+  {
+    "lastReps": [],
+    "lastSets": null,
+    "name": "Lateral Raises",
+    "lastVolume": null,
+    "lastSetsData": [],
+    "masterData": {
+      "unilateral": false,
+      "forceType": "Push",
+      "grip": "Neutral",
+      "muscleGroup": "Shoulders",
+      "mechanics": "Isolation",
+      "secondaryMuscle": "Trapezius",
+      "tags": [
+        "bodybuilding"
+      ],
+      "planeOfMotion": "Frontal",
+      "movementPattern": [],
+      "jointAction": [
+        "Abduction"
+      ],
+      "equipment": [
+        "Dumbbell"
+      ],
+      "primaryMuscle": "Side Delts",
+      "musclesInvolved": [
+        "Side Delts",
+        "Trapezius"
+      ]
+    },
+    "lastPerformed": null,
+    "id": "wyD6zf5sbYm9WvEDU8ze"
+  },
+  {
+    "lastSetsData": [],
+    "lastReps": [],
+    "lastPerformed": null,
+    "name": "Lean-away Cable Lateral Raise",
+    "lastSets": null,
+    "notes": "",
+    "id": "ZUoLDDwPZfqG1BdlcUHf",
+    "masterData": {
+      "secondaryMuscle": "Trapezius",
+      "mechanics": "Isolation",
+      "muscleGroup": "Shoulders",
+      "grip": "Neutral",
+      "musclesInvolved": [
+        "Side Delts",
+        "Trapezius",
+        "Serratus Anterior"
+      ],
+      "equipment": [
+        "Cable Machine"
+      ],
+      "forceType": "Push",
+      "jointAction": [
+        "Abduction"
+      ],
+      "planeOfMotion": "Frontal",
+      "tags": [
+        "bodybuilding"
+      ],
+      "unilateral": false,
+      "movementPattern": [],
+      "primaryMuscle": "Side Delts"
+    },
+    "lastVolume": null
+  },
+  {
+    "masterData": {
+      "planeOfMotion": "Sagittal",
+      "movementPattern": [],
+      "musclesInvolved": [
+        "Hamstrings",
+        "Glutes"
+      ],
+      "jointAction": [
+        "Flexion"
+      ],
+      "equipment": [
+        "Leg Curl Machine"
+      ],
+      "primaryMuscle": "Hamstrings",
+      "grip": "None",
+      "muscleGroup": "Legs",
+      "unilateral": false,
+      "tags": [
+        "bodybuilding"
+      ],
+      "mechanics": "Isolation",
+      "secondaryMuscle": "Glutes",
+      "forceType": "Pull"
+    },
+    "name": "Leg Curl Machine",
+    "id": "eXaTrd0j0umvFtEteYPD"
+  },
+  {
+    "lastPerformed": {
+      "seconds": 1753739249,
+      "nanoseconds": 997000000
+    },
+    "lastVolume": 925,
+    "lastSetsData": [
+      {
+        "volume": 325,
+        "failed": false,
+        "setDuration": 61,
+        "weight": 65,
+        "reps": 5,
+        "restDuration": 445
+      },
+      {
+        "reps": 5,
+        "setDuration": 64,
+        "failed": false,
+        "volume": 300,
+        "restDuration": 138,
+        "weight": 60
+      },
+      {
+        "volume": 300,
+        "weight": 60,
+        "restDuration": 138,
+        "setDuration": 62,
+        "reps": 5,
+        "failed": true
+      }
+    ],
+    "masterData": {},
+    "name": "Leg Extension (HSR Protocol for Jumper’s Knee)",
+    "lastReps": [
+      5,
+      5,
+      5
+    ],
+    "notes": "Single leg alternating",
+    "lastSets": 3,
+    "id": "Dtpr4G6ApLJ53CpNfpYR"
+  },
+  {
+    "name": "Lying Leg Curl Machine",
+    "masterData": {
+      "equipment": [
+        "Lying Leg Curl Machine"
+      ],
+      "grip": "None",
+      "musclesInvolved": [
+        "Hamstrings",
+        "Glutes"
+      ],
+      "movementPattern": [],
+      "tags": [
+        "bodybuilding"
+      ],
+      "jointAction": [
+        "Flexion"
+      ],
+      "unilateral": false,
+      "mechanics": "Isolation",
+      "primaryMuscle": "Hamstrings",
+      "muscleGroup": "Legs",
+      "forceType": "Pull",
+      "planeOfMotion": "Sagittal",
+      "secondaryMuscle": "Glutes"
+    },
+    "id": "ii51xZtmodHjHRwSJoEk"
+  },
+  {
+    "lastPerformed": null,
+    "masterData": {
+      "primaryMuscle": "Front Delts",
+      "muscleGroup": "Shoulders",
+      "jointAction": [
+        "Extension",
+        "Abduction"
+      ],
+      "forceType": "Push",
+      "equipment": [
+        "Barbell"
+      ],
+      "secondaryMuscle": "Triceps",
+      "mechanics": "Compound",
+      "movementPattern": [
+        "Vertical Press"
+      ],
+      "unilateral": false,
+      "grip": "Overhand",
+      "planeOfMotion": "Frontal",
+      "musclesInvolved": [
+        "Front Delts",
+        "Triceps",
+        "Side Delts",
+        "Trapezius"
+      ],
+      "tags": [
+        "powerlifting",
+        "bodybuilding"
+      ]
+    },
+    "lastSets": null,
+    "lastVolume": null,
+    "lastReps": [],
+    "lastSetsData": [],
+    "name": "Military Press",
+    "id": "7tMdzKbICcP2OKDBw1Iq"
+  },
+  {
+    "name": "Neutral-grip Lat-pulldown",
+    "notes": "",
+    "lastVolume": 2950,
+    "lastPerformed": {
+      "seconds": 1753209346,
+      "nanoseconds": 177000000
+    },
+    "lastSetsData": [
+      {
+        "restDuration": 0,
+        "weight": 100,
+        "failed": true,
+        "setDuration": 0,
+        "volume": 400,
+        "reps": 4
+      },
+      {
+        "reps": 10,
+        "weight": 85,
+        "volume": 850,
+        "failed": true,
+        "setDuration": 0,
+        "restDuration": 0
+      },
+      {
+        "failed": false,
+        "volume": 850,
+        "setDuration": 0,
+        "reps": 10,
+        "restDuration": 0,
+        "weight": 85
+      },
+      {
+        "reps": 10,
+        "weight": 85,
+        "volume": 850,
+        "failed": true,
+        "setDuration": 0,
+        "restDuration": 0
+      }
+    ],
+    "lastReps": [
+      4,
+      10,
+      10,
+      10
+    ],
+    "id": "5G5ecJWIFGo3EZF2pYdE",
+    "masterData": {
+      "movementPattern": [
+        "Vertical Pull"
+      ],
+      "tags": [
+        "bodybuilding"
+      ],
+      "unilateral": false,
+      "planeOfMotion": "Sagittal",
+      "grip": "Neutral",
+      "forceType": "Pull",
+      "musclesInvolved": [
+        "Lats",
+        "Rhomboids",
+        "Trapezius",
+        "Biceps",
+        "Forearms"
+      ],
+      "primaryMuscle": "Lats",
+      "muscleGroup": "Back",
+      "secondaryMuscle": "Rhomboids",
+      "mechanics": "Compound",
+      "equipment": [
+        "Lat Pulldown Machine"
+      ],
+      "jointAction": [
+        "Extension"
+      ]
+    },
+    "lastSets": 4
+  },
+  {
+    "notes": "",
+    "lastReps": [
+      11,
+      7,
+      8
+    ],
+    "name": "Preacher curl machine",
+    "lastSets": 3,
+    "lastSetsData": [
+      {
+        "failed": false,
+        "restDuration": 226,
+        "setDuration": 0,
+        "reps": 11,
+        "weight": 35,
+        "volume": 385
+      },
+      {
+        "volume": 245,
+        "setDuration": 0,
+        "reps": 7,
+        "restDuration": 212,
+        "failed": true,
+        "weight": 35
+      },
+      {
+        "failed": true,
+        "reps": 8,
+        "weight": 35,
+        "setDuration": 0,
+        "volume": 280,
+        "restDuration": 251
+      }
+    ],
+    "lastVolume": 910,
+    "lastPerformed": {
+      "seconds": 1753822953,
+      "nanoseconds": 640000000
+    },
+    "masterData": {
+      "unilateral": false,
+      "primaryMuscle": "Biceps",
+      "forceType": "Pull",
+      "tags": [
+        "bodybuilding"
+      ],
+      "mechanics": "Isolation",
+      "secondaryMuscle": "Brachialis",
+      "muscleGroup": "Arms",
+      "grip": "Neutral",
+      "musclesInvolved": [
+        "Biceps",
+        "Brachialis",
+        "Forearms"
+      ],
+      "jointAction": [
+        "Flexion"
+      ],
+      "planeOfMotion": "Sagittal",
+      "equipment": [
+        "Preacher curl machine"
+      ],
+      "movementPattern": []
+    },
+    "id": "GXEJ757xuAfO4NzsgGDk"
+  },
+  {
+    "lastVolume": 0,
+    "lastReps": [
+      6,
+      5,
+      2
+    ],
+    "lastSets": 3,
+    "name": "Pull-Ups (Unassisted)",
+    "lastSetsData": [
+      {
+        "reps": 6,
+        "failed": false,
+        "volume": 0,
+        "setDuration": 0,
+        "weight": 0,
+        "restDuration": 0
+      },
+      {
+        "failed": false,
+        "setDuration": 0,
+        "reps": 5,
+        "weight": 0,
+        "volume": 0,
+        "restDuration": 0
+      },
+      {
+        "volume": 0,
+        "weight": 0,
+        "reps": 2,
+        "failed": true,
+        "restDuration": 0,
+        "setDuration": 0
+      }
+    ],
+    "masterData": {
+      "grip": "Overhand",
+      "musclesInvolved": [
+        "Lats",
+        "Biceps",
+        "Trapezius",
+        "Rhomboids",
+        "Forearms"
+      ],
+      "equipment": [
+        "Pull-up Bar"
+      ],
+      "planeOfMotion": "Sagittal",
+      "jointAction": [
+        "Flexion"
+      ],
+      "tags": [
+        "bodyweight",
+        "calisthenics"
+      ],
+      "unilateral": false,
+      "mechanics": "Compound",
+      "primaryMuscle": "Lats",
+      "muscleGroup": "Back",
+      "forceType": "Pull",
+      "movementPattern": [
+        "Vertical Pull"
+      ],
+      "secondaryMuscle": "Biceps"
+    },
+    "lastPerformed": {
+      "seconds": 1752105600,
+      "nanoseconds": 0
+    },
+    "id": "qOh2DPRWJkJXhFtxIsLX"
+  },
+  {
+    "notes": "3 ECC / 3 CON; Rest 3 min.",
+    "name": "Rear Foot Elevated Split Squat",
+    "lastSetsData": [
+      {
+        "restDuration": 3,
+        "volume": 60,
+        "failed": false,
+        "weight": 15,
+        "reps": 4,
+        "setDuration": 0
+      },
+      {
+        "restDuration": 0,
+        "weight": 15,
+        "reps": 4,
+        "setDuration": 0,
+        "failed": false,
+        "volume": 60
+      },
+      {
+        "weight": 15,
+        "failed": false,
+        "reps": 4,
+        "setDuration": 0,
+        "volume": 60,
+        "restDuration": 0
+      },
+      {
+        "failed": false,
+        "weight": 15,
+        "volume": 60,
+        "restDuration": 0,
+        "setDuration": 0,
+        "reps": 4
+      },
+      {
+        "reps": 4,
+        "weight": 15,
+        "volume": 60,
+        "restDuration": 0,
+        "failed": false,
+        "setDuration": 0
+      }
+    ],
+    "lastSessionNote": "15 lbs kettlebells in both hands",
+    "lastVolume": 300,
+    "lastPerformed": {
+      "seconds": 1755701163,
+      "nanoseconds": 374000000
+    },
+    "lastReps": [
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    "lastSets": 5,
+    "id": "NJ54kd1jPe7Pyrq5WOau"
+  },
+  {
+    "name": "Reverse Pec-Deck",
+    "lastVolume": 1310,
+    "lastPerformed": {
+      "seconds": 1753211500,
+      "nanoseconds": 101000000
+    },
+    "masterData": {
+      "mechanics": "Isolation",
+      "jointAction": [
+        "Adduction"
+      ],
+      "tags": [
+        "bodybuilding"
+      ],
+      "grip": "Neutral",
+      "forceType": "Pull",
+      "primaryMuscle": "Rhomboids",
+      "muscleGroup": "Back",
+      "unilateral": false,
+      "secondaryMuscle": "Rear Delts",
+      "movementPattern": [],
+      "musclesInvolved": [
+        "Rhomboids",
+        "Rear Delts",
+        "Trapezius"
+      ],
+      "planeOfMotion": "Sagittal",
+      "equipment": [
+        "Pec Deck Machine"
+      ]
+    },
+    "notes": "",
+    "lastReps": [
+      12,
+      6,
+      8
+    ],
+    "lastSetsData": [
+      {
+        "volume": 660,
+        "restDuration": 0,
+        "reps": 12,
+        "weight": 55,
+        "failed": false,
+        "setDuration": 0
+      },
+      {
+        "reps": 6,
+        "volume": 330,
+        "weight": 55,
+        "setDuration": 0,
+        "restDuration": 0,
+        "failed": true
+      },
+      {
+        "failed": true,
+        "restDuration": 0,
+        "weight": 40,
+        "setDuration": 0,
+        "volume": 320,
+        "reps": 8
+      }
+    ],
+    "lastSets": 3,
+    "id": "mRs6GxxztNghedN1W2It"
+  },
+  {
+    "name": "Romanian Deadlift",
+    "lastSets": 3,
+    "lastVolume": 2700,
+    "masterData": {
+      "jointAction": [
+        "Extension",
+        "Flexion"
+      ],
+      "secondaryMuscle": "Glutes",
+      "grip": "Overhand",
+      "tags": [
+        "powerlifting",
+        "bodybuilding"
+      ],
+      "mechanics": "Compound",
+      "muscleGroup": "Legs",
+      "musclesInvolved": [
+        "Hamstrings",
+        "Glutes",
+        "Lower Back"
+      ],
+      "equipment": [
+        "Barbell"
+      ],
+      "movementPattern": [
+        "Hip Hinge"
+      ],
+      "unilateral": false,
+      "forceType": "Hinge",
+      "planeOfMotion": "Sagittal",
+      "primaryMuscle": "Hamstrings"
+    },
+    "lastSetsData": [
+      {
+        "restDuration": 0,
+        "failed": false,
+        "volume": 810,
+        "weight": 135,
+        "reps": 6,
+        "setDuration": 0
+      },
+      {
+        "failed": false,
+        "restDuration": 0,
+        "setDuration": 0,
+        "reps": 8,
+        "volume": 1080,
+        "weight": 135
+      },
+      {
+        "volume": 810,
+        "reps": 6,
+        "weight": 135,
+        "setDuration": 0,
+        "failed": false,
+        "restDuration": 0
+      }
+    ],
+    "lastPerformed": {
+      "seconds": 1721001600,
+      "nanoseconds": 0
+    },
+    "lastReps": [
+      6,
+      8,
+      6
+    ],
+    "id": "yECr81m1kf8xrafOdv9q"
+  },
+  {
+    "notes": "",
+    "lastSetsData": [
+      {
+        "weight": 27,
+        "setDuration": 0,
+        "reps": 8,
+        "restDuration": 0,
+        "volume": 216,
+        "failed": true
+      },
+      {
+        "setDuration": 0,
+        "restDuration": 0,
+        "reps": 5,
+        "weight": 27,
+        "volume": 135,
+        "failed": true
+      },
+      {
+        "setDuration": 0,
+        "restDuration": 0,
+        "volume": 120,
+        "failed": true,
+        "weight": 20,
+        "reps": 6
+      }
+    ],
+    "lastVolume": 471,
+    "lastReps": [
+      8,
+      5,
+      6
+    ],
+    "name": "Rope Overhead Triceps Extension",
+    "lastSets": 3,
+    "lastPerformed": {
+      "seconds": 1753211495,
+      "nanoseconds": 608000000
+    },
+    "masterData": {
+      "planeOfMotion": "Sagittal",
+      "movementPattern": [],
+      "unilateral": false,
+      "musclesInvolved": [
+        "Triceps",
+        "Forearms"
+      ],
+      "secondaryMuscle": null,
+      "jointAction": [
+        "Extension"
+      ],
+      "equipment": [
+        "Cable Machine",
+        "Rope Attachment"
+      ],
+      "tags": [
+        "bodybuilding"
+      ],
+      "grip": "Neutral",
+      "primaryMuscle": "Triceps",
+      "forceType": "Push",
+      "muscleGroup": "Arms",
+      "mechanics": "Isolation"
+    },
+    "id": "lGW74RxQEOnCviK6zmWZ"
+  },
+  {
+    "lastSets": 3,
+    "masterData": {
+      "grip": "None",
+      "musclesInvolved": [
+        "Gastrocnemius",
+        "Soleus"
+      ],
+      "equipment": [
+        "Seated Calf Extension Machine"
+      ],
+      "planeOfMotion": "Sagittal",
+      "jointAction": [
+        "Plantarflexion"
+      ],
+      "tags": [
+        "bodybuilding"
+      ],
+      "mechanics": "Isolation",
+      "primaryMuscle": "Gastrocnemius",
+      "unilateral": false,
+      "muscleGroup": "Legs",
+      "secondaryMuscle": "Soleus",
+      "movementPattern": [],
+      "forceType": "Push"
+    },
+    "lastSetsData": [
+      {
+        "failed": false,
+        "reps": 12,
+        "volume": 1080,
+        "weight": 90,
+        "setDuration": 0,
+        "restDuration": 0
+      },
+      {
+        "reps": 13,
+        "volume": 1170,
+        "setDuration": 0,
+        "weight": 90,
+        "restDuration": 0,
+        "failed": false
+      },
+      {
+        "volume": 900,
+        "setDuration": 0,
+        "weight": 90,
+        "restDuration": 0,
+        "reps": 10,
+        "failed": false
+      }
+    ],
+    "lastVolume": 3150,
+    "name": "Seated Calf Extension Machine",
+    "lastReps": [
+      12,
+      13,
+      10
+    ],
+    "lastPerformed": {
+      "seconds": 1721001600,
+      "nanoseconds": 0
+    },
+    "id": "HU1xlqADb01hc8gsZSnD"
+  },
+  {
+    "name": "Seated DB Overhead Press",
+    "lastSetsData": [
+      {
+        "reps": 8,
+        "setDuration": 0,
+        "restDuration": 0,
+        "volume": 280,
+        "failed": false,
+        "weight": 35
+      },
+      {
+        "restDuration": 0,
+        "setDuration": 0,
+        "weight": 30,
+        "reps": 6,
+        "failed": false,
+        "volume": 180
+      },
+      {
+        "volume": 150,
+        "weight": 30,
+        "restDuration": 0,
+        "reps": 5,
+        "setDuration": 0,
+        "failed": true
+      }
+    ],
+    "lastVolume": 610,
+    "lastPerformed": {
+      "seconds": 1752105600,
+      "nanoseconds": 0
+    },
+    "lastReps": [
+      8,
+      6,
+      5
+    ],
+    "masterData": {
+      "equipment": [
+        "Dumbbell",
+        "Bench"
+      ],
+      "grip": "Neutral",
+      "movementPattern": [
+        "Vertical Press"
+      ],
+      "musclesInvolved": [
+        "Front Delts",
+        "Triceps",
+        "Side Delts",
+        "Trapezius"
+      ],
+      "jointAction": [
+        "Extension",
+        "Abduction"
+      ],
+      "tags": [
+        "bodybuilding"
+      ],
+      "unilateral": true,
+      "mechanics": "Compound",
+      "primaryMuscle": "Front Delts",
+      "forceType": "Push",
+      "muscleGroup": "Shoulders",
+      "planeOfMotion": "Frontal",
+      "secondaryMuscle": "Triceps"
+    },
+    "lastSets": 3,
+    "id": "SevbYlAOGingi1cGIwOT"
+  },
+  {
+    "lastVolume": 810,
+    "notes": "",
+    "lastReps": [
+      5,
+      7,
+      7
+    ],
+    "lastSets": 3,
+    "lastPerformed": {
+      "seconds": 1753739249,
+      "nanoseconds": 997000000
+    },
+    "name": "Seated Single-leg Leg Press Machine (HSR)",
+    "lastSetsData": [
+      {
+        "reps": 5,
+        "weight": 50,
+        "restDuration": 452,
+        "volume": 250,
+        "setDuration": 0,
+        "failed": true
+      },
+      {
+        "setDuration": 117,
+        "weight": 40,
+        "failed": false,
+        "reps": 7,
+        "restDuration": 60,
+        "volume": 280
+      },
+      {
+        "failed": false,
+        "volume": 280,
+        "setDuration": 101,
+        "weight": 40,
+        "reps": 7,
+        "restDuration": 157
+      }
+    ],
+    "masterData": {
+      "primaryMuscle": "Quadriceps",
+      "grip": "None",
+      "forceType": "Push",
+      "secondaryMuscle": "Glutes",
+      "movementPattern": [
+        "Squat"
+      ],
+      "unilateral": false,
+      "equipment": [
+        "Leg Press Machine"
+      ],
+      "tags": [
+        "bodybuilding"
+      ],
+      "jointAction": [
+        "Extension"
+      ],
+      "muscleGroup": "Legs",
+      "planeOfMotion": "Sagittal",
+      "musclesInvolved": [
+        "Quadriceps",
+        "Glutes",
+        "Hamstrings",
+        "Adductors"
+      ],
+      "mechanics": "Compound"
+    },
+    "id": "lFaOXL2x4Kt4HAFu73Ev"
+  },
+  {
+    "masterData": {
+      "musclesInvolved": [
+        "Quadriceps",
+        "Glutes",
+        "Hamstrings",
+        "Adductors"
+      ],
+      "forceType": "Push",
+      "planeOfMotion": "Sagittal",
+      "unilateral": true,
+      "movementPattern": [
+        "Lunge"
+      ],
+      "tags": [
+        "bodybuilding"
+      ],
+      "jointAction": [
+        "Extension"
+      ],
+      "mechanics": "Compound",
+      "grip": "None",
+      "equipment": [
+        "Leg Press Machine"
+      ],
+      "primaryMuscle": "Quadriceps",
+      "muscleGroup": "Legs",
+      "secondaryMuscle": "Glutes"
+    },
+    "name": "Single-leg Angled Leg Press (HSR)",
+    "id": "vVzn5Fq7IydkMTYvczEh"
+  },
+  {
+    "masterData": {
+      "primaryMuscle": "Gastrocnemius",
+      "secondaryMuscle": "Soleus",
+      "grip": "None",
+      "movementPattern": [],
+      "forceType": "Push",
+      "mechanics": "Isolation",
+      "muscleGroup": "Legs",
+      "equipment": [
+        "Calf Raise Machine"
+      ],
+      "planeOfMotion": "Sagittal",
+      "jointAction": [
+        "Plantarflexion"
+      ],
+      "unilateral": false,
+      "tags": [
+        "bodybuilding"
+      ],
+      "musclesInvolved": [
+        "Gastrocnemius",
+        "Soleus"
+      ]
+    },
+    "name": "Standing Calf Raise Machine",
+    "id": "f6HsTsQQNqXhI2I0mYj9"
+  },
+  {
+    "masterData": {
+      "grip": "Overhand",
+      "movementPattern": [],
+      "secondaryMuscle": "Brachialis",
+      "mechanics": "Isolation",
+      "equipment": [
+        "Barbell"
+      ],
+      "forceType": "Pull",
+      "planeOfMotion": "Sagittal",
+      "jointAction": [
+        "Flexion"
+      ],
+      "unilateral": false,
+      "primaryMuscle": "Biceps",
+      "tags": [
+        "bodybuilding"
+      ],
+      "muscleGroup": "Arms",
+      "musclesInvolved": [
+        "Biceps",
+        "Brachialis",
+        "Forearms"
+      ]
+    },
+    "name": "Straight bar bicep curl",
+    "id": "H3SzrsjOamqWjitLsLm1"
+  }
+]

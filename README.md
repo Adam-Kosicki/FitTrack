@@ -79,7 +79,7 @@ FitTrack is a personal project designed exactly the way I want a fitness app to 
 - Community guide creation planned for future releases
 
 ### ⌚ Google Health & Fitbit Intelligence Hub
-![Google Health & Fitbit Intelligence Hub](google_health_dashboard.png)
+![Google Health & Fitbit Intelligence Hub](docs/images/google_health_dashboard.png)
 - **Google Health API v4 Integration** — Real-time telemetry, vital signs, sleep, and workout analytics directly from Google Health and Fitbit devices (Fitbit Air, Charge 6, Sense, Pixel Watch)
 - **14 Live Health Metrics** — Daily Steps (with percentage goal progress bar), Calories Expended (`active-energy-burned`), Active Minutes (`active-zone-minutes`), Distance (km & miles), Floors Climbed (`floors`), Average Heart Rate (`heart-rate`), Daily Resting HR, Heart Rate Variability (HRV ms), Blood Oxygen (SpO2 %), Respiratory Rate (rpm), VO2 Max, Sleep Analysis (duration, efficiency %, awake time), Body Composition (Weight & Body Fat %), and Workout Sessions history
 - **Fitbit Direct OAuth 2.0** — Dual-provider authentication via Google OAuth 2.0 or Fitbit Web API
@@ -112,35 +112,23 @@ FitTrack is a personal project designed exactly the way I want a fitness app to 
 
 ```
 FitTrack/
-├── workout-preview/          # React web app
-│   ├── src/
-│   │   ├── components/       # Reusable UI components
-│   │   │   ├── AILogParserModal.js
-│   │   │   ├── ExerciseCard.js
-│   │   │   ├── ExerciseEditModal.js
-│   │   │   ├── ExerciseHistoryModal.js
-│   │   │   ├── ExerciseHomeModal.js
-│   │   │   ├── GeminiExerciseGeneratorModal.js
-│   │   │   ├── Metronome.js
-│   │   │   ├── PainScale.js
-│   │   │   ├── RestTimer.js
-│   │   │   ├── SetList.js
-│   │   │   ├── TargetsModal.js
-│   │   │   └── ...
-│   │   ├── views/            # Page-level views
-│   │   │   ├── WorkoutsDashboard.js
-│   │   │   ├── WorkoutSession.js
-│   │   │   ├── ExerciseDatabaseView.js
-│   │   │   ├── LogView.js
-│   │   │   ├── JumpersKneeView.js
-│   │   │   ├── AnkleRecoveryView.js
-│   │   │   └── ...
-│   │   ├── context/          # React Context (exercises, notifications)
-│   │   ├── data/             # Static data (rehab protocols, transcripts)
-│   │   └── firebase/         # Firebase config & API keys (env vars)
-│   └── public/               # Static assets & rehab guide pages
-├── not_code/                 # Sample workout data & exercise databases
-└── firebase.json             # Firebase Hosting config
+├── .github/workflows/        # CI/CD pipelines (GitHub Actions)
+├── docs/                     # Documentation, architecture guides, seed exercise database
+│   ├── images/               # Screenshots and asset images
+│   └── functional_fitness_exercise_database_v2.9.xlsx
+├── firebase.json             # Firebase Hosting configuration
+├── firestore.rules           # Firestore security rules
+└── workout-preview/          # React web application
+    ├── functions/            # Firebase Cloud Functions (health ingestion API)
+    ├── src/
+    │   ├── components/       # Reusable UI components (modals, HUD, timers)
+    │   ├── context/          # React Context (ExerciseProvider, NotificationContext)
+    │   ├── data/             # Static data & rehab protocols
+    │   ├── firebase/         # Firebase configuration & initialization
+    │   ├── lib/              # Modularized utilities (Gemini client, Zod schemas, prompts)
+    │   ├── services/         # External API integrations (Google Health, Fitbit)
+    │   └── views/            # Main application pages & dashboards
+    └── public/               # Static assets & PWA manifest
 ```
 
 ---
@@ -148,7 +136,7 @@ FitTrack/
 ## Getting Started
 
 ### Prerequisites
-- Node.js (v16+)
+- Node.js (v20+ recommended, v22 used in CI)
 - A Firebase project with Firestore, Auth, and Hosting enabled
 - A Google Gemini API key
 

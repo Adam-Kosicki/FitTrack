@@ -34,7 +34,7 @@ const defaultTagColor = 'bg-gray-500';
 // (removed unused ExerciseCard component)
 
 export function ExerciseDatabaseView({ userId, navigate }) {
-    const { masterList: exercises, loading, handleSaveExercise, updateExerciseSummaryFromHistory, generateExerciseDetails, migrateAndSyncExercises, deriveVariantMeta } = useExercises();
+    const { masterList: exercises, loading, handleSaveExercise, updateExerciseSummaryFromHistory, generateExerciseDetails, migrateAndSyncExercises, deriveVariantMeta, ensureSampleDbLoaded, isSampleDbLoading } = useExercises();
     const [filteredExercises, setFilteredExercises] = useState([]);
     const [editingExercise, setEditingExercise] = useState(null);
     const [deletingExerciseId, setDeletingExerciseId] = useState(null);
@@ -45,6 +45,7 @@ export function ExerciseDatabaseView({ userId, navigate }) {
     const [isImportExportOpen, setIsImportExportOpen] = useState(false);
     const [isRefreshing, setIsRefreshing] = useState(false);
     const [expandedGroups, setExpandedGroups] = useState(new Set());
+    const [visibleCount, setVisibleCount] = useState(36);
     const { showNotification } = useNotification();
     const didPostLoadSync = React.useRef(false);
 
@@ -54,6 +55,8 @@ export function ExerciseDatabaseView({ userId, navigate }) {
     const [selectedMechanics, setSelectedMechanics] = useState(new Set());
     const [selectedForceTypes, setSelectedForceTypes] = useState(new Set());
     const [selectedTags, setSelectedTags] = useState(new Set());
+    // Database source filter ('all' | 'user' | 'sample') - defaults to 'user'
+    const [sourceFilter, setSourceFilter] = useState('user');
     // New variation/equipment filters
     const [onlyIsometric, setOnlyIsometric] = useState(false);
     const [onlyUnilateral, setOnlyUnilateral] = useState(false);
@@ -70,6 +73,7 @@ export function ExerciseDatabaseView({ userId, navigate }) {
         setSelectedMechanics(new Set());
         setSelectedForceTypes(new Set());
         setSelectedTags(new Set());
+        setSourceFilter('all');
         setOnlyIsometric(false);
         setOnlyUnilateral(false);
         setSelectedEquipment(new Set());
@@ -290,6 +294,13 @@ export function ExerciseDatabaseView({ userId, navigate }) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [exercises]);
 
+    // Auto trigger lazy sample database load when user requests sample tab, search, or filters
+    useEffect(() => {
+        if (sourceFilter === 'sample' || sourceFilter === 'all' || filters.searchTerm || selectedMuscleGroups.size > 0 || selectedMechanics.size > 0 || selectedForceTypes.size > 0 || selectedTags.size > 0 || selectedEquipment.size > 0 || onlyIsometric || onlyUnilateral) {
+            ensureSampleDbLoaded?.();
+        }
+    }, [sourceFilter, filters.searchTerm, selectedMuscleGroups, selectedMechanics, selectedForceTypes, selectedTags, selectedEquipment, onlyIsometric, onlyUnilateral, ensureSampleDbLoaded]);
+
     useEffect(() => {
         let filtered = exercises;
         const { searchTerm } = filters;
@@ -347,9 +358,16 @@ export function ExerciseDatabaseView({ userId, navigate }) {
                 return false;
             });
         }
+        // Database Source Filter (User Created vs Sample DB)
+        if (sourceFilter === 'user') {
+            filtered = filtered.filter(ex => ex.isCustom === true && ex.source !== 'sample_db' && ex.source !== 'system_preset' && !String(ex.id || '').startsWith('sample_preset_'));
+        } else if (sourceFilter === 'sample') {
+            filtered = filtered.filter(ex => ex.isCustom === false || ex.source === 'sample_db' || ex.source === 'system_preset' || String(ex.id || '').startsWith('sample_preset_'));
+        }
         filtered.sort((a, b) => (a.baseName || a.name).localeCompare(b.baseName || b.name));
         setFilteredExercises(filtered);
-    }, [filters, exercises, selectedMuscleGroups, selectedMechanics, selectedForceTypes, selectedTags, onlyIsometric, onlyUnilateral, selectedEquipment, deriveVariantMeta]);
+        setVisibleCount(36);
+    }, [filters, exercises, selectedMuscleGroups, selectedMechanics, selectedForceTypes, selectedTags, sourceFilter, onlyIsometric, onlyUnilateral, selectedEquipment, deriveVariantMeta]);
 
     // removed unused handleSelectionChange
     
@@ -541,6 +559,27 @@ export function ExerciseDatabaseView({ userId, navigate }) {
                             onChange={e => handleFilterChange('searchTerm', e.target.value)}
                         />
                     </div>
+                    <div className="flex flex-wrap items-center gap-2 pb-2 border-b border-gray-700/60">
+                        <span className="text-xs font-semibold text-indigo-300 mr-1">Database Source:</span>
+                        <button
+                            onClick={() => setSourceFilter('all')}
+                            className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${sourceFilter === 'all' ? 'bg-indigo-600 text-white shadow' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}
+                        >
+                            All ({exercises.length})
+                        </button>
+                        <button
+                            onClick={() => setSourceFilter('user')}
+                            className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${sourceFilter === 'user' ? 'bg-indigo-600 text-white shadow' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}
+                        >
+                            User Created ({exercises.filter(ex => ex.isCustom === true || ex.source === 'user' || ex.source === 'custom' || (!ex.source && ex.isCustom !== false)).length})
+                        </button>
+                        <button
+                            onClick={() => setSourceFilter('sample')}
+                            className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${sourceFilter === 'sample' ? 'bg-emerald-600 text-white shadow' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}
+                        >
+                            Sample DB v2.9 ({exercises.filter(ex => ex.isCustom === false || ex.source === 'sample_db' || ex.source === 'system_preset' || ex.isSystemPreset === true).length})
+                        </button>
+                    </div>
                     <div className="flex flex-wrap items-center gap-2">
                         <span className="text-xs text-gray-400 mr-1">Muscles:</span>
                         {availableMuscleGroups.map(mg => (
@@ -585,93 +624,118 @@ export function ExerciseDatabaseView({ userId, navigate }) {
                 </div>
             </div>
 
+            {isSampleDbLoading && (
+                <div className="bg-indigo-900/40 border border-indigo-500/30 p-3 rounded-lg text-xs text-indigo-200 mb-4 flex items-center justify-between animate-pulse">
+                    <span className="inline-flex items-center"><Spinner /><span className="ml-2">Loading Sample Database (3,242 items)...</span></span>
+                </div>
+            )}
+
             {loading ? (
                 <p>Loading exercises...</p>
             ) : filteredExercises.length === 0 ? (
                 <p className="text-gray-500">No exercises match the current filters.</p>
             ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
-                    {viewModeGrouped ? (
-                        Object.entries(
-                            filteredExercises.reduce((acc, ex) => {
-                                const key = ex.groupKey || (ex.baseName ? ex.baseName.toLowerCase().replace(/\s+/g, '-') : `single:${ex.id}`);
-                                if (!acc[key]) acc[key] = [];
-                                acc[key].push(ex);
-                                return acc;
-                            }, {})
-                        ).map(([groupKey, list]) => {
-                            const title = list[0].baseName || list[0].displayName || list[0].name;
-                            const sorted = list.slice().sort((a, b) => a.name.localeCompare(b.name));
-                            const latest = sorted.reduce((best, ex) => {
-                                const ts = ex.lastPerformed?.toDate?.()?.getTime?.() || 0;
-                                if (!best || ts > best.ts) return { ts, ex };
-                                return best;
-                            }, null);
-                            const isExpanded = expandedGroups?.has?.(groupKey) || false;
-                            return (
-                                <div key={groupKey} className="bg-gray-900 p-4 rounded-lg">
-                                    <div className="flex items-center justify-between cursor-pointer" onClick={()=>setExpandedGroups(prev=>{const n=new Set(prev||new Set()); if(n.has(groupKey)) n.delete(groupKey); else n.add(groupKey); return n;})}>
-                                        <div className="min-w-0">
-                                            <div className="flex items-center gap-2 flex-wrap">
-                                                <h3 className="text-lg font-bold text-indigo-300 break-words">{title}</h3>
-                                                {[list[0].masterData?.muscleGroup, list[0].masterData?.mechanics, list[0].masterData?.forceType].map((tagValue, index) => {
-                                                    if (!tagValue) return null;
-                                                    const color = tagColors[tagValue] || defaultTagColor;
-                                                    return <span key={index} className={`${color} text-white px-2 py-0.5 rounded-full text-[10px] font-semibold`}>{tagValue}</span>;
+                <>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
+                        {viewModeGrouped ? (
+                            Object.entries(
+                                filteredExercises.reduce((acc, ex) => {
+                                    const key = ex.groupKey || (ex.baseName ? ex.baseName.toLowerCase().replace(/\s+/g, '-') : `single:${ex.id}`);
+                                    if (!acc[key]) acc[key] = [];
+                                    acc[key].push(ex);
+                                    return acc;
+                                }, {})
+                            ).slice(0, visibleCount).map(([groupKey, list]) => {
+                                const title = list[0].baseName || list[0].displayName || list[0].name;
+                                const sorted = list.slice().sort((a, b) => a.name.localeCompare(b.name));
+                                const latest = sorted.reduce((best, ex) => {
+                                    const ts = ex.lastPerformed?.toDate?.()?.getTime?.() || 0;
+                                    if (!best || ts > best.ts) return { ts, ex };
+                                    return best;
+                                }, null);
+                                const isExpanded = expandedGroups?.has?.(groupKey) || false;
+                                return (
+                                    <div key={groupKey} className="bg-gray-900 p-4 rounded-lg">
+                                        <div className="flex items-center justify-between cursor-pointer" onClick={()=>setExpandedGroups(prev=>{const n=new Set(prev||new Set()); if(n.has(groupKey)) n.delete(groupKey); else n.add(groupKey); return n;})}>
+                                            <div className="min-w-0">
+                                                <div className="flex items-center gap-2 flex-wrap">
+                                                    <h3 className="text-lg font-bold text-indigo-300 break-words">{title}</h3>
+                                                    {[list[0].masterData?.muscleGroup, list[0].masterData?.mechanics, list[0].masterData?.forceType].map((tagValue, index) => {
+                                                        if (!tagValue) return null;
+                                                        const color = tagColors[tagValue] || defaultTagColor;
+                                                        return <span key={index} className={`${color} text-white px-2 py-0.5 rounded-full text-[10px] font-semibold`}>{tagValue}</span>;
+                                                    })}
+                                                </div>
+                                                <p className="text-xs text-gray-400 whitespace-normal mt-1">
+                                                    {sorted.length} variant{sorted.length>1?'s':''}
+                                                    {latest?.ex?.name ? ` • Latest: ${latest.ex.name}${latest.ex.lastPerformed?.toDate?` (${latest.ex.lastPerformed.toDate().toLocaleDateString()})`:''}` : ''}
+                                                </p>
+                                            </div>
+                                            <div className="flex items-center gap-2 flex-shrink-0" onClick={(e)=>e.stopPropagation()}></div>
+                                        </div>
+                                        {isExpanded && (
+                                            <div className="mt-3 space-y-2">
+                                                {sorted.map(ex => {
+                                                    const variantTitle = ex.name || formatVariantTitle(title, ex);
+                                                    const isSample = ex.isCustom === false || ex.source === 'sample_db' || ex.source === 'system_preset' || ex.isSystemPreset === true;
+                                                    return (
+                                                        <div key={ex.id || ex.name} className="bg-gray-800 p-3 rounded-md flex items-center justify-between cursor-pointer hover:bg-gray-700" onClick={() => setViewingHistoryFor(ex)}>
+                                                            <div className="min-w-0 mr-3">
+                                                                <div className="flex items-center gap-2 flex-wrap">
+                                                                    <p className="font-semibold text-indigo-200 truncate">{variantTitle}</p>
+                                                                    {isSample ? (
+                                                                        <span className="text-[10px] bg-emerald-900/60 text-emerald-300 border border-emerald-700/50 px-1.5 py-0.5 rounded font-medium">Sample DB</span>
+                                                                    ) : (
+                                                                        <span className="text-[10px] bg-indigo-900/60 text-indigo-300 border border-indigo-700/50 px-1.5 py-0.5 rounded font-medium">User Created</span>
+                                                                    )}
+                                                                    {formatVariantMetaInline(ex.variantMeta) && (
+                                                                        <span className="text-[11px] text-gray-300">{formatVariantMetaInline(ex.variantMeta)}</span>
+                                                                    )}
+                                                                </div>
+                                                                <p className="text-xs text-gray-500 mt-1">Last: {ex.lastPerformed?.toDate?.().toLocaleDateString?.() || 'N/A'}{typeof ex.lastVolume === 'number' ? ` • Vol: ${ex.lastVolume} lbs` : ''}</p>
+                                                            </div>
+                                                            <div className="flex items-center gap-2 flex-shrink-0">
+                                                                <button onClick={(e) => { e.stopPropagation(); handleStartSingleExercise(ex); }} className="bg-green-600 hover:bg-green-700 text-white text-xs font-semibold px-3 py-1.5 rounded" title="Start Now"><span className="inline-flex items-center"><PlayIcon className="h-4 w-4 mr-1"/>Start</span></button>
+                                                            </div>
+                                                        </div>
+                                                    );
                                                 })}
                                             </div>
-                                            <p className="text-xs text-gray-400 whitespace-normal mt-1">
-                                                {sorted.length} variant{sorted.length>1?'s':''}
-                                                {latest?.ex?.name ? ` • Latest: ${latest.ex.name}${latest.ex.lastPerformed?.toDate?` (${latest.ex.lastPerformed.toDate().toLocaleDateString()})`:''}` : ''}
-                                            </p>
-                                        </div>
-                                        <div className="flex items-center gap-2 flex-shrink-0" onClick={(e)=>e.stopPropagation()}></div>
+                                        )}
                                     </div>
-                                    {isExpanded && (
-                                        <div className="mt-3 space-y-2">
-                                            {sorted.map(ex => {
-                                                const variantTitle = ex.name || formatVariantTitle(title, ex);
-                                                return (
-                                                    <div key={ex.id || ex.name} className="bg-gray-800 p-3 rounded-md flex items-center justify-between cursor-pointer hover:bg-gray-700" onClick={() => setViewingHistoryFor(ex)}>
-                                                        <div className="min-w-0 mr-3">
-                                                            <div className="flex items-center gap-2">
-                                                                <p className="font-semibold text-indigo-200 truncate">{variantTitle}</p>
-                                                                {formatVariantMetaInline(ex.variantMeta) && (
-                                                                    <span className="text-[11px] text-gray-300">{formatVariantMetaInline(ex.variantMeta)}</span>
-                                                                )}
-                                                            </div>
-                                                            <p className="text-xs text-gray-500 mt-1">Last: {ex.lastPerformed?.toDate?.().toLocaleDateString?.() || 'N/A'}{typeof ex.lastVolume === 'number' ? ` • Vol: ${ex.lastVolume} lbs` : ''}</p>
-                                                        </div>
-                                                        <div className="flex items-center gap-2 flex-shrink-0">
-                                                            <button onClick={(e) => { e.stopPropagation(); handleStartSingleExercise(ex); }} className="bg-green-600 hover:bg-green-700 text-white text-xs font-semibold px-3 py-1.5 rounded" title="Start Now"><span className="inline-flex items-center"><PlayIcon className="h-4 w-4 mr-1"/>Start</span></button>
-                                                        </div>
-                                                    </div>
-                                                );
-                                            })}
+                                );
+                            })
+                        ) : (
+                            filteredExercises.slice(0, visibleCount).map(ex => (
+                                <div key={ex.id || ex.name} className="bg-gray-900 p-4 rounded-lg cursor-pointer hover:bg-gray-800" onClick={() => setViewingHistoryFor(ex)}>
+                                    <div className="flex items-center justify-between">
+                                        <div className="min-w-0 mr-3">
+                                            <div className="flex items-center gap-2">
+                                                <p className="text-xl font-bold text-indigo-300 break-words">{ex.name || formatVariantTitle(ex.baseName || ex.displayName || ex.name, ex)}</p>
+                                                {formatVariantMetaInline(ex.variantMeta) && (
+                                                    <span className="text-[11px] text-gray-300">{formatVariantMetaInline(ex.variantMeta)}</span>
+                                                )}
+                                            </div>
+                                            <p className="text-sm text-gray-500 mt-1">Last: {ex.lastPerformed?.toDate?.().toLocaleDateString?.() || 'N/A'}{typeof ex.lastVolume === 'number' ? ` • Vol: ${ex.lastVolume} lbs` : ''}</p>
                                         </div>
-                                    )}
-                                </div>
-                            );
-                        })
-                    ) : (
-                        filteredExercises.map(ex => (
-                            <div key={ex.id || ex.name} className="bg-gray-900 p-4 rounded-lg cursor-pointer hover:bg-gray-800" onClick={() => setViewingHistoryFor(ex)}>
-                                <div className="flex items-center justify-between">
-                                    <div className="min-w-0 mr-3">
-                                        <div className="flex items-center gap-2">
-                                            <p className="text-xl font-bold text-indigo-300 break-words">{ex.name || formatVariantTitle(ex.baseName || ex.displayName || ex.name, ex)}</p>
-                                            {formatVariantMetaInline(ex.variantMeta) && (
-                                                <span className="text-[11px] text-gray-300">{formatVariantMetaInline(ex.variantMeta)}</span>
-                                            )}
-                                        </div>
-                                        <p className="text-sm text-gray-500 mt-1">Last: {ex.lastPerformed?.toDate?.().toLocaleDateString?.() || 'N/A'}{typeof ex.lastVolume === 'number' ? ` • Vol: ${ex.lastVolume} lbs` : ''}</p>
+                                        <button onClick={(e) => { e.stopPropagation(); handleStartSingleExercise(ex); }} className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg flex items-center" title="Start Now"><PlayIcon className="h-5 w-5 mr-1"/>Start</button>
                                     </div>
-                                    <button onClick={(e) => { e.stopPropagation(); handleStartSingleExercise(ex); }} className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg flex items-center" title="Start Now"><PlayIcon className="h-5 w-5 mr-1"/>Start</button>
                                 </div>
-                            </div>
-                        ))
+                            ))
+                        )}
+                    </div>
+
+                    {visibleCount < (viewModeGrouped ? Object.keys(filteredExercises.reduce((acc, ex) => { const k = ex.groupKey || (ex.baseName ? ex.baseName.toLowerCase().replace(/\s+/g, '-') : `single:${ex.id}`); acc[k] = true; return acc; }, {})).length : filteredExercises.length) && (
+                        <div className="mt-8 flex justify-center">
+                            <button
+                                onClick={() => setVisibleCount(prev => prev + 36)}
+                                className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2.5 px-6 rounded-lg transition-colors shadow"
+                            >
+                                Load More Exercises ({visibleCount} of {viewModeGrouped ? Object.keys(filteredExercises.reduce((acc, ex) => { const k = ex.groupKey || (ex.baseName ? ex.baseName.toLowerCase().replace(/\s+/g, '-') : `single:${ex.id}`); acc[k] = true; return acc; }, {})).length : filteredExercises.length})
+                            </button>
+                        </div>
                     )}
-                </div>
+                </>
             )}
         </div>
     );

@@ -9,13 +9,15 @@ service cloud.firestore {
       allow read, write: if request.auth != null && request.auth.uid == userId;
     }
     
-    // Public / System Preset Fallback Read Access
+    // Public / System Preset Read Access (exercise database seed data)
     match /artifacts/{appId}/system_presets/{document=**} {
       allow read: if true;
-      allow write: if request.auth != null;
+      allow write: if request.auth != null && request.auth.token.email == 'adamjkosicki@gmail.com';
     }
 
     // Bugs & Feedback: Anyone authenticated can submit, only admin can view or delete
+    // Note: Admin is identified by email rather than custom claims — intentional
+    // simplification for a single-user personal project.
     match /feedback/{document=**} {
       allow create: if request.auth != null;
       allow read, delete: if request.auth != null && request.auth.token.email == 'adamjkosicki@gmail.com';
