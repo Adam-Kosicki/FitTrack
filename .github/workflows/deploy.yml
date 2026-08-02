@@ -1,60 +1,58 @@
-name: FitTrack CD (Automated Production Deployment)
+name: Deploy FitTrack to GitHub Pages
 
 on:
   push:
     branches:
       - main
 
-jobs:
-  test_build_and_deploy:
-    name: Test, Build & Deploy to Production Site
-    runs-on: ubuntu-latest
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
+concurrency:
+  group: 'pages'
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
     steps:
-      - name: 📥 Checkout Repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: 🟢 Setup Node.js Environment (v22.x)
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22.x
+          node-version: 18
           cache: 'npm'
-          cache-dependency-path: workout-preview/package-lock.json
+          cache-dependency-path: 'workout-preview/package-lock.json'
 
-      - name: 📦 Install Dependencies
-        run: npm ci
-        working-directory: ./workout-preview
-
-      - name: 🧪 Run Automated Unit Test Suite
-        run: npm test -- --watchAll=false --passWithNoTests
-        working-directory: ./workout-preview
-        env:
-          CI: true
-
-      - name: 🏗️ Build Production React App
-        run: npm run build
-        working-directory: ./workout-preview
-        env:
-          CI: false
-
-      - name: 🔍 Check Firebase Secret Status
-        id: check_secret
+      - name: Install dependencies
         run: |
-          if [ -z "${SECRET_VAL}" ]; then
-            echo "has_secret=false" >> $GITHUB_OUTPUT
-            echo "⚠️ Secret FIREBASE_SERVICE_ACCOUNT_PERSONAL_WORKOUT_APP_1BBF9 not set in GitHub Settings yet."
-          else
-            echo "has_secret=true" >> $GITHUB_OUTPUT
-            echo "✅ Secret found. Proceeding with Firebase live deployment."
-          fi
-        env:
-          SECRET_VAL: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_PERSONAL_WORKOUT_APP_1BBF9 }}
+          cd workout-preview
+          npm ci
 
-      - name: 🚀 Deploy Live to Firebase Hosting
-        if: steps.check_secret.outputs.has_secret == 'true'
-        uses: FirebaseExtended/action-hosting-deploy@v0
+      - name: Build React App
+        env:
+          PUBLIC_URL: '/FitTrack'
+          CI: false
+        run: |
+          cd workout-preview
+          npm run build
+
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_PERSONAL_WORKOUT_APP_1BBF9 }}'
-          channelId: live
-          projectId: personal-workout-app-1bbf9
+          path: 'workout-preview/build'
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
