@@ -31,9 +31,6 @@
     "workbox-streams": "^6.6.0",
     "zod": "^3.23.8"
   },
-  "devDependencies": {
-    "jest-environment-jsdom": "^29.7.0"
-  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

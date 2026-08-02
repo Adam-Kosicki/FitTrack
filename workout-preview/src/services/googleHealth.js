@@ -142,7 +142,7 @@ export async function fetchGoogleHealthV4Data(accessToken) {
     return t >= (todayStart - 3600000);
   }
 
-  // 1. Steps — try dailyRollUp for today first, then fallback to most recent steps
+  // 1. Steps
   try {
     let stepsPoints = await dailyRollUp('steps');
     if (stepsPoints.length > 0) {
@@ -151,11 +151,10 @@ export async function fetchGoogleHealthV4Data(accessToken) {
         steps += count;
       });
       v4Success = true;
-    }
-    // If today's dailyRollUp was 0 or empty, retrieve the most recent steps list
-    if (steps === 0) {
+    } else {
       stepsPoints = await listDataPoints('steps');
       stepsPoints.forEach(dp => {
+        if (!isTodayOrRecent(dp.steps || dp)) return;
         const count = parseInt(dp.steps?.count || dp.steps?.value || dp.count || 0, 10);
         steps += count;
       });
@@ -165,9 +164,10 @@ export async function fetchGoogleHealthV4Data(accessToken) {
     console.warn('[Steps Error]', err);
   }
 
-  // 2. Calories — try dailyRollUp for today first, then fallback to most recent calories
+  // 2. Calories (Active Energy Burned & Total Calories)
   try {
     const calorieDataTypes = ['active-energy-burned', 'total-calories', 'calories-burned'];
+    let foundCal = false;
 
     for (const dt of calorieDataTypes) {
       const rollUpPoints = await dailyRollUp(dt);
@@ -180,16 +180,19 @@ export async function fetchGoogleHealthV4Data(accessToken) {
           );
           calories += val;
         });
-        if (calories > 0) break;
+        if (calories > 0) {
+          foundCal = true;
+          break;
+        }
       }
     }
 
-    // Fallback to most recent list points if today's rollUp is 0
-    if (calories === 0) {
+    if (!foundCal) {
       for (const dt of calorieDataTypes) {
         const listPoints = await listDataPoints(dt);
         listPoints.forEach(dp => {
           const calObj = dp.activeEnergyBurned || dp.totalCalories || dp.caloriesBurned || dp;
+          if (!isTodayOrRecent(calObj)) return;
           const val = parseFloat(
             calObj.energy?.value || (typeof calObj.energy === 'number' ? calObj.energy : 0) ||
             calObj.kilocalories || calObj.value || 0
@@ -203,9 +206,10 @@ export async function fetchGoogleHealthV4Data(accessToken) {
     console.warn('[Calories Error]', err);
   }
 
-  // 3. Active Minutes — try dailyRollUp for today first, then fallback to most recent active minutes
+  // 3. Active Minutes & Active Zone Minutes
   try {
     const activeDataTypes = ['active-minutes', 'active-zone-minutes'];
+    let foundActive = false;
 
     for (const dt of activeDataTypes) {
       const rollUpPoints = await dailyRollUp(dt);
@@ -215,15 +219,19 @@ export async function fetchGoogleHealthV4Data(accessToken) {
           const count = parseInt(actObj.countSum || actObj.minutesSum || actObj.count || actObj.minutes || 0, 10);
           activeMinutes += count;
         });
-        if (activeMinutes > 0) break;
+        if (activeMinutes > 0) {
+          foundActive = true;
+          break;
+        }
       }
     }
 
-    if (activeMinutes === 0) {
+    if (!foundActive) {
       for (const dt of activeDataTypes) {
         const listPoints = await listDataPoints(dt);
         listPoints.forEach(dp => {
           const actObj = dp.activeMinutes || dp.activeZoneMinutes || dp;
+          if (!isTodayOrRecent(actObj)) return;
           const count = parseInt(actObj.count || actObj.minutes || actObj.durationMinutes || 0, 10);
           activeMinutes += count;
         });
@@ -234,7 +242,7 @@ export async function fetchGoogleHealthV4Data(accessToken) {
     console.warn('[Active Minutes Error]', err);
   }
 
-  // 4. Distance — try dailyRollUp for today first, then fallback to most recent distance
+  // 4. Distance (Meters / Kilometers)
   try {
     const distPoints = await dailyRollUp('distance');
     if (distPoints.length > 0) {
@@ -247,12 +255,11 @@ export async function fetchGoogleHealthV4Data(accessToken) {
         const mm = parseFloat(distObj.distanceMillimetersSum || distObj.distanceMillimeters || 0);
         distanceMeters += mm > 0 ? (mm / 1000) : m;
       });
-    }
-
-    if (distanceMeters === 0) {
+    } else {
       const listDist = await listDataPoints('distance');
       listDist.forEach(dp => {
         const distObj = dp.distance || dp;
+        if (!isTodayOrRecent(distObj)) return;
         const m = parseFloat(
           distObj.distance?.value || (typeof distObj.distance === 'number' ? distObj.distance : 0) ||
           distObj.distanceMeters || distObj.value || 0
@@ -271,38 +278,36 @@ export async function fetchGoogleHealthV4Data(accessToken) {
     floorPoints.forEach(dp => {
       floorsClimbed += parseInt(dp.floors?.countSum || dp.floors?.count || dp.countSum || dp.count || 0, 10);
     });
-    if (floorsClimbed === 0) {
-      const listFloors = await listDataPoints('floors');
-      listFloors.forEach(dp => {
-        floorsClimbed += parseInt(dp.floors?.count || dp.count || 0, 10);
-      });
-    }
   } catch (err) {
     console.warn('[Floors Error]', err);
   }
 
-  // 6. Heart Rate (Average of most recent heart rate readings)
+  // 6. Heart Rate (Intraday & Average)
   try {
     const hrPoints = await listDataPoints('heart-rate');
     if (hrPoints.length > 0) {
       let hrSum = 0;
       let hrCount = 0;
-      // Take up to the last 100 readings available
-      const recentPoints = hrPoints.slice(-100);
-      recentPoints.forEach(dp => {
+      hrPoints.forEach(dp => {
         const bpm = parseFloat(dp.heartRate?.beatsPerMinute || dp.heartRate?.bpm || dp.beatsPerMinute || dp.bpm || 0);
+        const sampleTime = dp.heartRate?.sampleTime?.physicalTime || dp.sampleTime?.physicalTime;
+        if (sampleTime) {
+          const ts = new Date(sampleTime).getTime();
+          if (ts < todayStart) return;
+        }
         if (bpm > 0) {
           hrSum += bpm;
           hrCount++;
         }
       });
       if (hrCount > 0) avgHeartRate = Math.round(hrSum / hrCount);
+      console.log(`[Heart Rate] Found ${hrCount} readings today, avg: ${avgHeartRate}`);
     }
   } catch (err) {
     console.warn('[Heart Rate Error]', err);
   }
 
-  // 7. Daily Resting Heart Rate (Most Recent)
+  // 7. Daily Resting Heart Rate
   try {
     const rhrPoints = await listDataPoints('daily-resting-heart-rate');
     if (rhrPoints.length > 0) {
@@ -313,7 +318,7 @@ export async function fetchGoogleHealthV4Data(accessToken) {
     console.warn('[Resting HR Error]', err);
   }
 
-  // 8. Daily Heart Rate Variability / HRV (Most Recent)
+  // 8. Daily Heart Rate Variability (HRV)
   try {
     const hrvPoints = await listDataPoints('daily-heart-rate-variability');
     if (hrvPoints.length > 0) {
@@ -324,7 +329,7 @@ export async function fetchGoogleHealthV4Data(accessToken) {
     console.warn('[HRV Error]', err);
   }
 
-  // 9. Daily Oxygen Saturation / SpO2 (Most Recent)
+  // 9. Daily Oxygen Saturation (SpO2)
   try {
     const spo2Points = await listDataPoints('daily-oxygen-saturation');
     if (spo2Points.length > 0) {
@@ -336,7 +341,7 @@ export async function fetchGoogleHealthV4Data(accessToken) {
     console.warn('[SpO2 Error]', err);
   }
 
-  // 10. Daily Respiratory Rate (Most Recent)
+  // 10. Daily Respiratory Rate
   try {
     const respPoints = await listDataPoints('daily-respiratory-rate');
     if (respPoints.length > 0) {
@@ -347,7 +352,7 @@ export async function fetchGoogleHealthV4Data(accessToken) {
     console.warn('[Respiratory Rate Error]', err);
   }
 
-  // 11. Daily VO2 Max (Most Recent)
+  // 11. Daily VO2 Max
   try {
     const vo2Points = await listDataPoints('daily-vo2-max');
     if (vo2Points.length > 0) {
@@ -358,7 +363,7 @@ export async function fetchGoogleHealthV4Data(accessToken) {
     console.warn('[VO2 Max Error]', err);
   }
 
-  // 12. Weight & Body Fat (Most Recent)
+  // 12. Weight & Body Fat
   try {
     const weightPoints = await listDataPoints('weight');
     if (weightPoints.length > 0) {
@@ -375,54 +380,31 @@ export async function fetchGoogleHealthV4Data(accessToken) {
     console.warn('[Weight/Fat Error]', err);
   }
 
-  // 13. Sleep Sessions (Most Recent Main Session)
+  // 13. Sleep Sessions
   try {
     const sleepPoints = await listDataPoints('sleep');
     if (sleepPoints.length > 0) {
-      // Sort chronologically by interval end time descending (latest session first)
-      const sortedSleep = sleepPoints.sort((a, b) => {
-        const endA = a.sleep?.interval?.endTime || a.interval?.endTime || '';
-        const endB = b.sleep?.interval?.endTime || b.interval?.endTime || '';
-        return new Date(endB).getTime() - new Date(endA).getTime();
-      });
-
-      // Prefer main sleep session over nap segments if tagged
-      const mainSleep = sortedSleep.find(dp => (dp.sleep || dp).metadata?.main === true) || sortedSleep[0];
-      const sleepObj = mainSleep.sleep || mainSleep;
-      const summary = sleepObj.summary || {};
-      const interval = sleepObj.interval || {};
-
-      let totalMin = 0;
-      if (summary.minutesInSleepPeriod) {
-        totalMin = parseInt(summary.minutesInSleepPeriod, 10);
-      } else if (interval.startTime && interval.endTime) {
-        const diffMs = new Date(interval.endTime).getTime() - new Date(interval.startTime).getTime();
-        totalMin = Math.round(diffMs / 60000);
+      const lastSleep = sleepPoints[sleepPoints.length - 1];
+      const summary = lastSleep.sleep?.summary;
+      if (summary) {
+        sleepSummary = {
+          minutesAsleep: parseInt(summary.minutesAsleep || 0, 10),
+          minutesAwake: parseInt(summary.minutesAwake || 0, 10),
+          efficiency: parseInt(summary.efficiency || 85, 10),
+          stages: summary.stagesSummary || []
+        };
       }
-
-      const minutesAsleep = parseInt(summary.minutesAsleep || totalMin || 0, 10);
-      const minutesAwake = parseInt(summary.minutesAwake || 0, 10);
-      const displayDurationMin = totalMin > 0 ? totalMin : (minutesAsleep + minutesAwake);
-
-      sleepSummary = {
-        totalMinutes: displayDurationMin,
-        minutesAsleep,
-        minutesAwake,
-        efficiency: parseInt(summary.efficiency || Math.round((minutesAsleep / (displayDurationMin || 1)) * 100) || 90, 10),
-        stages: summary.stagesSummary || []
-      };
     }
   } catch (err) {
     console.warn('[Sleep Error]', err);
   }
 
-  // 14. Exercise / Workout Sessions (Most Recent)
+  // 14. Exercise / Workout Sessions
   try {
     const exercisePoints = await listDataPoints('exercise');
-    // Take the most recent workout sessions recorded
-    const recentWorkouts = exercisePoints.slice(-10).reverse();
-    recentWorkouts.forEach(dp => {
+    exercisePoints.forEach(dp => {
       const ex = dp.exercise || dp;
+      if (!isTodayOrRecent(ex)) return;
       const summary = ex.metricsSummary || {};
 
       workouts.push({
@@ -436,6 +418,7 @@ export async function fetchGoogleHealthV4Data(accessToken) {
         distanceMeters: parseFloat(summary.distanceMillimeters || 0) / 1000
       });
 
+      // Add metrics to daily totals if activeEnergyBurned was 0
       if (calories === 0 && summary.caloriesKcal) {
         calories += parseFloat(summary.caloriesKcal || 0);
       }

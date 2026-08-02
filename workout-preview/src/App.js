@@ -15,21 +15,20 @@ import { WorkoutTemplateEditor } from './views/WorkoutTemplateEditor';
 import { useNotification } from './context/NotificationContext';
 import { ExerciseProvider } from './context/ExerciseContext';
 import { FeedbackView } from './views/FeedbackView';
+import { AppleWatchView } from './views/AppleWatchView';
 import { SettingsView } from './views/SettingsView';
 import { GoogleHealthView } from './views/GoogleHealthView';
-import { BodyMeasurementsView } from './views/BodyMeasurementsView';
 
-const LoginScreen = ({ onLogin, signingIn }) => (
+const LoginScreen = ({ onLogin }) => (
     <div className="flex flex-col items-center justify-center h-screen bg-gray-900 text-white">
         <DumbbellIcon className="h-24 w-24 text-indigo-400 mb-6" />
         <h1 className="text-4xl font-bold mb-3">FitTrack</h1>
         <p className="text-lg text-gray-400 mb-8">Your personal workout companion.</p>
         <button
             onClick={onLogin}
-            disabled={signingIn}
-            className="bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white font-bold py-3 px-8 rounded-lg flex items-center transition-colors text-lg"
+            className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-lg flex items-center transition-colors text-lg"
         >
-            {signingIn ? 'Signing In...' : 'Sign In with Google'}
+            Sign In with Google
         </button>
     </div>
 );
@@ -45,10 +44,6 @@ export default function App() {
     const { notification } = useNotification();
 
     useEffect(() => {
-        if (!auth) {
-            setLoading(false);
-            return;
-        }
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
             setLoading(false);
@@ -56,21 +51,13 @@ export default function App() {
         return () => unsubscribe();
     }, []);
     
-    const [signingIn, setSigningIn] = useState(false);
-    
     const handleGoogleSignIn = async () => {
-        if (signingIn || !auth) return;
-        setSigningIn(true);
         const provider = new GoogleAuthProvider();
         try {
             await signInWithPopup(auth, provider);
             // The onAuthStateChanged listener will handle setting the user.
         } catch (error) {
-            if (error.code !== 'auth/cancelled-popup-request' && error.code !== 'auth/popup-closed-by-user') {
-                console.error("Google Sign-in failed:", error);
-            }
-        } finally {
-            setSigningIn(false);
+            console.error("Google Sign-in failed:", error);
         }
     };
     
@@ -122,7 +109,7 @@ export default function App() {
     }
 
     if (!user) {
-        return <LoginScreen onLogin={handleGoogleSignIn} signingIn={signingIn} />;
+        return <LoginScreen onLogin={handleGoogleSignIn} />;
     }
 
     // All user-dependent rendering is now inside this return statement.
@@ -211,11 +198,11 @@ function MainApp({
             case 'logTab':
                 return <LogView userId={user.uid} />;
             case 'feedback':
-                return <FeedbackView user={user} />;
+                return <FeedbackView />;
+            case 'appleWatch':
+                return <AppleWatchView userId={user.uid} />;
             case 'googleHealth':
                 return <GoogleHealthView userId={user.uid} />;
-            case 'bodyMeasurements':
-                return <BodyMeasurementsView userId={user.uid} />;
             case 'settings':
                 return <SettingsView />;
             case 'workouts':
@@ -268,17 +255,15 @@ function MainApp({
                         <BugIcon className="h-6 w-6" />
                         <span className="hidden md:inline ml-3">Bugs/Feedback</span>
                     </button>
+                    <button onClick={() => navigate('appleWatch')} className="flex items-center p-2 rounded-lg hover:bg-gray-800 transition-colors">
+                        <BookOpenIcon className="h-6 w-6" />
+                        <span className="hidden md:inline ml-3">Apple Watch</span>
+                    </button>
                     <button onClick={() => navigate('googleHealth')} className="flex items-center p-2 rounded-lg hover:bg-gray-800 transition-colors text-indigo-300">
                         <svg className="h-6 w-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                         </svg>
                         <span className="hidden md:inline ml-3">Google / Fitbit</span>
-                    </button>
-                    <button onClick={() => navigate('bodyMeasurements')} className="flex items-center p-2 rounded-lg hover:bg-gray-800 transition-colors text-emerald-300">
-                        <svg className="h-6 w-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                        </svg>
-                        <span className="hidden md:inline ml-3">Body Measurements</span>
                     </button>
                     <button onClick={() => navigate('settings')} className="flex items-center p-2 rounded-lg hover:bg-gray-800 transition-colors">
                         <CogIcon className="h-6 w-6" />

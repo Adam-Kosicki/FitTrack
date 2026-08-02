@@ -2,12 +2,6 @@
 
 **A personal fitness web app built by an athlete and researcher who got tired of every workout app missing the features that matter.**
 
-[![FitTrack CI](https://github.com/Adam-Kosicki/FitTrack/actions/workflows/ci.yml/badge.svg)](https://github.com/Adam-Kosicki/FitTrack/actions/workflows/ci.yml)
-[![Node.js 18.x](https://img.shields.io/badge/Node.js-18.x-brightgreen.svg)](https://nodejs.org/)
-[![React 18.3](https://img.shields.io/badge/React-18.3-blue.svg)](https://react.dev/)
-[![Firebase Infrastructure](https://img.shields.io/badge/Infrastructure-Firebase%20IaC-orange.svg)](https://firebase.google.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-
 ---
 
 ## The Story
@@ -78,11 +72,10 @@ FitTrack is a personal project designed exactly the way I want a fitness app to 
 - **Posture Guide** — Foundational tips and routines (work in progress)
 - Community guide creation planned for future releases
 
-### ⌚ Google Health & Fitbit Intelligence Hub
-![Google Health & Fitbit Intelligence Hub](google_health_dashboard.png)
-- **Google Health API v4 Integration** — Real-time telemetry, vital signs, sleep, and workout analytics directly from Google Health and Fitbit devices (Fitbit Air, Charge 6, Sense, Pixel Watch)
-- **14 Live Health Metrics** — Daily Steps (with percentage goal progress bar), Calories Expended (`active-energy-burned`), Active Minutes (`active-zone-minutes`), Distance (km & miles), Floors Climbed (`floors`), Average Heart Rate (`heart-rate`), Daily Resting HR, Heart Rate Variability (HRV ms), Blood Oxygen (SpO2 %), Respiratory Rate (rpm), VO2 Max, Sleep Analysis (duration, efficiency %, awake time), Body Composition (Weight & Body Fat %), and Workout Sessions history
-- **Fitbit Direct OAuth 2.0** — Dual-provider authentication via Google OAuth 2.0 or Fitbit Web API
+### ⌚ Apple Watch Integration
+- Send heart rate data from Apple Health to FitTrack via iOS Shortcuts
+- Step-by-step setup instructions with no code required
+- Real-time heart rate display powered by Firebase Cloud Functions + Firestore listeners
 
 ### 🔧 Additional Features
 - **Google Authentication** — secure sign-in with Firebase Auth
@@ -204,28 +197,3 @@ This is an active personal project. I use it every day for my own training. Feat
 
 **Adam Kosicki** — Athlete, developer, and researcher at UT Austin.  
 Built because no existing app had everything I needed, and I'd rather build it myself than settle.
-
----
-
-## ⚡ Automated CI/CD & Infrastructure as Code (IaC)
-
-FitTrack uses modern production engineering practices with automated GitHub Actions CI/CD workflows and version-controlled Firebase infrastructure:
-
-```mermaid
-graph LR
-    Push["Git Push / PR"] --> CI["GitHub Actions CI Workflow"]
-    CI --> Test["Unit Testing (Jest / RTL)"]
-    CI --> Build["Production React Build"]
-    Build --> Preview["Firebase PR Preview Channel"]
-    Build --> Live["Firebase Production Live Channel (Main)"]
-```
-
-- **Continuous Integration (`.github/workflows/ci.yml`)**: Automatically runs automated unit testing (`npm test`) and verifies production compilation on every push to `main`.
-- **Continuous Deployment (`.github/workflows/deploy.yml`)**: Automatically tests, builds, and deploys code live to Firebase Hosting on `main` pushes.
-- **Infrastructure as Code (IaC)**:
-  - `firestore.rules` — Version-controlled Firestore security rules declared as code.
-  - `firestore.indexes.json` — Firestore database query index specifications.
-  - `firebase.json` — Hosting headers, caching strategies, and rewrite rules.
-
-📖 **Detailed Workflow Run Analysis**: See [docs/ci_cd_architecture_and_workflow_runs.md](docs/ci_cd_architecture_and_workflow_runs.md) for in-depth technical documentation of workflow runs, reproducibility engineering, and CI/CD architecture.
-

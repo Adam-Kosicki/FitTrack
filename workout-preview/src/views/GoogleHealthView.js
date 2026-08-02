@@ -89,10 +89,9 @@ export function GoogleHealthView({ userId }) {
       weightKg: 78.5,
       bodyFatPercentage: 16.4,
       sleepSummary: {
-        totalMinutes: 489,
         minutesAsleep: 442,
-        minutesAwake: 47,
-        efficiency: 91
+        minutesAwake: 38,
+        efficiency: 92
       },
       workouts: [
         {
@@ -463,10 +462,7 @@ export function GoogleHealthView({ userId }) {
               <div className="flex items-baseline justify-between border-b border-gray-700 pb-2">
                 <span className="text-xs text-gray-400">Total Duration:</span>
                 <span className="text-xl font-bold text-white">
-                  {(() => {
-                    const totalMin = stats.sleepSummary.totalMinutes || (stats.sleepSummary.minutesAsleep + (stats.sleepSummary.minutesAwake || 0));
-                    return `${Math.floor(totalMin / 60)}h ${totalMin % 60}m`;
-                  })()}
+                  {Math.floor(stats.sleepSummary.minutesAsleep / 60)}h {stats.sleepSummary.minutesAsleep % 60}m
                 </span>
               </div>
               <div className="grid grid-cols-2 gap-2 text-xs">
