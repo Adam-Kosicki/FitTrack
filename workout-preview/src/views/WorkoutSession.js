@@ -14,6 +14,8 @@ import { RestTimer } from '../components/RestTimer';
 import { Metronome } from '../components/Metronome';
 import { FinishFlowDialog } from '../components/FinishFlowDialog';
 
+import { deriveVariantMeta, buildVariantKey, extractBaseName } from '../lib/exerciseUtils';
+
 function AddExerciseFromDBModal({ isOpen, onClose, exerciseDatabase, onAddExercises, onGenerateExercise }) {
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedExercises, setSelectedExercises] = useState([]);
@@ -772,8 +774,14 @@ export function WorkoutSession({ userId, workoutId, navigate, activeWorkout, set
                 const totalSets = loggedExercise.sets.length;
                 const repsPerSet = loggedExercise.sets.map(s => Number(s.reps) || 0);
 
+                const baseName = extractBaseName(loggedExercise.name);
+                const groupKey = baseName.toLowerCase().replace(/[^a-z0-9]+/g, '-');
                 const exerciseData = {
                     name: loggedExercise.name,
+                    baseName: baseName,
+                    groupKey: groupKey,
+                    isCustom: true,
+                    source: 'user',
                     lastPerformed: workoutLog.date,
                     lastVolume: totalVolume,
                     lastSets: totalSets,

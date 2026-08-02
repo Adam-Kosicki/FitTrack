@@ -93,6 +93,56 @@ export const ExerciseProvider = ({ children, userId }) => {
         return () => unsubscribe();
     }, [userId]);
 
+    const [loggedExercisesFromHistory, setLoggedExercisesFromHistory] = useState([]);
+
+    useEffect(() => {
+        if (!userId) {
+            setLoggedExercisesFromHistory([]);
+            return;
+        }
+        const logsRef = collection(db, `artifacts/${appId}/users/${userId}/workoutLogs`);
+        const qLogs = query(logsRef);
+
+        const unsubscribeLogs = onSnapshot(qLogs, (snapshot) => {
+            const historyMap = new Map();
+            snapshot.docs.forEach(doc => {
+                const log = doc.data();
+                const logDate = log.date;
+                (log.exercises || []).forEach(ex => {
+                    if (!ex.name || !ex.sets || ex.sets.length === 0) return;
+                    const key = ex.name.trim().toLowerCase();
+                    const existing = historyMap.get(key);
+                    const totalVolume = ex.sets.reduce((sum, s) => sum + (Number(s.weight) || 0) * (Number(s.reps) || 0), 0);
+                    const totalSets = ex.sets.length;
+                    const repsPerSet = ex.sets.map(s => Number(s.reps) || 0);
+
+                    if (!existing || (logDate && logDate.seconds > (existing.lastPerformed?.seconds || 0))) {
+                        const baseName = extractBaseName(ex.name);
+                        historyMap.set(key, {
+                            id: `history_${key.replace(/[^a-z0-9]+/g, '_')}`,
+                            name: ex.name,
+                            baseName,
+                            groupKey: baseName.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+                            lastPerformed: logDate,
+                            lastVolume: totalVolume,
+                            lastSets: totalSets,
+                            lastReps: repsPerSet,
+                            notes: ex.notes || '',
+                            lastSessionNote: ex.sessionNote || '',
+                            isCustom: true,
+                            source: 'user'
+                        });
+                    }
+                });
+            });
+            setLoggedExercisesFromHistory(Array.from(historyMap.values()));
+        }, (err) => {
+            console.error("Error in real-time workout log exercise sync listener:", err);
+        });
+
+        return () => unsubscribeLogs();
+    }, [userId]);
+
     const exercises = React.useMemo(() => {
         const combinedMap = new Map();
         // 1. Add sample DB local exercises (3,242 items)
@@ -109,7 +159,24 @@ export const ExerciseProvider = ({ children, userId }) => {
             });
         });
 
-        // 2. Process user exercises from Firestore
+        // 2. Merge real-time logged exercises derived from workout logs
+        loggedExercisesFromHistory.forEach(logEx => {
+            const key = (logEx.name || '').trim().toLowerCase();
+            const userKey = `user:${key}`;
+            const existingSample = combinedMap.get(key);
+            if (existingSample) {
+                combinedMap.set(key, {
+                    ...existingSample,
+                    ...logEx,
+                    isCustom: false,
+                    source: 'sample_db'
+                });
+            } else {
+                combinedMap.set(userKey, logEx);
+            }
+        });
+
+        // 3. Process user exercises from Firestore exercises collection
         userExercises.forEach(userEx => {
             const key = (userEx.name || '').trim().toLowerCase();
             const baseName = extractBaseName(userEx.name);
@@ -143,7 +210,7 @@ export const ExerciseProvider = ({ children, userId }) => {
         const all = Array.from(combinedMap.values());
         all.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
         return all;
-    }, [userExercises, sampleExercises]);
+    }, [userExercises, sampleExercises, loggedExercisesFromHistory]);
     
     const generateExerciseDetails = async (prompt) => {
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash", generationConfig: { temperature: 0.1 } });
