@@ -99,11 +99,9 @@ export function AnkleRecoveryView() {
             </Section>
 
             <Section title="What CAI Is">
-                <p>
-                    Defined as: “repetitive episodes or perceptions of the ankle giving way, ongoing symptoms such as pain, weakness, or reduced ankle range of motion… and recurrent ankle sprains that persist for more than one year after the initial injury” <TimeSpan start="00:00:25" end="00:00:45" />.
+                <p>Defined as: “repetitive episodes or perceptions of the ankle giving way, ongoing symptoms such as pain, weakness, or reduced ankle range of motion… and recurrent ankle sprains that persist for more than one year after the initial injury” <TimeSpan start="00:00:25" end="00:00:45" />.
                 </p>
-                <p>
-                    Most often follows a lateral ankle sprain affecting the ATFL or CFL ligaments <TimeSpan start="00:00:46" end="00:01:01" />.
+                <p>Most often follows a lateral ankle sprain affecting the ATFL or CFL ligaments <TimeSpan start="00:00:46" end="00:01:01" />.
                 </p>
                 <p>~40% of first-time sprains lead to CAI <TimeSpan start="00:01:03" end="00:01:13" />.</p>
             </Section>

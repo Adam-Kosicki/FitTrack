@@ -9,8 +9,7 @@ export function PostureView() {
             </div>
 
             <div className="mt-6">
-                <div className="inline-block bg-gray-800 text-gray-200 text-sm rounded-full px-4 py-2 border border-gray-700">
-                    Work in progress: Community-based guide creation is planned. Users will be able to create and share guides similar to "Jake Tuura — Jumper's Knee". This feature is not available yet.
+                <div className="inline-block bg-gray-800 text-gray-200 text-sm rounded-full px-4 py-2 border border-gray-700">Work in progress: Community-based guide creation is planned. Users will be able to create and share guides similar to "Jake Tuura — Jumper's Knee". This feature is not available yet.
                 </div>
             </div>
         </div>

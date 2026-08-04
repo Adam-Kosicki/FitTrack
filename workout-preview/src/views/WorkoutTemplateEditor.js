@@ -22,15 +22,13 @@ function AddExerciseFromDBModal({ isOpen, onClose, exerciseDatabase, onAddExerci
     if (!isOpen) return null;
 
     const handleSelectExercise = (exercise) => {
-        setSelectedExercises(prev =>
-            prev.some(ex => ex.id === exercise.id)
+        setSelectedExercises(prev =>prev.some(ex => ex.id === exercise.id)
                 ? prev.filter(ex => ex.id !== exercise.id)
                 : [...prev, exercise]
         );
     };
 
-    const filteredExercises = exerciseDatabase.filter(ex =>
-        ex.name.toLowerCase().includes(searchTerm.toLowerCase())
+    const filteredExercises = exerciseDatabase.filter(ex =>ex.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     return (
@@ -39,8 +37,7 @@ function AddExerciseFromDBModal({ isOpen, onClose, exerciseDatabase, onAddExerci
                 <div className="flex justify-between items-center mb-4">
                     <h2 className="text-2xl font-bold">Add Exercises from Database</h2>
                     <button onClick={onGenerateExercise} className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg flex items-center transition-colors">
-                        <SparklesIcon className="h-5 w-5 mr-2" />
-                        Generate with AI
+                        <SparklesIcon className="h-5 w-5 mr-2" />Generate with AI
                     </button>
                 </div>
                 <input
@@ -70,8 +67,7 @@ function AddExerciseFromDBModal({ isOpen, onClose, exerciseDatabase, onAddExerci
                     ))}
                 </div>
                 <div className="flex justify-end space-x-4 mt-6">
-                    <button onClick={onClose} className="bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-6 rounded-lg">
-                        Cancel
+                    <button onClick={onClose} className="bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-6 rounded-lg">Cancel
                     </button>
                     <button
                         onClick={() => {
@@ -80,8 +76,7 @@ function AddExerciseFromDBModal({ isOpen, onClose, exerciseDatabase, onAddExerci
                         }}
                         disabled={selectedExercises.length === 0}
                         className="bg-green-600 hover:bg-green-500 text-white font-bold py-2 px-6 rounded-lg disabled:bg-gray-500"
-                    >
-                        Add Selected ({selectedExercises.length})
+                    >Add Selected ({selectedExercises.length})
                     </button>
                 </div>
             </div>
@@ -212,11 +207,9 @@ export function WorkoutTemplateEditor({ userId, workoutId, navigate }) {
             </div>
             
             <div className="mt-6 flex flex-col md:flex-row justify-between space-y-2 md:space-y-0 md:space-x-2">
-                <button onClick={() => navigate('workouts')} className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg w-full md:w-auto">
-                    Cancel
+                <button onClick={() => navigate('workouts')} className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg w-full md:w-auto">Cancel
                 </button>
-                <button onClick={handleSave} className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg w-full md:w-auto">
-                    Save Template
+                <button onClick={handleSave} className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg w-full md:w-auto">Save Template
                 </button>
             </div>
 

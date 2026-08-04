@@ -121,15 +121,12 @@ export function ExerciseEditModal({ exercise, onSave, onCancel, onRegenerate }) 
                         onClick={() => onRegenerate(exercise)}
                         className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg flex items-center transition-colors text-sm"
                     >
-                        <SparklesIcon className="h-5 w-5 mr-2" />
-                        Regenerate with AI
+                        <SparklesIcon className="h-5 w-5 mr-2" />Regenerate with AI
                     </button>
                     <div className="flex space-x-4">
-                        <button onClick={onCancel} className="bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-6 rounded-lg">
-                            Cancel
+                        <button onClick={onCancel} className="bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-6 rounded-lg">Cancel
                         </button>
-                        <button onClick={handleSave} className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-6 rounded-lg">
-                        Save
+                        <button onClick={handleSave} className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-6 rounded-lg">Save
                     </button>
                     </div>
                 </div>

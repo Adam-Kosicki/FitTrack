@@ -2,7 +2,7 @@ name: FitTrack CI (Build & Unit Tests)
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, 'feature/**', 'feature/*' ]
   pull_request:
     branches: [ main ]
 
@@ -16,30 +16,30 @@ jobs:
         working-directory: ./workout-preview
 
     steps:
-      - name: 📥 Checkout Repository
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: 🟢 Setup Node.js Environment (v22.x)
+      - name: Setup Node.js Environment (v22.x)
         uses: actions/setup-node@v4
         with:
           node-version: 22.x
           cache: 'npm'
           cache-dependency-path: workout-preview/package-lock.json
 
-      - name: 📦 Install Dependencies
+      - name: Install Dependencies
         run: npm ci
 
-      - name: 🧪 Run Automated Unit Tests
+      - name: Run Automated Unit Tests
         run: npm test -- --watchAll=false --passWithNoTests
         env:
           CI: true
 
-      - name: 🏗️ Verify Production Bundle Compilation
+      - name: Verify Production Bundle Compilation
         run: npm run build
         env:
           CI: false
 
-      - name: 📤 Archive Production Build Artifacts
+      - name: Archive Production Build Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: fittrack-production-build

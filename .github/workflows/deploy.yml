@@ -25,7 +25,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 22.x
           cache: 'npm'
           cache-dependency-path: 'workout-preview/package-lock.json'
 
@@ -33,6 +33,13 @@ jobs:
         run: |
           cd workout-preview
           npm ci
+
+      - name: Run Automated Unit Tests
+        env:
+          CI: true
+        run: |
+          cd workout-preview
+          npm test -- --watchAll=false --passWithNoTests
 
       - name: Build React App
         env:

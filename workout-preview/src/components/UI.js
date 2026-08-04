@@ -176,8 +176,7 @@ export function ActionDialog({ title, message, buttons, onCancel }) {
                             {button.text}
                         </button>
                     ))}
-                    <button onClick={onCancel} className="bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-6 rounded-lg w-full">
-                        Stay
+                    <button onClick={onCancel} className="bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-6 rounded-lg w-full">Stay
                     </button>
                 </div>
             </div>

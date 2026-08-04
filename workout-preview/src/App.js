@@ -190,8 +190,7 @@ function MainApp({
 }) {
     useEffect(() => {
         if (!activeWorkout || !activeWorkout.log) return;
-        const hasUnfinishedSets = Object.values(activeWorkout.log).some((sets) =>
-            Array.isArray(sets) && sets.some((s) => s.status !== 'completed')
+        const hasUnfinishedSets = Object.values(activeWorkout.log).some((sets) =>Array.isArray(sets) && sets.some((s) => s.status !== 'completed')
         );
         if (!hasUnfinishedSets) {
             setActiveWorkout(null);
@@ -209,8 +208,7 @@ function MainApp({
                     <button
                         onClick={() => navigate('log', { workoutId: activeWorkout.identifier })}
                         className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg"
-                    >
-                        Resume Workout
+                    >Resume Workout
                     </button>
                 </div>
             );

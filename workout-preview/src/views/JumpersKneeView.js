@@ -167,8 +167,7 @@ export function JumpersKneeView({ userId }) {
                 </div>
                 <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-2">
                     {pages.map(p => (
-                        <a key={p} href={`${PDF_INDEX_WEB}#page-${p}`} target="_blank" rel="noreferrer" className="bg-gray-900 hover:bg-gray-700 text-center py-2 rounded text-sm">
-                            Page {Number(p)}
+                        <a key={p} href={`${PDF_INDEX_WEB}#page-${p}`} target="_blank" rel="noreferrer" className="bg-gray-900 hover:bg-gray-700 text-center py-2 rounded text-sm">Page {Number(p)}
                         </a>
                     ))}
                 </div>
@@ -439,8 +438,7 @@ export function JumpersKneeView({ userId }) {
                                                     <li key={i}>{it.type === 'main' ? `${it.name} — ${it.repsByWeek?.[week] || 5} reps, ${it.tempo}, Rest ${it.restMin} min` : it.name}</li>
                                                 ))}
                                             </ul>
-                                            <div className="mt-3 text-xs text-gray-400">
-                                                Review the above plan for Week {week} — {day.name}. Start your workout from the Workouts tab when ready.
+                                            <div className="mt-3 text-xs text-gray-400">Review the above plan for Week {week} — {day.name}. Start your workout from the Workouts tab when ready.
                                             </div>
                                         </div>
                                     );

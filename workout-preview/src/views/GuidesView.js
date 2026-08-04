@@ -13,23 +13,20 @@ export function GuidesView({ navigate }) {
                 <div className="bg-gray-800 p-4 rounded-lg border border-gray-700">
                     <h2 className="text-xl font-semibold">Jake Tuura — Jumper's Knee</h2>
                     <p className="text-gray-400 mt-1 text-sm">Evidence-based patellar tendinopathy protocol with overview, pain log, and progressive stages.</p>
-                    <button onClick={() => navigate('jumpersKnee')} className="mt-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">
-                        Open Guide
+                    <button onClick={() => navigate('jumpersKnee')} className="mt-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">Open Guide
                     </button>
                 </div>
 
                 <div className="bg-gray-800 p-4 rounded-lg border border-gray-700">
                     <h2 className="text-xl font-semibold">Ankle Recovery</h2>
                     <p className="text-gray-400 mt-1 text-sm">A structured approach for ankle sprain rehab and return to activity.</p>
-                    <button onClick={() => navigate('ankleRecovery')} className="mt-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">
-                        Open Guide
+                    <button onClick={() => navigate('ankleRecovery')} className="mt-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">Open Guide
                     </button>
                 </div>
             </div>
 
             <div className="mt-8">
-                <div className="inline-block bg-gray-800 text-gray-200 text-sm rounded-full px-4 py-2 border border-gray-700">
-                    This section is a work in progress. Community-created guides will be supported in the future so anyone can create and share guides like "Jake Tuura — Jumper's Knee". Guide creator coming soon.
+                <div className="inline-block bg-gray-800 text-gray-200 text-sm rounded-full px-4 py-2 border border-gray-700">This section is a work in progress. Community-created guides will be supported in the future so anyone can create and share guides like "Jake Tuura — Jumper's Knee". Guide creator coming soon.
                 </div>
             </div>
         </div>

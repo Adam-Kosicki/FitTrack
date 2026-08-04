@@ -151,8 +151,7 @@ export function GeminiExerciseGeneratorModal({ onSave, onCancel, existingExercis
                 )}
 
                 <div className="flex justify-end space-x-4 mt-8">
-                    <button onClick={onCancel} className="bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-6 rounded-lg transition-colors">
-                        Cancel
+                    <button onClick={onCancel} className="bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-6 rounded-lg transition-colors">Cancel
                     </button>
                     <button 
                         onClick={handleSave} 

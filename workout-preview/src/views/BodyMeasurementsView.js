@@ -205,11 +205,9 @@ export function BodyMeasurementsView({ userId }) {
             {/* Header & Guide Button */}
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                 <div>
-                    <h1 className="text-3xl font-bold text-white flex items-center gap-2">
-                        📏 Basic Health Data & Body Measurements
+                    <h1 className="text-3xl font-bold text-white flex items-center gap-2">Basic Health Data & Body Measurements
                     </h1>
-                    <p className="text-sm text-gray-400 mt-1">
-                        Track physical growth, circumference changes, and baseline vitals over time with standardized accuracy.
+                    <p className="text-sm text-gray-400 mt-1">Track physical growth, circumference changes, and baseline vitals over time with standardized accuracy.
                     </p>
                 </div>
                 <button
@@ -225,15 +223,12 @@ export function BodyMeasurementsView({ userId }) {
             {showGuide && (
                 <div className="bg-gray-900 border border-indigo-500/50 p-6 rounded-xl space-y-4 shadow-2xl">
                     <div className="flex items-center justify-between border-b border-gray-700 pb-3">
-                        <h2 className="text-xl font-bold text-indigo-300 flex items-center gap-2">
-                            <span>📋</span> Standardized Measurement Protocol & Hacks
+                        <h2 className="text-xl font-bold text-indigo-300 flex items-center gap-2">Standardized Measurement Protocol & Hacks
                         </h2>
-                        <span className="text-xs text-indigo-400 bg-indigo-950/80 px-3 py-1 rounded-full font-mono border border-indigo-700">
-                            Eliminating Skewed Numbers
+                        <span className="text-xs text-indigo-400 bg-indigo-950/80 px-3 py-1 rounded-full font-mono border border-indigo-700">Eliminating Skewed Numbers
                         </span>
                     </div>
-                    <p className="text-xs text-gray-300">
-                        Doing measurements solo often skews results. Follow these exact workarounds (Sticky Note Wall Hack, Two-Finger Rule, Garment Hack) to guarantee consistent readings every time:
+                    <p className="text-xs text-gray-300">Doing measurements solo often skews results. Follow these exact workarounds (Sticky Note Wall Hack, Two-Finger Rule, Garment Hack) to guarantee consistent readings every time:
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {MEASUREMENT_GUIDE.map((item, idx) => (
@@ -253,8 +248,7 @@ export function BodyMeasurementsView({ userId }) {
             {/* Form Input Section */}
             <form onSubmit={handleSaveRecord} className="bg-gray-900 p-5 rounded-xl border border-gray-700 space-y-4">
                 <div className="flex items-center justify-between border-b border-gray-800 pb-3">
-                    <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                        ✍️ Log New Baseline Entry
+                    <h3 className="text-lg font-bold text-white flex items-center gap-2">Log New Baseline Entry
                     </h3>
                     <input
                         type="date"
@@ -403,15 +397,14 @@ export function BodyMeasurementsView({ userId }) {
                     <button
                         type="submit"
                         className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2.5 px-6 rounded-lg text-sm transition-colors shadow-lg"
-                    >
-                        Save Measurement Entry
+                    >Save Measurement Entry
                     </button>
                 </div>
             </form>
 
             {/* Historical Measurement Logs Table */}
             <div className="bg-gray-900 p-5 rounded-xl border border-gray-700 space-y-4">
-                <h3 className="text-xl font-bold text-white">📊 Historical Body Measurement Logs ({records.length})</h3>
+                <h3 className="text-xl font-bold text-white"> Historical Body Measurement Logs ({records.length})</h3>
 
                 {records.length === 0 ? (
                     <p className="text-gray-400 text-sm">No body measurements recorded yet. Fill out the form above to start tracking physical growth!</p>

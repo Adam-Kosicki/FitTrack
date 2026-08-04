@@ -30,15 +30,13 @@ function AddExerciseFromDBModal({ isOpen, onClose, exerciseDatabase, onAddExerci
     if (!isOpen) return null;
 
     const handleSelectExercise = (exercise) => {
-        setSelectedExercises(prev =>
-            prev.some(ex => ex.id === exercise.id)
+        setSelectedExercises(prev =>prev.some(ex => ex.id === exercise.id)
                 ? prev.filter(ex => ex.id !== exercise.id)
                 : [...prev, exercise]
         );
     };
 
-    const filteredExercises = exerciseDatabase.filter(ex =>
-        ex.name.toLowerCase().includes(searchTerm.toLowerCase())
+    const filteredExercises = exerciseDatabase.filter(ex =>ex.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     return (
@@ -47,8 +45,7 @@ function AddExerciseFromDBModal({ isOpen, onClose, exerciseDatabase, onAddExerci
                 <div className="flex justify-between items-center mb-4">
                     <h2 className="text-2xl font-bold">Add Exercises from Database</h2>
                     <button onClick={onGenerateExercise} className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg flex items-center transition-colors">
-                        <SparklesIcon className="h-5 w-5 mr-2" />
-                        Generate with AI
+                        <SparklesIcon className="h-5 w-5 mr-2" />Generate with AI
                     </button>
                 </div>
                 <input
@@ -78,8 +75,7 @@ function AddExerciseFromDBModal({ isOpen, onClose, exerciseDatabase, onAddExerci
                     ))}
                 </div>
                 <div className="flex justify-end space-x-4 mt-6">
-                    <button onClick={onClose} className="bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-6 rounded-lg">
-                        Cancel
+                    <button onClick={onClose} className="bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-6 rounded-lg">Cancel
                     </button>
                     <button
                         onClick={() => {
@@ -88,8 +84,7 @@ function AddExerciseFromDBModal({ isOpen, onClose, exerciseDatabase, onAddExerci
                         }}
                         disabled={selectedExercises.length === 0}
                         className="bg-green-600 hover:bg-green-500 text-white font-bold py-2 px-6 rounded-lg disabled:bg-gray-500"
-                    >
-                        Add Selected ({selectedExercises.length})
+                    >Add Selected ({selectedExercises.length})
                     </button>
                 </div>
             </div>
@@ -1016,8 +1011,7 @@ export function WorkoutSession({ userId, workoutId, navigate, activeWorkout, set
             </div>
             
             <div className="mt-6 flex justify-end">
-                <button onClick={handleFinish} className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg">
-                    Finish Workout
+                <button onClick={handleFinish} className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg">Finish Workout
                 </button>
             </div>
 
@@ -1033,8 +1027,7 @@ export function WorkoutSession({ userId, workoutId, navigate, activeWorkout, set
                 <button 
                     onClick={() => setShowRestTimer(true)}
                     className="fixed bottom-4 left-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-full shadow-lg"
-                >
-                    Show Rest Timer
+                >Show Rest Timer
                 </button>
             )}
 

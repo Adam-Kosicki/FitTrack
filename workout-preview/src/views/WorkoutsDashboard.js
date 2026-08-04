@@ -611,8 +611,7 @@ export function WorkoutsDashboard({ userId, navigate, activeWorkoutId }) {
                 <div className="w-full md:w-auto">
                     <div className="flex gap-2">
                         <button onClick={handleCreateNewTemplate} className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg flex items-center justify-center transition-colors">
-                            <PlusIcon className="h-5 w-5 mr-2" />
-                            New Workout
+                            <PlusIcon className="h-5 w-5 mr-2" />New Workout
                         </button>
                         <button
                             onClick={toggleGroupingMode}
@@ -624,24 +623,21 @@ export function WorkoutsDashboard({ userId, navigate, activeWorkoutId }) {
                             <button
                                 onClick={handleCreateGroupFromSelection}
                                 className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg"
-                            >
-                                Create Group
+                            >Create Group
                             </button>
                         )}
                         {isGroupingMode && (
                             <button
                                 onClick={handleUngroupSelected}
                                 className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg"
-                            >
-                                Ungroup
+                            >Ungroup
                             </button>
                         )}
                         {isGroupingMode && (
                             <button
                                 onClick={handleAddSelectedToChosenGroup}
                                 className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg"
-                            >
-                                Add to Group…
+                            >Add to Group…
                             </button>
                         )}
                     </div>
@@ -722,20 +718,17 @@ export function WorkoutsDashboard({ userId, navigate, activeWorkoutId }) {
                             <button
                                 className={`px-3 py-1 rounded ${workoutOptionsTab === 'overview' ? 'bg-gray-700 text-white' : 'text-gray-300 hover:text-white'}`}
                                 onClick={() => setWorkoutOptionsTab('overview')}
-                            >
-                                Overview
+                            >Overview
                             </button>
                             <button
                                 className={`px-3 py-1 rounded ${workoutOptionsTab === 'edit' ? 'bg-gray-700 text-white' : 'text-gray-300 hover:text-white'}`}
                                 onClick={() => setWorkoutOptionsTab('edit')}
-                            >
-                                Edit Template
+                            >Edit Template
                             </button>
                             <button
                                 className={`px-3 py-1 rounded ${workoutOptionsTab === 'options' ? 'bg-gray-700 text-white' : 'text-gray-300 hover:text-white'}`}
                                 onClick={() => setWorkoutOptionsTab('options')}
-                            >
-                                Options
+                            >Options
                             </button>
                         </div>
 
@@ -828,8 +821,7 @@ export function WorkoutsDashboard({ userId, navigate, activeWorkoutId }) {
                                 <button
                                     onClick={() => { setEditingWorkout(null); navigate('edit-template', { workoutId: editingWorkout.id }); }}
                                     className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                >
-                                    Edit Template
+                                >Edit Template
                                 </button>
                             </div>
                         )}
@@ -848,8 +840,7 @@ export function WorkoutsDashboard({ userId, navigate, activeWorkoutId }) {
                                         <button
                                             onClick={async () => { try { await navigator.clipboard.writeText(workoutExportText); showNotification('Export copied to clipboard.', 'success'); } catch { showNotification('Copy failed.', 'error'); } }}
                                             className="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded"
-                                        >
-                                            Copy
+                                        >Copy
                                         </button>
                                     </div>
                                 </div>
@@ -857,14 +848,12 @@ export function WorkoutsDashboard({ userId, navigate, activeWorkoutId }) {
                                     <button
                                         onClick={() => handleDuplicateWorkout(editingWorkout)}
                                         className="w-full bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
-                                    >
-                                        Duplicate
+                                    >Duplicate
                                     </button>
                                     <button
                                         onClick={() => { setEditingWorkout(null); setDeletingWorkoutId(editingWorkout.id); }}
                                         className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-                                    >
-                                        Delete
+                                    >Delete
                                     </button>
                                 </div>
                             </div>

@@ -31,14 +31,12 @@ export function GroupModal({
                     <button
                         className={`px-3 py-1 rounded ${groupOptionsTab === 'overview' ? 'bg-gray-700 text-white' : 'text-gray-300 hover:text-white'}`}
                         onClick={() => setGroupOptionsTab('overview')}
-                    >
-                        Overview
+                    >Overview
                     </button>
                     <button
                         className={`px-3 py-1 rounded ${groupOptionsTab === 'options' ? 'bg-gray-700 text-white' : 'text-gray-300 hover:text-white'}`}
                         onClick={() => setGroupOptionsTab('options')}
-                    >
-                        Options
+                    >Options
                     </button>
                 </div>
 
@@ -168,8 +166,7 @@ export function GroupModal({
                                 <button
                                     onClick={async () => { try { await navigator.clipboard.writeText(exportText); } catch {} }}
                                     className="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded"
-                                >
-                                    Copy
+                                >Copy
                                 </button>
                             </div>
                         </div>

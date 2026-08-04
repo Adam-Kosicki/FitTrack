@@ -199,8 +199,7 @@ export function GoogleHealthView({ userId }) {
             <h3 className="text-xl font-bold text-white flex items-center gap-2">
               <span className="text-cyan-400">Fitbit OAuth 2.0 Direct Login</span>
             </h3>
-            <p className="text-sm text-gray-300">
-              Connect directly to the Fitbit Web API for standalone Fitbit accounts.
+            <p className="text-sm text-gray-300">Connect directly to the Fitbit Web API for standalone Fitbit accounts.
             </p>
             <div className="space-y-2">
               <label className="text-xs text-gray-400 font-semibold block">Fitbit App Client ID:</label>
@@ -216,14 +215,12 @@ export function GoogleHealthView({ userId }) {
               <button
                 onClick={() => setShowFitbitModal(false)}
                 className="bg-gray-700 hover:bg-gray-600 text-gray-300 text-sm px-4 py-2 rounded-lg"
-              >
-                Cancel
+              >Cancel
               </button>
               <button
                 onClick={handleConnectFitbitDirect}
                 className="bg-cyan-600 hover:bg-cyan-500 text-white font-semibold text-sm px-5 py-2 rounded-lg"
-              >
-                Sign In with Fitbit
+              >Sign In with Fitbit
               </button>
             </div>
           </div>
@@ -247,8 +244,7 @@ export function GoogleHealthView({ userId }) {
       {showSetupGuide && (
         <div className="bg-gray-800/90 border border-indigo-500/30 rounded-xl p-5 space-y-4 text-gray-200 text-sm">
           <h3 className="text-lg font-semibold text-white flex items-center gap-2">
-            <span className="bg-indigo-600 text-xs px-2 py-0.5 rounded font-mono">GCP Config</span>
-            Google Health API Scopes
+            <span className="bg-indigo-600 text-xs px-2 py-0.5 rounded font-mono">GCP Config</span>Google Health API Scopes
           </h3>
           <p className="text-gray-300 text-xs">Ensure your GCP project has enabled the Google Health API and approved the following scopes in the OAuth Consent Screen:</p>
           <ul className="list-disc ml-5 space-y-1 text-xs font-mono text-indigo-300">
@@ -262,8 +258,7 @@ export function GoogleHealthView({ userId }) {
       {/* SECTION 1: Activity & Movement */}
       <div>
         <h3 className="text-sm uppercase tracking-wider font-semibold text-gray-400 mb-3 flex items-center gap-2">
-          <span className="w-2 h-2 bg-emerald-400 rounded-full"></span>
-          Activity & Movement Telemetry
+          <span className="w-2 h-2 bg-emerald-400 rounded-full"></span>Activity & Movement Telemetry
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
           {/* Steps Card */}
@@ -309,8 +304,7 @@ export function GoogleHealthView({ userId }) {
               </div>
               <p className="text-xs text-gray-400 mt-1">Active & Total Energy</p>
             </div>
-            <div className="text-xs text-amber-400/90 font-medium pt-2 border-t border-gray-700/50">
-              active-energy-burned API
+            <div className="text-xs text-amber-400/90 font-medium pt-2 border-t border-gray-700/50">active-energy-burned API
             </div>
           </div>
 
@@ -330,8 +324,7 @@ export function GoogleHealthView({ userId }) {
               </div>
               <p className="text-xs text-gray-400 mt-1">Moderate to intense motion</p>
             </div>
-            <div className="text-xs text-blue-400/90 font-medium pt-2 border-t border-gray-700/50">
-              active-zone-minutes API
+            <div className="text-xs text-blue-400/90 font-medium pt-2 border-t border-gray-700/50">active-zone-minutes API
             </div>
           </div>
 
@@ -353,8 +346,7 @@ export function GoogleHealthView({ userId }) {
                 {stats?.distanceKm ? `~${(stats.distanceKm * 0.621371).toFixed(2)} miles` : 'Traveled today'}
               </p>
             </div>
-            <div className="text-xs text-purple-400/90 font-medium pt-2 border-t border-gray-700/50">
-              distance API
+            <div className="text-xs text-purple-400/90 font-medium pt-2 border-t border-gray-700/50">distance API
             </div>
           </div>
 
@@ -374,8 +366,7 @@ export function GoogleHealthView({ userId }) {
               </div>
               <p className="text-xs text-gray-400 mt-1">Elevation gain</p>
             </div>
-            <div className="text-xs text-teal-400/90 font-medium pt-2 border-t border-gray-700/50">
-              floors API
+            <div className="text-xs text-teal-400/90 font-medium pt-2 border-t border-gray-700/50">floors API
             </div>
           </div>
         </div>
@@ -384,8 +375,7 @@ export function GoogleHealthView({ userId }) {
       {/* SECTION 2: Cardiovascular & Vitals */}
       <div>
         <h3 className="text-sm uppercase tracking-wider font-semibold text-gray-400 mb-3 flex items-center gap-2">
-          <span className="w-2 h-2 bg-rose-400 rounded-full"></span>
-          Cardiovascular & Health Vitals
+          <span className="w-2 h-2 bg-rose-400 rounded-full"></span>Cardiovascular & Health Vitals
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
           {/* Average Heart Rate */}
@@ -452,8 +442,7 @@ export function GoogleHealthView({ userId }) {
             <h4 className="text-sm font-bold text-white flex items-center gap-2">
               <svg className="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-              </svg>
-              Sleep Analysis
+              </svg>Sleep Analysis
             </h4>
             <span className="text-xs text-indigo-300 bg-indigo-900/40 px-2 py-0.5 rounded font-mono">sleep API</span>
           </div>
@@ -491,8 +480,7 @@ export function GoogleHealthView({ userId }) {
             <h4 className="text-sm font-bold text-white flex items-center gap-2">
               <svg className="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6l3 1m0 0l-3 9a5 5 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5 5 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
-              </svg>
-              Body Metrics
+              </svg>Body Metrics
             </h4>
             <span className="text-xs text-teal-300 bg-teal-900/40 px-2 py-0.5 rounded font-mono">weight/body-fat</span>
           </div>
@@ -521,8 +509,7 @@ export function GoogleHealthView({ userId }) {
             <h4 className="text-sm font-bold text-white flex items-center gap-2">
               <svg className="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-              Recorded Sessions ({stats?.workouts?.length || 0})
+              </svg>Recorded Sessions ({stats?.workouts?.length || 0})
             </h4>
             <span className="text-xs text-amber-300 bg-amber-900/40 px-2 py-0.5 rounded font-mono">exercise API</span>
           </div>
@@ -553,8 +540,7 @@ export function GoogleHealthView({ userId }) {
           {stats ? (
             <div className="flex items-center space-x-2">
               <span className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse"></span>
-              <span>
-                Last Synced: <strong className="text-gray-200">{stats.lastSynced ? new Date(stats.lastSynced).toLocaleString() : 'Just now'}</strong>
+              <span>Last Synced: <strong className="text-gray-200">{stats.lastSynced ? new Date(stats.lastSynced).toLocaleString() : 'Just now'}</strong>
                 {stats.isDemo && <span className="ml-2 text-xs bg-yellow-600/30 text-yellow-300 px-2 py-0.5 rounded">Demo Data</span>}
                 {stats.provider && <span className="ml-2 text-xs bg-cyan-600/30 text-cyan-300 px-2 py-0.5 rounded">{stats.provider}</span>}
               </span>
@@ -570,8 +556,7 @@ export function GoogleHealthView({ userId }) {
         <button
           onClick={handleLoadDemoData}
           className="text-xs text-indigo-400 hover:text-indigo-300 underline self-start md:self-auto"
-        >
-          Load Preview / Demo Metrics
+        >Load Preview / Demo Metrics
         </button>
       </div>
     </div>

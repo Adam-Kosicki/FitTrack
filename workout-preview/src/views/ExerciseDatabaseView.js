@@ -528,8 +528,7 @@ export function ExerciseDatabaseView({ userId, navigate }) {
                             <button onClick={handleDeselectAll} className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg">Deselect All</button>
                             {/* Group Selected hidden; auto grouping handles this on load */}
                             <button onClick={handleBatchRegenerate} className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg flex items-center transition-colors" disabled={selectedForBatch.size === 0}>
-                                <SparklesIcon className="h-5 w-5 mr-2" />
-                                Regenerate ({selectedForBatch.size})
+                                <SparklesIcon className="h-5 w-5 mr-2" />Regenerate ({selectedForBatch.size})
                             </button>
                              <button onClick={() => { setIsSelectionModeActive(false); setSelectedForBatch(new Set()); }} className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg">Cancel</button>
                         </>
@@ -538,8 +537,7 @@ export function ExerciseDatabaseView({ userId, navigate }) {
                             <button onClick={() => setIsSelectionModeActive(true)} className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg">Select</button>
                              <button onClick={() => setIsImportExportOpen(true)} className="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg">Import/Export</button>
                             <button onClick={() => setIsGenerating(true)} className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg flex items-center transition-colors">
-                                <SparklesIcon className="h-5 w-5 mr-2" />
-                                Generate with AI
+                                <SparklesIcon className="h-5 w-5 mr-2" />Generate with AI
                             </button>
                         </>
                     )}
@@ -564,20 +562,17 @@ export function ExerciseDatabaseView({ userId, navigate }) {
                         <button
                             onClick={() => setSourceFilter('all')}
                             className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${sourceFilter === 'all' ? 'bg-indigo-600 text-white shadow' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}
-                        >
-                            All ({exercises.length})
+                        >All ({exercises.length})
                         </button>
                         <button
                             onClick={() => setSourceFilter('user')}
                             className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${sourceFilter === 'user' ? 'bg-indigo-600 text-white shadow' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}
-                        >
-                            User Created ({exercises.filter(ex => ex.isCustom === true || ex.source === 'user' || ex.source === 'custom' || (!ex.source && ex.isCustom !== false)).length})
+                        >User Created ({exercises.filter(ex => ex.isCustom === true || ex.source === 'user' || ex.source === 'custom' || (!ex.source && ex.isCustom !== false)).length})
                         </button>
                         <button
                             onClick={() => setSourceFilter('sample')}
                             className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${sourceFilter === 'sample' ? 'bg-emerald-600 text-white shadow' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}
-                        >
-                            Sample DB v2.9 ({exercises.filter(ex => ex.isCustom === false || ex.source === 'sample_db' || ex.source === 'system_preset' || ex.isSystemPreset === true).length})
+                        >Sample DB v2.9 ({exercises.filter(ex => ex.isCustom === false || ex.source === 'sample_db' || ex.source === 'system_preset' || ex.isSystemPreset === true).length})
                         </button>
                     </div>
                     <div className="flex flex-wrap items-center gap-2">
@@ -730,8 +725,7 @@ export function ExerciseDatabaseView({ userId, navigate }) {
                             <button
                                 onClick={() => setVisibleCount(prev => prev + 36)}
                                 className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2.5 px-6 rounded-lg transition-colors shadow"
-                            >
-                                Load More Exercises ({visibleCount} of {viewModeGrouped ? Object.keys(filteredExercises.reduce((acc, ex) => { const k = ex.groupKey || (ex.baseName ? ex.baseName.toLowerCase().replace(/\s+/g, '-') : `single:${ex.id}`); acc[k] = true; return acc; }, {})).length : filteredExercises.length})
+                            >Load More Exercises ({visibleCount} of {viewModeGrouped ? Object.keys(filteredExercises.reduce((acc, ex) => { const k = ex.groupKey || (ex.baseName ? ex.baseName.toLowerCase().replace(/\s+/g, '-') : `single:${ex.id}`); acc[k] = true; return acc; }, {})).length : filteredExercises.length})
                             </button>
                         </div>
                     )}

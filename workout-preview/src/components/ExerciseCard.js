@@ -51,13 +51,11 @@ export function ExerciseCard({
             {!isCollapsed && (
             <>
                 <div className="flex justify-between items-center mb-4 text-sm">
-                    <span className="text-indigo-300 font-mono">
-                        Volume: {completedVolume} / {expectedVolume} lbs ({volumeCompletionPercentage}% complete)
+                    <span className="text-indigo-300 font-mono">Volume: {completedVolume} / {expectedVolume} lbs ({volumeCompletionPercentage}% complete)
                     </span>
                     {dbExercise && (
                         <div className="text-right text-gray-400">
-                            <div>
-                                Last: {dbExercise.lastVolume || 0} lbs
+                            <div>Last: {dbExercise.lastVolume || 0} lbs
                             </div>
                             <div className="flex justify-end items-baseline space-x-2">
                                 <span>C: {getVolumePercentageChange(completedVolume, dbExercise.lastVolume)}</span>
@@ -128,15 +126,13 @@ export function ExerciseCard({
                             onClick={onUpdateExercise}
                             className="w-full flex items-center justify-center bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg transition-colors"
                         >
-                            <CloudUploadIcon className="h-5 w-5 mr-2" />
-                            Update Exercise in DB
+                            <CloudUploadIcon className="h-5 w-5 mr-2" />Update Exercise in DB
                         </button>
                     )}
                     <button
                         onClick={() => onMarkAllDone()}
                         className="w-full flex items-center justify-center bg-green-700 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg transition-colors"
-                    >
-                        Mark All Done
+                    >Mark All Done
                     </button>
                 </div>
             </>)}

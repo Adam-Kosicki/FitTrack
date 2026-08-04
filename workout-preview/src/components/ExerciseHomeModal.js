@@ -284,8 +284,7 @@ export function ExerciseHomeModal({ userId, exercise, onClose, onStart, onEdit, 
                         };
                         return (
                             <div className="space-y-4">
-                                <div className="bg-yellow-900/30 border border-yellow-800 text-yellow-200 p-3 rounded text-xs">
-                                    Work-in-progress: Metadata is AI-generated and read-only here. Editing will be enabled in a future update.
+                                <div className="bg-yellow-900/30 border border-yellow-800 text-yellow-200 p-3 rounded text-xs">Work-in-progress: Metadata is AI-generated and read-only here. Editing will be enabled in a future update.
                                 </div>
                                 <div className="bg-gray-900 p-4 rounded">
                                     <h3 className="font-semibold mb-2">Entire Exercise (metadata)</h3>

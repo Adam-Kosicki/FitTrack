@@ -1,4 +1,4 @@
-# 🏋️ FitTrack
+# FitTrack
 
 **A personal fitness web app built by an athlete and researcher who got tired of every workout app missing the features that matter.**
 
@@ -24,14 +24,14 @@ FitTrack is a personal project designed exactly the way I want a fitness app to 
 
 ## What It Does
 
-### 🎯 Workout Dashboard
+### Workout Dashboard
 - Create, organize, and manage workout templates with drag-and-drop reordering
 - Group workouts into training blocks (e.g., Push/Pull/Legs, Upper/Lower splits)
 - AI-powered workout generation — describe what you want and Gemini builds the template
 - AI-generated group summaries that analyze your training split
 - One-click workout export for sharing or backup
 
-### 💪 Live Workout Session
+### Live Workout Session
 - Real-time workout logging with per-set tracking (weight, reps, RPE)
 - Load type support: weighted, bodyweight, isometric, plyometric
 - **Exercise variants** — track the same exercise across equipment, stance, and grip variations (e.g., "Bench Press" with barbell vs. dumbbell, incline vs. flat) with independent progression history per variant
@@ -44,7 +44,7 @@ FitTrack is a personal project designed exactly the way I want a fitness app to 
 - Stats HUD showing real-time volume, sets completed, and workout duration
 - Active workout persistence — navigate away and resume without losing progress
 
-### 📊 Exercise Database
+### Exercise Database
 - Full exercise library with detailed metadata: muscle group, mechanics (compound/isolation), force type (push/pull/hinge), equipment, and custom tags
 - **AI-powered exercise generation** — type an exercise name and Gemini auto-fills all metadata (primary muscles, secondary muscles, mechanics, tags, and more)
 - **Bulk import** — paste a list of exercises and batch-generate metadata for all of them
@@ -54,14 +54,14 @@ FitTrack is a personal project designed exactly the way I want a fitness app to 
 - Personal notes per exercise
 - Import/export entire exercise database as JSON
 
-### 📋 Performance Log
+### Performance Log
 - Complete workout history with every set logged to Firestore in real-time
 - Filter by all workouts, rehab-specific (Jumper's Knee), or standard training
 - Export logs by timeframe (today or all-time)
 - **AI Log Parser** — paste an unstructured workout log (from notes, text messages, etc.) and Gemini parses it into structured data, auto-matching exercises to your database and creating new entries for unknown exercises
 - Delete individual log entries with confirmation
 
-### 📖 Rehab & Recovery Guides
+### Rehab & Recovery Guides
 - **Jumper's Knee Protocol** — A full 4-stage interactive tracker based on Jake Tuura's patellar tendinopathy program:
   - Stage 1: Isometrics with detailed exercise options and progression rules
   - Stage 2: Lifting with 3-week periodized programming and day-by-day completion tracking
@@ -84,7 +84,7 @@ FitTrack is a personal project designed exactly the way I want a fitness app to 
 - **14 Live Health Metrics** — Daily Steps (with percentage goal progress bar), Calories Expended (`active-energy-burned`), Active Minutes (`active-zone-minutes`), Distance (km & miles), Floors Climbed (`floors`), Average Heart Rate (`heart-rate`), Daily Resting HR, Heart Rate Variability (HRV ms), Blood Oxygen (SpO2 %), Respiratory Rate (rpm), VO2 Max, Sleep Analysis (duration, efficiency %, awake time), Body Composition (Weight & Body Fat %), and Workout Sessions history
 - **Fitbit Direct OAuth 2.0** — Dual-provider authentication via Google OAuth 2.0 or Fitbit Web API
 
-### 🔧 Additional Features
+### Additional Features
 - **Google Authentication** — secure sign-in with Firebase Auth
 - **Real-time sync** — all data syncs instantly across devices via Firestore `onSnapshot` listeners
 - **PWA support** — installable as a Progressive Web App with service worker caching (Workbox)
@@ -195,7 +195,7 @@ Built because no existing app had everything I needed, and I'd rather build it m
 
 ---
 
-## ⚡ Automated CI/CD & Infrastructure as Code (IaC)
+## Automated CI/CD & Infrastructure as Code (IaC)
 
 FitTrack uses modern production engineering practices with automated GitHub Actions CI/CD workflows and version-controlled Firebase infrastructure:
 
@@ -215,5 +215,5 @@ graph LR
   - `firestore.indexes.json` — Firestore database query index specifications.
   - `firebase.json` — Hosting headers, caching strategies, and rewrite rules.
 
-📖 **Detailed Workflow Run Analysis**: See [docs/ci_cd_architecture_and_workflow_runs.md](docs/ci_cd_architecture_and_workflow_runs.md) for in-depth technical documentation of workflow runs, reproducibility engineering, and CI/CD architecture.
+ **Detailed Workflow Run Analysis**: See [docs/ci_cd_architecture_and_workflow_runs.md](docs/ci_cd_architecture_and_workflow_runs.md) for in-depth technical documentation of workflow runs, reproducibility engineering, and CI/CD architecture.
 

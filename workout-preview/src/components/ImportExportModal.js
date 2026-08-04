@@ -78,8 +78,7 @@ export function ImportExportModal({ onClose }) {
                         <button 
                             onClick={handleExport}
                             className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg"
-                        >
-                            Export to Clipboard
+                        >Export to Clipboard
                         </button>
                     </div>
 
@@ -108,11 +107,9 @@ export function ImportExportModal({ onClose }) {
                 </div>
 
                 <div className="flex justify-end space-x-4 mt-6 flex-shrink-0">
-                    <button onClick={onClose} className="bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-6 rounded-lg">
-                        Close
+                    <button onClick={onClose} className="bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-6 rounded-lg">Close
                     </button>
-                    <button onClick={handleImport} className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg">
-                        Import Data
+                    <button onClick={handleImport} className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg">Import Data
                     </button>
                 </div>
             </div>

@@ -1,10 +1,10 @@
-# ⚡ FitTrack CI/CD Architecture & Workflow Run Documentation
+# FitTrack CI/CD Architecture & Workflow Run Documentation
 
 > **System Overview**: Comprehensive documentation of FitTrack's automated Continuous Integration (CI) and Continuous Deployment (CD) pipelines powered by GitHub Actions and Firebase Infrastructure as Code (IaC).
 
 ---
 
-## 🎯 Executive Summary
+## Executive Summary
 
 FitTrack implements production-grade software delivery pipelines using **GitHub Actions**. By enforcing strict Continuous Integration (CI) and Continuous Deployment (CD) controls, FitTrack eliminates manual deployment friction (`npm run build`, `firebase deploy`), guarantees reproducible production builds, and ensures zero broken code reaches live users.
 
@@ -16,12 +16,12 @@ graph TD
     D --> E["3. Optimized Production Bundle Compilation (npm run build)"]
     E --> F["4. Secret Validation & Key Verification"]
     F --> G["5. Automated Firebase Live Hosting Deployment"]
-    G --> H["🌐 Published Live at personal-workout-app-1bbf9.web.app"]
+    G --> H["Published Live at personal-workout-app-1bbf9.web.app"]
 ```
 
 ---
 
-## 📜 Detailed Breakdown of Key Workflow Runs
+## Detailed Breakdown of Key Workflow Runs
 
 ### 1. Commit `371483a` — `FitTrack CI (Build & Unit Tests) #14`
 - **Execution Time**: `2m 26s` | **Branch**: `main` | **Status**: ✅ **PASSED**
@@ -41,7 +41,7 @@ graph TD
 ### 3. Commit `bff8d1c` — `FitTrack CD #2` & `FitTrack CI #18`
 - **Execution Times**: `50s` (CD) & `1m 22s` (CI) | **Branch**: `main` | **Status**: ✅ **PASSED**
 - **Purpose**: Secret Validation & Fault-Tolerant Step Execution
-- **Technical Context**: Introduced automated secret validation checks (`🔍 Check Firebase Secret Status`). When GitHub repository secrets (`FIREBASE_SERVICE_ACCOUNT`) are not yet populated, the step prints a clear notice and skips deployment cleanly without failing the build.
+- **Technical Context**: Introduced automated secret validation checks (`Check Firebase Secret Status`). When GitHub repository secrets (`FIREBASE_SERVICE_ACCOUNT`) are not yet populated, the step prints a clear notice and skips deployment cleanly without failing the build.
 - **What it Proves**: Demonstrates defensive CI/CD engineering—preventing pipeline crashes due to missing cloud credentials while maintaining 100% test execution integrity.
 
 ---
@@ -60,7 +60,7 @@ graph TD
 
 ---
 
-## 🔬 Reproducibility & Industry Standards
+## Reproducibility & Industry Standards
 
 ### 1. Deterministic Node 22.x Environment
 By pinning the execution runner to `ubuntu-latest` with `actions/setup-node@v4` (Node `22.x`) and enforcing `npm ci` (lockfile-strict installation), FitTrack guarantees that every build is compiled in an identical, sterile container environment.
@@ -75,3 +75,36 @@ All cloud infrastructure policies are version-controlled alongside code:
 - **Zero Manual Terminal Commands**: Eliminates manual `cd workout-preview`, `npm run build`, `firebase deploy` commands.
 - **Automated Regression Prevention**: Prevents merging code that fails unit tests or breaks Webpack compilation.
 - **Instant Stakeholder Visibility**: Passing status badges on GitHub provide instant visual verification of production status.
+
+---
+
+## Feature Branch & Rebase Workflow
+
+FitTrack enforces a standard feature-branch workflow for all enhancements:
+
+1. **Feature Branch Creation**:
+   ```bash
+   git switch main
+   git pull
+   git switch -c feature/workout-history
+   ```
+2. **Commit & Push**:
+   ```bash
+   git add .
+   git commit -m "Add workout history endpoint"
+   git push -u origin feature/workout-history
+   ```
+3. **Automated CI Validation**:
+   Opening a PR targeting `main` triggers automated Jest tests and production build checks via `.github/workflows/ci.yml`.
+4. **Rebase & Conflict Resolution** (if `main` advances):
+   ```bash
+   git switch main
+   git pull
+   git switch feature/workout-history
+   git rebase main
+   # Resolve conflicts, rerun unit tests, then update PR:
+   git push --force-with-lease
+   ```
+5. **Continuous Deployment**:
+   Merging into `main` triggers `.github/workflows/deploy.yml` to automatically build and deploy the production bundle.
+

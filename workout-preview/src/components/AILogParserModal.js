@@ -155,8 +155,7 @@ export function AILogParserModal({ userId, onClose }) {
                 )}
                
                 <div className="flex justify-end space-x-4 mt-6">
-                    <button onClick={onClose} className="bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-6 rounded-lg transition-colors">
-                        Cancel
+                    <button onClick={onClose} className="bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-6 rounded-lg transition-colors">Cancel
                     </button>
                     {!parsedData ? (
                         <button onClick={handleParse} disabled={isLoading} className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-6 rounded-lg">

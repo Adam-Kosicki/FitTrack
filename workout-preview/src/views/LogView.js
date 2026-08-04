@@ -310,8 +310,7 @@ export function LogView({ userId }) {
                         <option value="normal">Non-Knee</option>
                     </select>
                      <button onClick={() => setIsParsing(true)} className="flex items-center bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg">
-                        <SparklesIcon className="h-5 w-5 mr-2" />
-                        Parse Log
+                        <SparklesIcon className="h-5 w-5 mr-2" />Parse Log
                     </button>
                     <button onClick={() => handleExport('today')} className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg">Export Today</button>
                     <button onClick={() => handleExport('all')} className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg">Export All</button>
@@ -334,13 +333,11 @@ export function LogView({ userId }) {
                             </h2>
                             <div className="flex items-center gap-2">
                                 {groupKey.startsWith('workout:') && (
-                                    <button onClick={() => handleUnlinkWorkout(groupKey)} className="bg-red-700 hover:bg-red-600 text-white font-bold py-1 px-3 rounded text-sm">
-                                        Unlink
+                                    <button onClick={() => handleUnlinkWorkout(groupKey)} className="bg-red-700 hover:bg-red-600 text-white font-bold py-1 px-3 rounded text-sm">Unlink
                                     </button>
                                 )}
                                 {!groupKey.startsWith('workout:') && (
-                                    <button onClick={() => handleLinkWorkout(groupKey)} className="bg-gray-700 hover:bg-gray-600 text-white font-bold py-1 px-3 rounded text-sm">
-                                        Link to Existing
+                                    <button onClick={() => handleLinkWorkout(groupKey)} className="bg-gray-700 hover:bg-gray-600 text-white font-bold py-1 px-3 rounded text-sm">Link to Existing
                                     </button>
                                 )}
                                 <button onClick={() => handleGoToWorkout(groupKey)} className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-1 px-3 rounded text-sm">
